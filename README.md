@@ -21,7 +21,6 @@ Welche Höchstgeschwindigkeit gilt vor der Schule?
 
 Eine Erklärung zu den [Tempobeschränkungen](https://www.berlin.de/sen/uvk/mobilitaet-und-verkehr/verkehrspolitik/tempobeschraenkungen/) in Berlin sind auf der Seite der Senatsverwaltung für Mobilität. Verkehr, Klimaschutz und Umwelt beschrieben. Es gibt Tempo 30 aus Verkehrssicherheitsgründen, Lärmschutzgründen und Luftreinhaltegründen.
 
-
 * [Karte Tempolimits im Geoportal Berlin](https://gdi.berlin.de/viewer/main/?MAPS={%22center%22:%5B389920,5819697%5D,%22zoom%22:2}&LAYERS=%5B{%22id%22:%22hintergrund_default_grau%22,%22visibility%22:true,%22transparency%22:0},{%22id%22:%22tempolimits:strassenabschnitte%22,%22visibility%22:true,%22transparency%22:0},{%22id%22:%22tempolimits:hoechstgeschwindigkeit%22,%22visibility%22:true,%22transparency%22:0}%5D)
   * Straßenabschnitt
   * Geschwindigkeit (5, 10, 20, 30, ...)
