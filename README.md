@@ -1,6 +1,14 @@
 # schule-speed-limit
 Welche Höchstgeschwindigkeit gilt vor der Schule?
 
+## Rechtsgrundlage
+
+Im [Steckbrief Tempo 30](https://www.adfc.de/artikel/stvo-novelle-tempo-30) vom ADFC wird erwähnt, wo Tempo 30-Zonen eingerichtet werden können, bei "hochfrequentierten Schulwegen, allgemeinbildenden Schulen, Förderschulen".
+
+Berlin hat 2025 einige [Tempo 30 auf vielen Hauptstraßen aufgehoben](https://www.berlin.de/aktuelles/9725326-958090-tempo-30-koennte-auf-vielen-hauptstrasse.html) die vorher wegen Luftreinhaltegründen eingerichtet worden waren.
+
+Zur Auszeichnung wird [Zeichen 274 StVO](https://de.wikipedia.org/wiki/Bildtafel_der_Verkehrszeichen_in_der_Bundesrepublik_Deutschland_seit_2017#Geschwindigkeitsbeschr%C3%A4nkungen_und_%C3%9Cberholverbote) verwendet.
+
 ## Daten finden
 
 ### Liste aller Schulen in Berlin
@@ -14,6 +22,7 @@ Welche Höchstgeschwindigkeit gilt vor der Schule?
   * Adresse
 * Liste auf dem Geoportal
 * Liste auf OSM
+  * Mit Overpass API kann man mit der Kategorie `amenity=school` und `entrance=main` (Haupteingang) oder `entrance=yes` die genauen Eingänge an den Grundstücksgrenzen filtern.
 * Liste der Filialen ?
 * Umrisse der Schulgelände
 
