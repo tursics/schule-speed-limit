@@ -48,3 +48,14 @@ Die Straßenklassifizierung erfolgt gemäß StEP (Stadtentwicklungsplan Verkehr)
   * Straßenname
   * StEP Klasse (I, II, III, IV, ...)
 * OSM ?
+
+## Daten herunterladen
+
+Ich habe ein paar Skripte vorbereitet. Einfach in einer Bash folgende Befehle eingeben:
+
+```
+node script/fetch-osm-grounds.js
+node script/fetch-osm-buildings.js
+```
+
+Die Daten werden im Ordner `data` abgelegt. Um eine schnelle Vorschau der .geojson-Dateien zu bekommen kann man den Online-Dienst [geojson.io](https://geojson.io/) nutzen.
