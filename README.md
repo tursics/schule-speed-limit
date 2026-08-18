@@ -57,8 +57,15 @@ Ich habe ein paar Skripte vorbereitet. Einfach in einer Bash folgende Befehle ei
 node script/fetch-bln-schools.js
 node script/fetch-osm-grounds.js
 node script/fetch-osm-buildings.js
+node script/fetch-osm-speedlimits.js
 ```
 
 Die Daten werden im Ordner `data` abgelegt. Um eine schnelle Vorschau der .geojson-Dateien zu bekommen kann man den Online-Dienst [geojson.io](https://geojson.io/) nutzen.
 
 Mist. Das erste Script holt die aktuelle Liste aller Schulen von der Webseite berlin.de. Beim übersetzen der Adresse zu einem Punkt auf der Karte (über die offiziellen Wege) wird die Verarbeitung blockiert. Die IP-Adresse wird für Tage gesperrt. Daher wird aktuell immer der Fernsehturm als Punkt für jede Schule genommen.
+
+### foo bar
+
+https://daten.berlin.de/datensaetze/tempolimits-wms-e7b13688
+
+https://daten.berlin.de/datensaetze/schulen-wfs-ebc64e18
