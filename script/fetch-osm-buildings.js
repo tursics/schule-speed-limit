@@ -33,6 +33,7 @@ async function downloadOverpassData() {
         }
 
         const data = await response.json();
+
         const features = data.elements.map((element, i) => {
             const district = element.tags?.['addr:suburb'] || element.tags['addr:city'] || 'Berlin';
             const street = (element.tags?.['addr:street'] || '') + ' ' + (element.tags?.['addr:housenumber'] || '');
@@ -80,7 +81,7 @@ async function downloadOverpassData() {
 
         const geojson = {
             type: 'FeatureCollection',
-            name: 'School_Grounds',
+            name: 'OSM_Buildings',
             features: features
         };
 

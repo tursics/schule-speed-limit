@@ -80,7 +80,7 @@ async function downloadOverpassData() {
 
         const geojson = {
             type: 'FeatureCollection',
-            name: 'School_Grounds',
+            name: 'OSM_Grounds',
             features: features
         };
 
