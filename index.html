@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulweg-Sicherheit</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="brand">
+            <h1>Schulweg-Sicherheit in Berlin</h1>
+            <span class="badge">Work in Progress</span>
+        </div>
+        <div class="right">
+            Stand August 2026
+        </div>
+    </header>
+
+    <div class="grid">
+
+        <div class="panel controlroom">
+            <div class="title">Schulauswahl & Bezirkskontext</div>
+            <div>
+                <label>Bezirk wählen</label>
+                <select>
+                    <option>Pankow</option>
+                    <option>Mitte</option>
+                    <option>Lichtenberg</option>
+                </select>
+            </div>
+            <div>
+                <label>Schule wählen</label>
+                <select>
+                    <option>Grundschule am Kollwitzplatz (Pankow)</option>
+                    <option>Grundschule an der Weidendammer Brücke (Mitte)</option>
+                    <option>Karower Grundschule (Pankow)</option>
+                </select>
+            </div>
+
+            <div class="title" style="margin-top: 1rem;">Bezirksvergleich (Sicherheits-Score)</div>
+
+            <div class="chart">
+                <div class="bars">
+                    <div class="col" style="height: 60%;" title="Mitte"></div>
+                    <div class="col" style="height: 45%;" title="Friedrichshain"></div>
+                    <div class="col active" style="height: 85%;" title="Pankow"></div>
+                    <div class="col" style="height: 50%;" title="Charlottenburg"></div>
+                    <div class="col" style="height: 35%;" title="Spandau"></div>
+                    <div class="col" style="height: 70%;" title="Steglitz"></div>
+                </div>
+                <div class="label">
+                    <span>Mit.</span><span>Fhain</span><span class="active">Pank.</span><span>Char.</span><span>Span.</span><span>Steg.</span>
+                </div>
+            </div>
+
+            <div class="title" style="margin-top: 1rem;">Methodik</div>
+
+            <p>
+                Die Bewertung basiert auf einem 200m-Anlieger-Puffer um das Schulgrundstück, verschneidet mit StVO-Tempolimits, Netzstufen (I-III) und Uhrzeitbeschränkungen.
+            </p>
+        </div>
+
+        <div class="panel schoolcard">
+            <div class="header">
+                <h2>Grundschule am Kollwitzplatz</h2>
+                <p>Bezirk Pankow • Grundschule</p>
+            </div>
+
+            <div class="chart-gauge">
+                <div class="inner">
+                    <span class="number">74</span>
+                    <span class="label">Kritisch</span>
+                </div>
+            </div>
+
+            <!-- 3D ISOMETRIC MAP -->
+            <div class="map">
+                <div class="tile">
+                    <!-- Streets -->
+                    <div class="street red north" title="Danziger Str. (Tempo 50)"></div>
+                    <div class="street green east" title="Kollwitzstr. (Tempo 30)"></div>
+                    <div class="street red south" title="Danziger Str. (Tempo 50)"></div>
+                    <div class="street green west" title="Knaackstr. (Tempo 30)"></div>
+
+                    <!-- Extruded Building -->
+                    <div class="building"></div>
+                </div>
+            </div>
+            <!-- 3D ISOMETRIC MAP -->
+
+            <div class="info">
+                💡 Gekippte 3D-Gefahrenansicht (Rot = Tempo 50 | Grün = Tempo 30)
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="title">Live-Daten & Detail-Analyse</div>
+
+            <div class="metric warning">
+                <div class="label">Schutzquote (200m Radius)</div>
+                <div class="value">45% Tempo 30</div>
+            </div>
+
+            <div class="metric danger">
+                <div class="label">Abendsicherheit (nach 17:00 Uhr)</div>
+                <div class="value">Lückenhaft (Kritisch)</div>
+                <div class="hint">Tempo 30 endet um 17:00 Uhr trotz Hortbetrieb.</div>
+            </div>
+
+            <div class="metric danger">
+                <div class="label">Hauptstraßen-Status (Stufe I-III)</div>
+                <div class="value">Tempo 50 an Nordseite</div>
+            </div>
+
+            <div class="metric success">
+                <div class="label">Anordnungsgrund</div>
+                <div class="value">70% Lärm / 30% Schule</div>
+                <div class="hint">Kopplung an Lärmaktionsplan.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div>
+            <div class="title">Status & Handlungsbedarf</div>
+            <div>Empfohlen: Antrag auf ganztägiges Tempo 30 an der Nordseite stellen.</div>
+        </div>
+        <div class="badge">Kritischer Handlungsbedarf</div>
+    </footer>
+
+</body>
+</html>
