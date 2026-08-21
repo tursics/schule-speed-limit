@@ -1,5 +1,9 @@
 # schule-speed-limit
+
 Welche Höchstgeschwindigkeit gilt vor der Schule?
+
+- [Repository](https://github.com/tursics/schule-speed-limit)
+- [Ausprobieren](https://tursics.github.io/schule-speed-limit/)
 
 ## Rechtsgrundlage
 
@@ -55,9 +59,11 @@ Ich habe ein paar Skripte vorbereitet. Einfach in einer Bash folgende Befehle ei
 
 ```
 node script/fetch-bln-schools.js
+
 node script/fetch-osm-grounds.js
 node script/fetch-osm-buildings.js
 node script/fetch-osm-speedlimits.js
+node script/generate-osm-schoolcards.js
 ```
 
 Die Daten werden im Ordner `data` abgelegt. Um eine schnelle Vorschau der .geojson-Dateien zu bekommen kann man den Online-Dienst [geojson.io](https://geojson.io/) nutzen.
