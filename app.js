@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemScoreLabel = document.querySelector('.chart-gauge .label');
     const elemScoreGauge = document.querySelector('.chart-gauge');
 
-    const elemMapTile = document.querySelector('.map .tile');
+    const elemMapTile = document.querySelector('.map .tile svg');
 //    const elemMapBuilding = document.querySelector('.map .building');
 
     const elemMetricProtection = document.getElementById('metric-protection');

@@ -5,7 +5,7 @@ const PATH_BUILDINGS = './data/osm-buildings.geojson';
 const PATH_SCHOOLS = './data/bln-schools-mod.geojson';
 const PATH_STREETS = './data/osm-speedlimits.geojson';
 const CANVAS_SIZE = 200;    // target SVG viewBox (200 x 200 pixels)
-const VIEW_SIZE = 250;      // radius is 100 meter
+const VIEW_SIZE = 200;      // radius is 100 meter
 
 // Berlin is approximately on latitude 52.52 degree north
 const METERS_PER_DEGREE_LON = 111320 * Math.cos(52.52 * Math.PI / 180);

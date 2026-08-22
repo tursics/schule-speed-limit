@@ -251,22 +251,6 @@ header .right {
   transform: rotateX(50deg) rotateZ(-25deg) translateZ(10px);
 }
 
-.map .street.red {
-    position: absolute;
-    background: var(--accent-red);
-    box-shadow: 0 0 10px var(--accent-red);
-}
-.map .street.green {
-    position: absolute;
-    background: var(--accent-green);
-    box-shadow: 0 0 10px var(--accent-green);
-}
-
-.map .street.north { top: 15px; left: 0; right: 0; height: 8px; }
-.map .street.east { top: 0; bottom: 0; right: 15px; width: 8px; }
-.map .street.south { bottom: 15px; left: 0; right: 0; height: 8px; }
-.map .street.west { top: 0; bottom: 0; left: 15px; width: 8px; }
-
 .map .building {
     position: absolute;
     top: 60px;
