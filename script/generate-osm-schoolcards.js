@@ -83,7 +83,7 @@ function processOSMData() {
     const streets = JSON.parse(fs.readFileSync(PATH_STREETS, 'utf8')).features;
     const buildings = JSON.parse(fs.readFileSync(PATH_BUILDINGS, 'utf8')).features;
 
-    const cards = {};
+    const cards = [];
 
     schools.forEach((school, index) => {
         process.stdout.clearLine();
@@ -158,7 +158,7 @@ function processOSMData() {
         const protectionRate = countTotal > 0 ? Math.round(((countEqual30 + countLess30) / countTotal) * 100) : 50;
         const score = Math.min(99, Math.max(10, Math.round(protectionRate * 0.8 + 20)));
 
-        cards[index] = {
+        cards.push({
             id,
             title,
             district,
@@ -172,7 +172,7 @@ function processOSMData() {
 //mainRoadStatus: countTotal - count30 > 0 ? 'Hauptstraße im Nahbereich' : 'Vollständig Tempo 30',
 //reason: school.properties.grund || 'Unbekannt'
             }
-        };
+        });
     });
     console.log('');
 
