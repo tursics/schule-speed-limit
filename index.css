@@ -94,6 +94,15 @@ header .right {
     backdrop-filter: blur(8px);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
+.panel.controlroom{
+    z-index: 1;
+}
+.panel.schoolcard{
+    z-index: 2;
+}
+.panel.details{
+    z-index: 1;
+}
 
 .panel .title {
     font-size: 0.85rem;
@@ -166,7 +175,6 @@ header .right {
     box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
     align-items: center;
     position: relative;
-    overflow: hidden;
 }
 
 .panel.schoolcard .header {
@@ -227,28 +235,28 @@ header .right {
 }
 
 .map {
-    width: 100%;
-    height: 260px;
-    perspective: 800px;
-    display: flex;
     align-items: center;
+    display: flex;
+    height: 16rem;
     justify-content: center;
     margin: 1rem 0;
+    perspective: 50rem;
+    width: 100%;
 }
 
 .map .tile {
-    width: 220px;
-    height: 220px;
-    background: #111a2e;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transform: rotateX(55deg) rotateZ(-35deg);
-    transform-style: preserve-3d;
-    box-shadow: -15px 15px 30px rgba(0, 0, 0, 0.7);
+    background: #153745;
+    border: 2px var(--accent-cyan);
+    box-shadow: 0 .6rem 3rem var(--accent-cyan);
+    height: 25rem;
     position: relative;
+    transform: rotateX(60deg) rotateZ(-45deg);
+    transform-style: preserve-3d;
     transition: transform 0.5s ease;
+    width: 25rem;
 }
 .map .tile:hover {
-  transform: rotateX(50deg) rotateZ(-25deg) translateZ(10px);
+    transform: rotateX(33deg) rotateZ(0deg) translateZ(2rem);
 }
 
 .map .building {

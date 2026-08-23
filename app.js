@@ -14,8 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
 //    const elemMapBuilding = document.querySelector('.map .building');
 
     const elemMetricProtection = document.getElementById('metric-protection');
-    const elemMetricEvening = document.getElementById('metric-evening');
     const elemMetricMainRoad = document.getElementById('metric-mainroad');
+    const elemMetricEvening = document.getElementById('metric-evening');
+    const elemMetricStreets = document.getElementById('metric-streets');
     const elemMetricReason = document.getElementById('metric-reason');
 
     function prepareControlRoom() {
@@ -33,11 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    function setSchool(id) {
-        const school = schools[id];
-        if (!school) return;
+    function setSchool(ref) {
+        const found = schools.filter((school) => school.id === ref);
+        if (found.length === 0) {
+            return;
+        }
 
+        if (found.length > 1) {
+            console.error('More than 1 object found for ' + ref);
+        }
+        const school = found[0];
 console.log(school);
+
         elemSchoolTitle.textContent = school.title;
         elemSchoolDistrict.textContent = `Grundschule in ${school.district}`;
         elemScoreNumber.textContent = school.score;
@@ -73,13 +81,45 @@ console.log(school);
             elemMetricReason.textContent = school.metrics.reason;
         }*/
 
+        let statistic = {};
         let svg = '';
         school.streets.forEach(street => {
             const color = street.speed <= 30 ? '#00ff88' : '#ff3366';
             const points = street.coords.map(pt => pt.join(',')).join(' ');
-            svg += `<polyline points="${points}" stroke="${color}" stroke-width="6" fill="none" stroke-linecap="round" />`;
+            svg += `<polyline points="${points}" stroke="${color}" stroke-width="3" fill="none" stroke-linecap="round" />`;
+
+            let info = statistic[street.name] || {
+                name: street.name,
+                parts: []
+            };
+            info.parts.push({
+                distance: 1,
+                limit: street.speed
+            });
+            statistic[street.name] = info;
         });
         elemMapTile.innerHTML = svg;
+
+        let streetInfos = '';
+        streetInfos += '<div class="value">Straßenname und Nummer</div>';
+
+        Object.values(statistic).forEach(item => {
+            let speed = {};
+
+            item.parts.forEach((itemParts) => {
+                let sum = speed[itemParts.limit] || 0;
+                sum += itemParts.distance;
+                speed[itemParts.limit] = sum;
+            });
+
+            Object.values(speed).forEach((distance, i) => {
+                streetInfos += '<div class="hint">' + item.name + ': ' + distance + 'x ' + Object.keys(speed)[i] + ' km/h</div>';
+            });
+        });
+
+        if (elemMetricStreets) {
+            elemMetricStreets.innerHTML = streetInfos;
+        }
 
 /*        const scale = 220 / 200;
         elemMapBuilding.style.left = (school.building.x * scale) + 'px';
@@ -96,7 +136,7 @@ console.log(school);
 
         const firstSchool = Object.keys(schools)[0];
         if (firstSchool) {
-            setSchool(firstSchool);
+            setSchool(schools[firstSchool].id);
         }
     })
     .catch(err => console.error('Error loading school data:', err));
