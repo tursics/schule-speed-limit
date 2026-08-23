@@ -92,7 +92,11 @@ function processOSMData() {
 
         const id = school.properties.ref || `school_${index + 1}`;
         const title = school.properties.title || 'Unknown School';
-        const district = school.properties.district || 'Berlin';
+        const type = school.properties.type || '';
+        const addressStreet = school.properties.street || '';
+        const addressZIP = school.properties.zip || '';
+        const addressCity = school.properties.city || '';
+        const district = school.properties.district || '';
         const [centerLon, centerLat] = getBuildingCenter(school);
 
         const localStreets = [];
@@ -117,7 +121,7 @@ function processOSMData() {
                     ++countTotal;
 
                     localStreets.push({
-                        name: street.properties.title || 'Street',
+                        name: street.properties.title || '',
                         speed: speed,
                         coords: svgCoords
                     });
@@ -161,6 +165,10 @@ function processOSMData() {
         cards.push({
             id,
             title,
+            type,
+            address: addressStreet,
+            zip: addressZIP,
+            city: addressCity,
             district,
             center: [centerLon, centerLat],
             score,
