@@ -158,7 +158,7 @@ function processOSMData() {
         const protectionRate = countTotal > 0 ? Math.round(((countEqual30 + countLess30) / countTotal) * 100) : 50;
         const score = Math.min(99, Math.max(10, Math.round(protectionRate * 0.8 + 20)));
 
-        cards[id] = {
+        cards[index] = {
             id,
             title,
             district,
@@ -182,7 +182,7 @@ function processOSMData() {
     }
 
     const filePath = path.join(dir, 'school-cards.json');
-    fs.writeFileSync(filePath, JSON.stringify(cards, null, 2));
+    fs.writeFileSync(filePath, JSON.stringify(cards/*, null, 2*/));
 
     console.log(`Done: ${Object.keys(cards).length} school cards saved in '${filePath}'.`);
 }
