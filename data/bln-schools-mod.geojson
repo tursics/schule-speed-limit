@@ -2569,8 +2569,8 @@
         "city": "Berlin",
         "district": "Hellersdorf",
         "center": [
-          13.409779,
-          52.520645
+          13.58944,
+          52.54677
         ],
         "additions": [
           "Zugang über Rampe möglich"
@@ -2579,8 +2579,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.58944,
+          52.54677
         ]
       }
     },
@@ -2671,16 +2671,16 @@
         "city": "Berlin",
         "district": "Friedrichshain",
         "center": [
-          13.409779,
-          52.520645
+          13.42539,
+          52.52524
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.42539,
+          52.52524
         ]
       }
     },
@@ -2743,8 +2743,8 @@
         "city": "Berlin",
         "district": "Westend",
         "center": [
-          13.409779,
-          52.520645
+          13.23674,
+          52.50875
         ],
         "additions": [
           "Filiale: Am Postfenn 31, 14055 Berlin"
@@ -2753,8 +2753,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.23674,
+          52.50875
         ]
       }
     },
@@ -2793,16 +2793,16 @@
         "city": "Berlin",
         "district": "Mitte",
         "center": [
-          13.409779,
-          52.520645
+          13.40669,
+          52.52775
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.40669,
+          52.52775
         ]
       }
     },
@@ -2889,16 +2889,16 @@
         "city": "Berlin",
         "district": "Mitte",
         "center": [
-          13.409779,
-          52.520645
+          13.39042,
+          52.52691
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.39042,
+          52.52691
         ]
       }
     },
@@ -3011,8 +3011,8 @@
         "city": "Berlin",
         "district": "Haselhorst",
         "center": [
-          13.409779,
-          52.520645
+          13.23273,
+          52.54451
         ],
         "additions": [
           "Zugang über Rampe möglich"
@@ -3021,8 +3021,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.23273,
+          52.54451
         ]
       }
     },
@@ -3063,16 +3063,16 @@
         "city": "Berlin",
         "district": "Friedrichsfelde",
         "center": [
-          13.409779,
-          52.520645
+          13.51206,
+          52.49568
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.51206,
+          52.49568
         ]
       }
     },
@@ -3337,16 +3337,16 @@
         "city": "Berlin",
         "district": "Kaulsdorf",
         "center": [
-          13.409779,
-          52.520645
+          13.60064,
+          52.51932
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.60064,
+          52.51932
         ]
       }
     },
@@ -3361,16 +3361,16 @@
         "city": "Berlin",
         "district": "Mahlsdorf",
         "center": [
-          13.409779,
-          52.520645
+          13.60554,
+          52.48246
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.60554,
+          52.48246
         ]
       }
     },
@@ -3459,16 +3459,16 @@
         "city": "Berlin",
         "district": "Köpenick",
         "center": [
-          13.409779,
-          52.520645
+          13.56792,
+          52.45392
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.56792,
+          52.45392
         ]
       }
     },
@@ -3535,8 +3535,8 @@
         "city": "Berlin",
         "district": "Gesundbrunnen",
         "center": [
-          13.409779,
-          52.520645
+          13.3849476,
+          52.5389505
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -3545,8 +3545,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.3849476,
+          52.5389505
         ]
       }
     },
@@ -3561,8 +3561,8 @@
         "city": "Berlin",
         "district": "Gesundbrunnen",
         "center": [
-          13.409779,
-          52.520645
+          13.3849476,
+          52.5389505
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -3571,8 +3571,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.3849476,
+          52.5389505
         ]
       }
     },
@@ -3587,16 +3587,16 @@
         "city": "Berlin",
         "district": "Prenzlauer Berg",
         "center": [
-          13.409779,
-          52.520645
+          13.4563824,
+          52.5269048
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.4563824,
+          52.5269048
         ]
       }
     },
@@ -3611,8 +3611,8 @@
         "city": "Berlin",
         "district": "Lichterfelde",
         "center": [
-          13.409779,
-          52.520645
+          13.28213,
+          52.42106
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -3621,8 +3621,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.28213,
+          52.42106
         ]
       }
     },
@@ -3637,8 +3637,8 @@
         "city": "Berlin",
         "district": "Lichterfelde",
         "center": [
-          13.409779,
-          52.520645
+          13.28213,
+          52.42106
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -3647,8 +3647,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.28213,
+          52.42106
         ]
       }
     },
@@ -3663,16 +3663,16 @@
         "city": "Berlin",
         "district": "Wilmersdorf",
         "center": [
-          13.409779,
-          52.520645
+          13.32194,
+          52.4805
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.32194,
+          52.4805
         ]
       }
     },
@@ -3687,16 +3687,16 @@
         "city": "Berlin",
         "district": "Spandau",
         "center": [
-          13.409779,
-          52.520645
+          13.1973,
+          52.54854
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.1973,
+          52.54854
         ]
       }
     },
@@ -3711,16 +3711,16 @@
         "city": "Berlin",
         "district": "Friedrichshain",
         "center": [
-          13.409779,
-          52.520645
+          13.43146,
+          52.51628
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.43146,
+          52.51628
         ]
       }
     },
@@ -3785,16 +3785,16 @@
         "city": "Berlin",
         "district": "Prenzlauer Berg",
         "center": [
-          13.409779,
-          52.520645
+          13.40773,
+          52.55562
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.40773,
+          52.55562
         ]
       }
     },
@@ -3809,8 +3809,8 @@
         "city": "Berlin",
         "district": "Wittenau",
         "center": [
-          13.409779,
-          52.520645
+          13.30506,
+          52.58798
         ],
         "additions": [
           "Zugang über Rampe möglich"
@@ -3819,8 +3819,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.30506,
+          52.58798
         ]
       }
     },
@@ -3835,8 +3835,8 @@
         "city": "Berlin",
         "district": "Prenzlauer Berg",
         "center": [
-          13.409779,
-          52.520645
+          13.43945,
+          52.53495
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Zugang über Rampe möglich"
@@ -3845,8 +3845,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.43945,
+          52.53495
         ]
       }
     },
@@ -3861,8 +3861,8 @@
         "city": "Berlin",
         "district": "Alt-Treptow",
         "center": [
-          13.409779,
-          52.520645
+          13.45275,
+          52.49334
         ],
         "additions": [
           "Behindertenparkplatz vorhanden"
@@ -3871,8 +3871,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.45275,
+          52.49334
         ]
       }
     },
@@ -4043,8 +4043,8 @@
         "city": "Berlin",
         "district": "Alt-Hohenschönhausen",
         "center": [
-          13.409779,
-          52.520645
+          13.50315,
+          52.53622
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden"
@@ -4053,8 +4053,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.50315,
+          52.53622
         ]
       }
     },
@@ -4095,8 +4095,8 @@
         "city": "Berlin",
         "district": "Wedding",
         "center": [
-          13.409779,
-          52.520645
+          13.35783,
+          52.54128
         ],
         "additions": [
           "Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -4105,8 +4105,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.35783,
+          52.54128
         ]
       }
     },
@@ -4121,16 +4121,16 @@
         "city": "Berlin",
         "district": "Lichtenrade",
         "center": [
-          13.409779,
-          52.520645
+          13.4025,
+          52.40492
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.4025,
+          52.40492
         ]
       }
     },
@@ -4145,8 +4145,8 @@
         "city": "Berlin",
         "district": "Britz",
         "center": [
-          13.409779,
-          52.520645
+          13.44894,
+          52.43993
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Zugang über Rampe möglich"
@@ -4155,8 +4155,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.44894,
+          52.43993
         ]
       }
     },
@@ -4267,16 +4267,16 @@
         "city": "Berlin",
         "district": "Hellersdorf",
         "center": [
-          13.409779,
-          52.520645
+          13.62912,
+          52.54067
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.62912,
+          52.54067
         ]
       }
     },
@@ -4315,8 +4315,8 @@
         "city": "Berlin",
         "district": "Kreuzberg",
         "center": [
-          13.409779,
-          52.520645
+          13.40518,
+          52.49495
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -4325,8 +4325,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.40518,
+          52.49495
         ]
       }
     },
@@ -4341,16 +4341,16 @@
         "city": "Berlin",
         "district": "Friedrichsfelde",
         "center": [
-          13.409779,
-          52.520645
+          13.51667,
+          52.50813
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.51667,
+          52.50813
         ]
       }
     },
