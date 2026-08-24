@@ -11,24 +11,73 @@ out geom;
 `;
 
 function parseMaxspeed(tags) {
+    // primary = Bundesstraße + Kreisstraße + Hauptstraße
+    // primary_link ???
+    // secondary = Landesstraßen + Kreisstraße + Durchgangsstraße
+    // secondary_link ???
+    // tertiary = Kreisstraße + Nebenstraße + Durchgangsstraße
+    // tertiary_link ???
+    // residential = Hauptstraße + Anliegerstraße
+    // living_street = Verkehrsberuhigter Bereich / Wohnstraße
+    // unclassified = Kreisstraße + Nebenstraße + Sonstige untergeordnete Straße + Hauptstraße + Durchgangsstraße + Anliegerstraße + Sonstige untergeordnete Straße
+    // service = Erschließungsweg zu einzelnen Häusern + Zufahrtsweg
+    // services ???
     const raw = tags.maxspeed;
+    const zone1 = tags['maxspeed:type'];
+    const zone2 = tags['source:maxspeed'];
+    const zone3 = tags['zone:maxspeed'];
+    const trafficSign = tags.traffic_sign;
+
+    let zone = '';
+    if (zone1 === 'DE:zone30') {
+        zone = 30;
+    } else if (zone1 === 'DE:zone20') {
+        zone = 20;
+    } else if (zone1 === 'DE:zone10') {
+        zone = 10;
+    }
+
+    if (zone2 === 'DE:zone30') {
+        zone = 30;
+    } else if (zone2 === 'de:zone30') {
+        zone = 30;
+    } else if (zone2 === 'DE:zone:30') {
+        zone = 30;
+    } else if (zone2 === 'DE:zone20') {
+        zone = 20;
+    } else if (zone2 === 'DE:zone:20') {
+        zone = 20;
+    } else if (zone2 === 'DE:zone10') {
+        zone = 10;
+    }
+
+    if (zone3 === 'DE:30') {
+        zone = 30;
+    } else if (zone3 === 'DE:20') {
+        zone = 20;
+    } else if (zone3 === 'DE:10') {
+        zone = 10;
+    }
 
     if (!raw) {
         if (tags.highway === 'living_street') {
             return 7;
         }
+        if (tags.highway === 'service') {
+            return 0;
+        }
+        if (tags.highway === 'services') {
+            return 0;
+        }
+        if (tags.highway === 'unclassified') {
+            return 0; // ?
+        }
 
         return 50; 
     }
 
-    if (raw === 'walk' || raw === 'DE:living_street') {
-        return 7;
-    }
-    if (raw === 'DE:zone30') {
-        return 30;
-    }
-    if (raw === 'DE:innerurban') {
-        return 50;
+    if (raw === 'walk') {
+        return 0;
     }
 
     const parsed = parseInt(raw, 10);

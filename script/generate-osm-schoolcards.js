@@ -29,6 +29,26 @@ function isInsideCanvas([x, y]) {
         (y <= CANVAS_SIZE);
 }
 
+function streetGetLength(street) {
+    let meter = 0;
+
+    if (street.geometry && street.geometry.type === 'LineString') {
+        const len = street.geometry.coordinates.length;
+        for (let i = 1; i < len; ++i) {
+            const point1 = street.geometry.coordinates[i - 1];
+            const point2 = street.geometry.coordinates[i];
+
+            const diffX = (point1[0] - point2[0]) * METERS_PER_DEGREE_LON;
+            const diffY = (point1[1] - point2[1]) * METERS_PER_DEGREE_LAT;
+            const hypotenuse = Math.hypot(diffX, diffY);
+
+            meter += hypotenuse;
+        }
+    }
+
+    return Math.round(meter);
+}
+
 function streetIntersectsCanvas(coords) {
     for (let i = 0; i < coords.length; ++i) {
         if (isInsideCanvas(coords[i])) {
@@ -100,30 +120,34 @@ function processOSMData() {
         const [centerLon, centerLat] = getBuildingCenter(school);
 
         const localStreets = [];
-        let countEqual30 = 0;
-        let countLess30 = 0;
-        let countTotal = 0;
+        let meterEqual0 = 0;
+        let meterLess30 = 0;
+        let meterEqual30 = 0;
+        let meterTotal = 0;
 
         streets.forEach(street => {
             if (street.geometry && street.geometry.type === 'LineString') {
                 const svgCoords = street.geometry.coordinates.map(point => convertGeoToSVG(point[0], point[1], centerLon, centerLat));
 
                 if (streetIntersectsCanvas(svgCoords)) {
-                    const rawSpeed = street.properties.maxspeed || 50;
-                    const speed = parseInt(rawSpeed, 10) || 50;
+                    const rawSpeed = street.properties.maxspeed || 0;
+                    const speed = parseInt(rawSpeed, 10) || 0;
+                    const length = streetGetLength(street);
 
-                    if (speed < 30) {
-                        ++countLess30;
+                    if (speed === 0) {
+                        meterEqual0 += length;
+                    } else if (speed < 30) {
+                        meterLess30 += length;
+                    } else if (speed === 30) {
+                        meterEqual30 += length;
                     }
-                    if (speed === 30) {
-                        ++countEqual30;
-                    }
-                    ++countTotal;
+                    meterTotal += length;
 
                     localStreets.push({
                         name: street.properties.title || '',
-                        speed: speed,
-                        coords: svgCoords
+                        coords: svgCoords,
+                        length,
+                        speed: speed
                     });
                 }
             }
@@ -159,7 +183,8 @@ function processOSMData() {
             };
         }
 
-        const protectionRate = countTotal > 0 ? Math.round(((countEqual30 + countLess30) / countTotal) * 100) : 50;
+        meterTotal -= meterEqual0;
+        const protectionRate = meterTotal > 0 ? Math.round(((meterEqual30 + meterLess30) / meterTotal) * 100) : 50;
         const score = Math.min(99, Math.max(10, Math.round(protectionRate * 0.8 + 20)));
 
         cards.push({
@@ -175,9 +200,9 @@ function processOSMData() {
             building: buildingBox,
             streets: localStreets,
             metrics: {
-//protectionRate: `${protectionRate}% Tempo 30 (${count30}/${countTotal} Straßen)`,
+//protectionRate: `${protectionRate}% Tempo 30 (${count30}/${meterTotal} Straßen)`,
 //eveningSafety: protectionRate < 50 ? 'Lückenhaft (Kritisch)' : 'Ausreichend',
-//mainRoadStatus: countTotal - count30 > 0 ? 'Hauptstraße im Nahbereich' : 'Vollständig Tempo 30',
+//mainRoadStatus: meterTotal - count30 > 0 ? 'Hauptstraße im Nahbereich' : 'Vollständig Tempo 30',
 //reason: school.properties.grund || 'Unbekannt'
             }
         });

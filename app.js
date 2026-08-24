@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 console.log(school);
 
         elemSchoolTitle.textContent = school.title;
-        elemSchoolDistrict.textContent = `Grundschule in ${school.district}`;
+        elemSchoolDistrict.textContent = school.type;
         elemScoreNumber.textContent = school.score;
 
         const score = Math.max(1, school.score);
@@ -101,7 +101,7 @@ console.log(school);
         elemMapTile.innerHTML = svg;
 
         let streetInfos = '';
-        streetInfos += '<div class="value">Straßenname und Nummer</div>';
+        streetInfos += '<div class="value">' + school.address + '<br>' + school.zip + ' ' + school.city + ', ' + school.district + '</div>';
 
         Object.values(statistic).forEach(item => {
             let speed = {};
