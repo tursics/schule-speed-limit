@@ -17,6 +17,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemMetricMainRoad = document.getElementById('metric-mainroad');
     const elemMetricEvening = document.getElementById('metric-evening');
     const elemMetricStreets = document.getElementById('metric-streets');
+    const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
+    const elemMetricStreetsSafe = document.getElementById('metric-streets-safe');
     const elemMetricReason = document.getElementById('metric-reason');
 
     function prepareControlRoom() {
@@ -83,26 +85,43 @@ console.log(school);
 
         let statistic = {};
         let svg = '';
+        let lowSpeed = 0;
+        let totalSpeed = 0;
+
+        school.streets.sort((a, b) => a.speed - b.speed);
         school.streets.forEach(street => {
-            const color = street.speed <= 30 ? '#00ff88' : '#ff3366';
+            const color = street.speed === 0 ? '#077' : (street.speed <= 30 ? '#00ff88' : '#ff3366');
             const points = street.coords.map(pt => pt.join(',')).join(' ');
             svg += `<polyline points="${points}" stroke="${color}" stroke-width="3" fill="none" stroke-linecap="round" />`;
 
-            let info = statistic[street.name] || {
-                name: street.name,
-                parts: []
-            };
-            info.parts.push({
-                distance: 1,
-                limit: street.speed
-            });
-            statistic[street.name] = info;
+            if (street.speed > 0) {
+                let info = statistic[street.name] || {
+                    name: street.name || 'Straße ohne Name',
+                    parts: []
+                };
+                info.parts.push({
+                    distance: street.length,
+                    limit: street.speed
+                });
+                statistic[street.name] = info;
+
+                if (street.speed <= 30) {
+                    lowSpeed += street.length;
+                }
+                totalSpeed += street.length;
+            }
         });
         elemMapTile.innerHTML = svg;
 
         let streetInfos = '';
+        let streetInfosDanger = '';
+        let streetInfosSafe = '';
         streetInfos += '<div class="value">' + school.address + '<br>' + school.zip + ' ' + school.city + ', ' + school.district + '</div>';
+        streetInfosSafe += `<div class="label">Schutzquote (400m x 400m)</div>`;
+        streetInfosSafe += `<div class="value">${Math.round(lowSpeed / totalSpeed * 100)}% verkehrsberuhigt</div>`;
+        streetInfosDanger += `<div class="value">Hauptstraßen</div>`;
 
+        let speedlimits = [];
         Object.values(statistic).forEach(item => {
             let speed = {};
 
@@ -113,12 +132,44 @@ console.log(school);
             });
 
             Object.values(speed).forEach((distance, i) => {
-                streetInfos += '<div class="hint">' + item.name + ': ' + distance + 'x ' + Object.keys(speed)[i] + ' km/h</div>';
+                speedlimits.push({
+                    name: item.name,
+                    distance,
+                    speed: Object.keys(speed)[i]
+                });
             });
+        });
+
+        speedlimits.sort((a, b) => {
+            if (a.speed !== b.speed) {
+                return b.speed - a.speed;
+            }
+            return a.name < b.name ? -1 : 1;
+        });
+
+        let current = 0;
+        speedlimits.forEach(item => {
+            let addition = '';
+            if (current !== item.speed) {
+                current = item.speed;
+                addition += `<div class="sign">${item.speed}</div>`;
+            }
+
+            if (item.speed <= 30) {
+                streetInfosSafe += `${addition}<div class="hint">${item.name}: ${item.distance} m</div>`;
+            } else {
+                streetInfosDanger += `${addition}<div class="hint">${item.name}: ${item.distance} m</div>`;
+            }
         });
 
         if (elemMetricStreets) {
             elemMetricStreets.innerHTML = streetInfos;
+        }
+        if (elemMetricStreetsDanger) {
+            elemMetricStreetsDanger.innerHTML = streetInfosDanger;
+        }
+        if (elemMetricStreetsSafe) {
+            elemMetricStreetsSafe.innerHTML = streetInfosSafe;
         }
 
 /*        const scale = 220 / 200;
