@@ -23,11 +23,12 @@ function convertGeoToSVG(lon, lat, centerLon, centerLat) {
 }
 
 function isInsideCanvas([x, y]) {
-    return
+    const ret =
         (x >= 0) &&
         (x <= CANVAS_SIZE) &&
         (y >= 0) &&
         (y <= CANVAS_SIZE);
+    return ret;
 }
 
 function streetGetLength(street) {
@@ -154,35 +155,30 @@ function processOSMData() {
             }
         });
 
-        let buildingBox = { x: 75, y: 75, width: 50, height: 50 };
+        const visibleBuildings = buildings.filter(building => {
+            const [lon, lat] = getBuildingCenter(building);
+            const center = convertGeoToSVG(lon, lat, centerLon, centerLat);
 
-        const schoolBuilding = buildings.find(building => {
-            if (building.geometry.type !== 'Polygon') {
-                return false;
-            }
-
-            const points = building.geometry.coordinates[0].map(point => convertGeoToSVG(point[0], point[1], centerLon, centerLat));
-            const x = points.reduce((sum, point) => sum + point[0], 0) / points.length;
-            const y = points.reduce((sum, point) => sum + point[1], 0) / points.length;
-            return Math.abs(x - 100) < 40 && Math.abs(y - 100) < 40;
+            return isInsideCanvas(center);
         });
 
-        if (schoolBuilding) {
-            const points = schoolBuilding.geometry.coordinates[0].map(point => convertGeoToSVG(point[0], point[1], centerLon, centerLat));
-            const xs = points.map(point => point[0]);
-            const ys = points.map(point => point[1]);
-            const minX = Math.min(...xs);
-            const maxX = Math.max(...xs);
-            const minY = Math.min(...ys);
-            const maxY = Math.max(...ys);
+        let localBuildings = [];
+        visibleBuildings.forEach(building => {
+//            console.log(building.properties);
+            if (building.geometry && building.geometry.type === 'Polygon') {
+                building.geometry.coordinates.forEach(singleBuilding => {
+                    const svgCoords = singleBuilding.map(point => convertGeoToSVG(point[0], point[1], centerLon, centerLat));
 
-            buildingBox = {
-                x: Math.max(10, minX),
-                y: Math.max(10, minY),
-                width: Math.min(180, Math.max(20, maxX - minX)),
-                height: Math.min(180, Math.max(20, maxY - minY))
-            };
-        }
+                    localBuildings.push({
+                        name: building.properties.title || '',
+                        coords: svgCoords
+                    });
+                });
+            } else {
+                console.log(building);
+                console.error('Building use wrong geometry type');
+            }
+        });
 
         meterTotal -= meterEqual0;
         const protectionRate = meterTotal > 0 ? Math.round(((meterEqual30 + meterLess30) / meterTotal) * 100) : 50;
@@ -198,7 +194,7 @@ function processOSMData() {
             district,
             center: [centerLon, centerLat],
             score,
-            building: buildingBox,
+            buildings: localBuildings,
             streets: localStreets,
             metrics: {
 //protectionRate: `${protectionRate}% Tempo 30 (${count30}/${meterTotal} Straßen)`,
@@ -210,7 +206,7 @@ function processOSMData() {
     });
     console.log('');
 
-    const dir = './dist';
+    const dir = './data';
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
     }
@@ -222,9 +218,15 @@ function processOSMData() {
 }
 
 function compressFile() {
-    const dir = './dist';
+    let dir = './data';
     const inputPath = path.join(dir, 'school-cards.json');
-    const outputPath = inputPath + '.brotli.gz';
+
+    dir = './dist';
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
+
+    const outputPath = path.join(dir, 'data.json.gz');
 
     const input = fs.createReadStream(inputPath);
     const output = fs.createWriteStream(outputPath);

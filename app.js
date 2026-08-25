@@ -71,6 +71,15 @@ console.log(school);
         let lowSpeed = 0;
         let totalSpeed = 0;
 
+        if (school.ground) {
+            const grounds = Array.isArray(school.ground[0][0]) ? school.ground : [school.ground];
+
+            grounds.forEach(ground => {
+                const points = ground.map(pt => pt.join(',')).join(' ');
+                svg += `<polygon points="${points}" fill="rgba(0, 240, 255, 0.18)" stroke="#00f0ff" stroke-width="1.5" stroke-dasharray="3,2" />`;
+            });
+        }
+
         school.streets.sort((a, b) => a.speed - b.speed);
         school.streets.forEach(street => {
             const color = street.speed === 0 ? '#077' : (street.speed <= 30 ? '#00ff88' : '#ff3366');
