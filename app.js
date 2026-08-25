@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemScoreGauge = document.querySelector('.chart-gauge');
 
     const elemMapTile = document.querySelector('.map .tile svg');
-//    const elemMapBuilding = document.querySelector('.map .building');
 
     const elemMetricStreets = document.getElementById('metric-streets');
     const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
@@ -30,6 +29,44 @@ document.addEventListener('DOMContentLoaded', () => {
         elemSchoolList.addEventListener('change', (event) => {
             setSchool(event.target.value);
         });
+    }
+
+    function get3DBuilding(polygonPoints, height = 14) {
+        const offsetX = height * .2;
+        const offsetY = height * .7;
+
+        const roofPoints = polygonPoints.map(([x, y]) => [
+            x - offsetX,
+            y - offsetY
+        ]);
+
+        let svg = '<g>';
+
+        const groundStr = polygonPoints.map(pt => pt.join(',')).join(' ');
+        svg += `<polygon points="${groundStr}" fill="rgba(0, 0, 0, 0.4)" transform="translate(2, 2)" />`;
+
+        for (let i = 0; i < polygonPoints.length; ++i) {
+            const next = (i + 1) % polygonPoints.length;
+
+            const p1 = polygonPoints[i];
+            const p2 = polygonPoints[next];
+            const r1 = roofPoints[i];
+            const r2 = roofPoints[next];
+
+            const wallPoints = `${p1[0]},${p1[1]} ${p2[0]},${p2[1]} ${r2[0]},${r2[1]} ${r1[0]},${r1[1]}`;
+            const angle = Math.atan2(p2[1] - p1[1], p2[0] - p1[0]) * (180 / Math.PI);
+            const brightness = 25 + Math.abs(Math.sin(angle)) * 50;
+
+            svg += `<polygon points="${wallPoints}" fill="hsl(215, 50%, ${brightness}%)" stroke="#f0f0ff" stroke-width="0.5" />`;
+        }
+
+        const roofStr = roofPoints.map(pt => pt.join(',')).join(' ');
+        svg += `<polygon points="${roofStr}" fill="#1e293b" stroke="#f0f0ff" stroke-width="0.5" />`;
+        svg += `<polygon points="${roofStr}" fill="rgba(0, 240, 255, 0.12)" />`;
+
+        svg += '</g>';
+
+        return svg;
     }
 
     function setSchool(ref) {
@@ -103,6 +140,11 @@ console.log(school);
                 totalSpeed += street.length;
             }
         });
+
+        school.buildings.forEach(building => {
+            svg += get3DBuilding(building.coords);
+        });
+
         elemMapTile.innerHTML = svg;
 
         let streetInfos = '';
@@ -163,12 +205,6 @@ console.log(school);
         if (elemMetricStreetsSafe) {
             elemMetricStreetsSafe.innerHTML = streetInfosSafe;
         }
-
-/*        const scale = 220 / 200;
-        elemMapBuilding.style.left = (school.building.x * scale) + 'px';
-        elemMapBuilding.style.top = (school.building.y * scale) + 'px';
-        elemMapBuilding.style.width = (school.building.width * scale) + 'px';
-        elemMapBuilding.style.height = (school.building.height * scale) + 'px';*/
     }
 
     async function fetchGZIP(url) {
@@ -179,7 +215,7 @@ console.log(school);
         return new Response(stream);
     }
 
-    fetchGZIP(dataRoot + 'dist/school-cards.json.zip.gz')
+    fetchGZIP(dataRoot + 'dist/data.json.gz')
     .then(res => res.json())
     .then(data => {
         schools = data;

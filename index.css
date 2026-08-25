@@ -259,33 +259,6 @@ header .right {
     transform: rotateX(33deg) rotateZ(0deg) translateZ(2rem);
 }
 
-.map .building {
-    position: absolute;
-    top: 60px;
-    left: 60px;
-    width: 80px;
-    height: 80px;
-    background: rgba(0, 240, 255, 0.3);
-    border: 1px solid var(--accent-cyan);
-    transform: translateZ(25px);
-    transform-style: preserve-3d;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
-}
-
-.map .building::before {
-    content: 'SCHULE';
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    font-weight: bold;
-    color: #fff;
-    background: rgba(16, 25, 40, 0.9);
-    border: 1px solid var(--accent-cyan);
-}
-
 .metric {
     background: rgba(0, 0, 0, 0.4);
     border-left: 4px solid var(--text-muted);
