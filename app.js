@@ -13,13 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemMapTile = document.querySelector('.map .tile svg');
 //    const elemMapBuilding = document.querySelector('.map .building');
 
-    const elemMetricProtection = document.getElementById('metric-protection');
-    const elemMetricMainRoad = document.getElementById('metric-mainroad');
-    const elemMetricEvening = document.getElementById('metric-evening');
     const elemMetricStreets = document.getElementById('metric-streets');
     const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
     const elemMetricStreetsSafe = document.getElementById('metric-streets-safe');
-    const elemMetricReason = document.getElementById('metric-reason');
 
     function prepareControlRoom() {
         elemSchoolList.innerHTML = '';
@@ -69,19 +65,6 @@ console.log(school);
             elemScoreNumber.style.color = 'var(--accent-green';
             elemScoreGauge.style.background = `conic-gradient(var(--accent-green) 0% ${score}%, rgba(255,255,255,0.1) ${score}% 100%)`;
         }
-
-/*        if (elemMetricProtection) {
-            elemMetricProtection.textContent = school.metrics.protectionRate;
-        }
-        if (elemMetricEvening) {
-            elemMetricEvening.textContent = school.metrics.eveningSafety;
-        }
-        if (elemMetricMainRoad) {
-            elemMetricMainRoad.textContent = school.metrics.mainRoadStatus;
-        }
-        if (elemMetricReason) {
-            elemMetricReason.textContent = school.metrics.reason;
-        }*/
 
         let statistic = {};
         let svg = '';
@@ -179,7 +162,15 @@ console.log(school);
         elemMapBuilding.style.height = (school.building.height * scale) + 'px';*/
     }
 
-    fetch(dataRoot + 'dist/school-cards.json')
+    async function fetchGZIP(url) {
+        const response = await fetch(url);
+        const gzip = new DecompressionStream('gzip'); // 'brotli' not mainly supported
+        const stream = response.body.pipeThrough(gzip);
+
+        return new Response(stream);
+    }
+
+    fetchGZIP(dataRoot + 'dist/school-cards.json.zip.gz')
     .then(res => res.json())
     .then(data => {
         schools = data;
@@ -190,5 +181,5 @@ console.log(school);
             setSchool(schools[firstSchool].id);
         }
     })
-    .catch(err => console.error('Error loading school data:', err));
+    .catch(error => console.error('Error loading school data:', error));
 });

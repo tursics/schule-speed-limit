@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const zlib = require('zlib');
 
 const PATH_BUILDINGS = './data/osm-buildings.geojson';
 const PATH_SCHOOLS = './data/bln-schools-mod.geojson';
@@ -220,4 +221,32 @@ function processOSMData() {
     console.log(`Done: ${Object.keys(cards).length} school cards saved in '${filePath}'.`);
 }
 
+function compressFile() {
+    const dir = './dist';
+    const inputPath = path.join(dir, 'school-cards.json');
+    const outputPath = inputPath + '.brotli.gz';
+
+    const input = fs.createReadStream(inputPath);
+    const output = fs.createWriteStream(outputPath);
+
+    const gzip = zlib.createGzip();
+//    const gzip = zlib.createBrotliCompress();
+    input.pipe(gzip).pipe(output);
+
+    input.on('error', (err) => console.error('Input error:', err));
+    gzip.on('error', (err) => console.error('Compression error:', err));
+    output.on('error', (err) => console.error('Output error:', err));
+    output.on('finish', () => {
+        console.log(`File compressed successfully: ${outputPath}`);
+
+        const inputStats = fs.statSync(inputPath);
+        const outputStats = fs.statSync(outputPath);
+
+        console.log(`Original size: ${inputStats.size} bytes`);
+        console.log(`Compressed size: ${outputStats.size} bytes`);
+        console.log(`Compression ratio: ${Math.round(100 - (outputStats.size / inputStats.size * 100))}%`);
+    });
+}
+
 processOSMData();
+compressFile();

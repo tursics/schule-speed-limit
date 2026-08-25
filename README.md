@@ -51,7 +51,8 @@ Die Straßenklassifizierung erfolgt gemäß StEP (Stadtentwicklungsplan Verkehr)
   * Straßenabschnitt
   * Straßenname
   * StEP Klasse (I, II, III, IV, ...)
-* OSM ?
+* Die Open Street Map hat eine Infoseite für die [Attribuierung von Straßen in Deutschland
+](https://wiki.openstreetmap.org/wiki/Attribuierung_von_Stra%C3%9Fen_in_Deutschland)
 
 ## Daten herunterladen
 
