@@ -253,7 +253,8 @@ function processOSMData() {
 
         meterTotal -= meterEqual0;
         const protectionRate = meterTotal > 0 ? Math.round(((meterEqual30 + meterLess30) / meterTotal) * 100) : 50;
-        const score = Math.min(99, Math.max(10, Math.round(protectionRate * 0.8 + 20)));
+//        const score = Math.min(99, Math.max(10, Math.round(protectionRate * 0.8 + 20)));
+        const score = protectionRate;
 
         cards.push({
             id,
