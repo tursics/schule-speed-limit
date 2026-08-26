@@ -108,6 +108,10 @@ function pointToCircle([x, y], radius = 40) {
     return points;
 }
 
+function isValidSchool([x, y]) {
+    return (x !== 13.409779) && (y !== 52.520645);
+}
+
 function processOSMData() {
     console.log('Convert school data...');
 
@@ -136,6 +140,10 @@ function processOSMData() {
         const addressCity = school.properties.city || '';
         const district = school.properties.district || '';
         const [centerLon, centerLat] = getObjectCenter(school);
+
+        if (!isValidSchool([centerLon, centerLat])) {
+            return;
+        }
 
         const localStreets = [];
         let meterEqual0 = 0;

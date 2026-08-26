@@ -13,8 +13,8 @@
         "city": "Berlin",
         "district": "Nikolassee",
         "center": [
-          13.22054,
-          52.42781
+          13.409779,
+          52.520645
         ],
         "additions": [
           "Filiale: Wüsthoffstr. 15, 12101 Berlin"
@@ -23,8 +23,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.22054,
-          52.42781
+          13.409779,
+          52.520645
         ]
       }
     },
@@ -1277,16 +1277,16 @@
         "city": "Berlin",
         "district": "Waidmannslust",
         "center": [
-          13.31542,
-          52.60465
+          13.409779,
+          52.520645
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.31542,
-          52.60465
+          13.409779,
+          52.520645
         ]
       }
     },
@@ -1301,16 +1301,16 @@
         "city": "Berlin",
         "district": "Waidmannslust",
         "center": [
-          13.409779,
-          52.520645
+          13.31542,
+          52.60465
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.31542,
+          52.60465
         ]
       }
     },
@@ -1849,16 +1849,16 @@
         "city": "Berlin",
         "district": "Waidmannslust",
         "center": [
-          13.30936,
-          52.60444
+          13.409779,
+          52.520645
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.30936,
-          52.60444
+          13.409779,
+          52.520645
         ]
       }
     },
@@ -1873,16 +1873,16 @@
         "city": "Berlin",
         "district": "Waidmannslust",
         "center": [
-          13.409779,
-          52.520645
+          13.30936,
+          52.60444
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.30936,
+          52.60444
         ]
       }
     },
@@ -2793,16 +2793,16 @@
         "city": "Berlin",
         "district": "Mitte",
         "center": [
-          13.40669,
-          52.52775
+          13.409779,
+          52.520645
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.40669,
-          52.52775
+          13.409779,
+          52.520645
         ]
       }
     },
@@ -2817,16 +2817,16 @@
         "city": "Berlin",
         "district": "Mitte",
         "center": [
-          13.409779,
-          52.520645
+          13.40669,
+          52.52775
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.40669,
+          52.52775
         ]
       }
     },
@@ -2889,16 +2889,16 @@
         "city": "Berlin",
         "district": "Mitte",
         "center": [
-          13.39042,
-          52.52691
+          13.409779,
+          52.520645
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.39042,
-          52.52691
+          13.409779,
+          52.520645
         ]
       }
     },
@@ -2913,16 +2913,16 @@
         "city": "Berlin",
         "district": "Mitte",
         "center": [
-          13.409779,
-          52.520645
+          13.39042,
+          52.52691
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.39042,
+          52.52691
         ]
       }
     },
@@ -3535,8 +3535,8 @@
         "city": "Berlin",
         "district": "Gesundbrunnen",
         "center": [
-          13.3849476,
-          52.5389505
+          13.409779,
+          52.520645
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -3545,8 +3545,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.3849476,
-          52.5389505
+          13.409779,
+          52.520645
         ]
       }
     },
@@ -3637,8 +3637,8 @@
         "city": "Berlin",
         "district": "Lichterfelde",
         "center": [
-          13.28213,
-          52.42106
+          13.409779,
+          52.520645
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -3647,8 +3647,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.28213,
-          52.42106
+          13.409779,
+          52.520645
         ]
       }
     },

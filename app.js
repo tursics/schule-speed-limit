@@ -76,10 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (found.length > 1) {
+console.log(found);
             console.error('More than 1 object found for ' + ref);
         }
         const school = found[0];
-console.log(school);
 
         elemSchoolTitle.textContent = school.title;
         elemSchoolDistrict.textContent = school.type;
