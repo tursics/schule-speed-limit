@@ -5,6 +5,7 @@ const zlib = require('zlib');
 const PATH_BUILDINGS = './data/osm-buildings.geojson';
 const PATH_SCHOOLS = './data/bln-schools-mod.geojson';
 const PATH_STREETS = './data/osm-speedlimits.geojson';
+const PATH_GROUNDS = './data/osm-grounds.geojson';
 const CANVAS_SIZE = 200;    // target SVG viewBox (200 x 200 pixels)
 const VIEW_SIZE = 200;      // radius is 100 meter
 
@@ -74,17 +75,17 @@ function streetIntersectsCanvas(coords) {
     return false;
 }
 
-function getBuildingCenter(building) {
-    if (building.properties && Array.isArray(building.properties.center) && building.properties.center.length === 2) {
-        return building.properties.center;
+function getObjectCenter(item) {
+    if (item.properties && Array.isArray(item.properties.center) && item.properties.center.length === 2) {
+        return item.properties.center;
     }
 
-    if (building.geometry.type === 'Point') {
-        return building.geometry.coordinates;
+    if (item.geometry.type === 'Point') {
+        return item.geometry.coordinates;
     }
 
-    if ((building.geometry.type === 'Polygon') && building.geometry.coordinates[0]) {
-        const points = building.geometry.coordinates[0];
+    if ((item.geometry.type === 'Polygon') && item.geometry.coordinates[0]) {
+        const points = item.geometry.coordinates[0];
         const lon = points.reduce((sum, point) => sum + point[0], 0) / points.length;
         const lat = points.reduce((sum, point) => sum + point[1], 0) / points.length;
         return [lon, lat];
@@ -93,10 +94,24 @@ function getBuildingCenter(building) {
     return [13.409779, 52.520645];
 }
 
+function pointToCircle([x, y], radius = 40) {
+    const sides = 10;
+    const points = [];
+
+    for (let i = 0; i < sides; ++i) {
+        const angle = (i * 2 * Math.PI) / sides;
+        const pointX = Math.round(x + radius * Math.cos(angle));
+        const pointY = Math.round(y + radius * Math.sin(angle));
+        points.push([pointX, pointY]);
+    }
+
+    return points;
+}
+
 function processOSMData() {
     console.log('Convert school data...');
 
-    if (!fs.existsSync(PATH_SCHOOLS) || !fs.existsSync(PATH_STREETS) || !fs.existsSync(PATH_BUILDINGS)) {
+    if (!fs.existsSync(PATH_SCHOOLS) || !fs.existsSync(PATH_STREETS) || !fs.existsSync(PATH_BUILDINGS) || !fs.existsSync(PATH_GROUNDS)) {
         console.error('Files missing: Please run all fetch scripts first!');
         return;
     }
@@ -104,6 +119,7 @@ function processOSMData() {
     const schools = JSON.parse(fs.readFileSync(PATH_SCHOOLS, 'utf8')).features;
     const streets = JSON.parse(fs.readFileSync(PATH_STREETS, 'utf8')).features;
     const buildings = JSON.parse(fs.readFileSync(PATH_BUILDINGS, 'utf8')).features;
+    const grounds = JSON.parse(fs.readFileSync(PATH_GROUNDS, 'utf8')).features;
 
     const cards = [];
 
@@ -119,7 +135,7 @@ function processOSMData() {
         const addressZIP = school.properties.zip || '';
         const addressCity = school.properties.city || '';
         const district = school.properties.district || '';
-        const [centerLon, centerLat] = getBuildingCenter(school);
+        const [centerLon, centerLat] = getObjectCenter(school);
 
         const localStreets = [];
         let meterEqual0 = 0;
@@ -156,7 +172,7 @@ function processOSMData() {
         });
 
         const visibleBuildings = buildings.filter(building => {
-            const [lon, lat] = getBuildingCenter(building);
+            const [lon, lat] = getObjectCenter(building);
             const center = convertGeoToSVG(lon, lat, centerLon, centerLat);
 
             return isInsideCanvas(center);
@@ -171,12 +187,59 @@ function processOSMData() {
 
                     localBuildings.push({
                         name: building.properties.title || '',
+                        ref: building.properties.ref || '',
                         coords: svgCoords
                     });
                 });
             } else {
                 console.log(building);
                 console.error('Building use wrong geometry type');
+            }
+        });
+        if (localBuildings.length === 0) {
+            const svgPoint = convertGeoToSVG(centerLon, centerLat, centerLon, centerLat);
+            const svgCoords = pointToCircle(svgPoint, 20);
+
+            localBuildings.push({
+                name: title,
+                ref: id,
+                coords: svgCoords
+            });
+        }
+
+        const visibleGrounds = grounds.filter(ground => {
+            const [lon, lat] = getObjectCenter(ground);
+            const center = convertGeoToSVG(lon, lat, centerLon, centerLat);
+
+            return isInsideCanvas(center);
+        });
+
+        let localGrounds = [];
+        visibleGrounds.forEach(ground => {
+//            console.log(ground.properties);
+            if (ground.geometry && (ground.geometry.type === 'Polygon')) {
+                ground.geometry.coordinates.forEach(singleGround => {
+                    const svgCoords = singleGround.map(point => convertGeoToSVG(point[0], point[1], centerLon, centerLat));
+
+                    localGrounds.push({
+                        name: ground.properties.title || '',
+                        ref: ground.properties.ref || '',
+                        coords: svgCoords
+                    });
+                });
+            } else if (ground.geometry && (ground.geometry.type === 'Point')) {
+                const point = ground.geometry.coordinates;
+                const svgPoint = convertGeoToSVG(point[0], point[1], centerLon, centerLat);
+                const svgCoords = pointToCircle(svgPoint, 40);
+
+                localGrounds.push({
+                    name: ground.properties.title || '',
+                    ref: ground.properties.ref || '',
+                    coords: svgCoords
+                });
+            } else {
+                console.log(ground);
+                console.error('Ground use wrong geometry type');
             }
         });
 
@@ -195,6 +258,7 @@ function processOSMData() {
             center: [centerLon, centerLat],
             score,
             buildings: localBuildings,
+            grounds: localGrounds,
             streets: localStreets,
             metrics: {
 //protectionRate: `${protectionRate}% Tempo 30 (${count30}/${meterTotal} Straßen)`,
@@ -239,14 +303,12 @@ function compressFile() {
     gzip.on('error', (err) => console.error('Compression error:', err));
     output.on('error', (err) => console.error('Output error:', err));
     output.on('finish', () => {
-        console.log(`File compressed successfully: ${outputPath}`);
+        console.log(`Done: Finale file distributed in '${outputPath}'.`);
 
         const inputStats = fs.statSync(inputPath);
         const outputStats = fs.statSync(outputPath);
 
-        console.log(`Original size: ${inputStats.size} bytes`);
-        console.log(`Compressed size: ${outputStats.size} bytes`);
-        console.log(`Compression ratio: ${Math.round(100 - (outputStats.size / inputStats.size * 100))}%`);
+        console.log(`  File size: ${outputStats.size} bytes (compression ratio ${Math.round(100 - (outputStats.size / inputStats.size * 100))}%).`);
     });
 }
 
