@@ -95,7 +95,7 @@ function getObjectCenter(item) {
 }
 
 function pointToCircle([x, y], radius = 40) {
-    const sides = 10;
+    const sides = 16;
     const points = [];
 
     for (let i = 0; i < sides; ++i) {
@@ -198,7 +198,7 @@ function processOSMData() {
         });
         if (localBuildings.length === 0) {
             const svgPoint = convertGeoToSVG(centerLon, centerLat, centerLon, centerLat);
-            const svgCoords = pointToCircle(svgPoint, 20);
+            const svgCoords = pointToCircle(svgPoint, 10);
 
             localBuildings.push({
                 name: title,
@@ -230,7 +230,7 @@ function processOSMData() {
             } else if (ground.geometry && (ground.geometry.type === 'Point')) {
                 const point = ground.geometry.coordinates;
                 const svgPoint = convertGeoToSVG(point[0], point[1], centerLon, centerLat);
-                const svgCoords = pointToCircle(svgPoint, 40);
+                const svgCoords = pointToCircle(svgPoint, 30);
 
                 localGrounds.push({
                     name: ground.properties.title || '',
