@@ -20,13 +20,24 @@
     <div class="grid">
 
         <div class="panel controlroom">
-            <div class="title">Schulauswahl & Bezirkskontext</div>
+            <div class="title">Schulauswahl</div>
             <div>
                 <label>Bezirk wählen</label>
-                <select>
-                    <option>Pankow</option>
-                    <option>Mitte</option>
-                    <option>Lichtenberg</option>
+                <select id="district-list">
+                    <option value="all">Ganz Berlin</option>
+                    <option disabled>──────────</option>
+                    <option value="04">Charlottenburg-Wilmersdorf</option>
+                    <option value="02">Friedrichshain-Kreuzberg</option>
+                    <option value="11">Lichtenberg</option>
+                    <option value="10">Marzahn-Hellersdorf</option>
+                    <option value="01">Mitte</option>
+                    <option value="08">Neukölln</option>
+                    <option value="03">Pankow</option>
+                    <option value="12">Reinickendorf</option>
+                    <option value="05">Spandau</option>
+                    <option value="06">Steglitz-Zehlendorf</option>
+                    <option value="07">Tempelhof-Schöneberg</option>
+                    <option value="09">Treptow-Köpenick</option>
                 </select>
             </div>
             <div>
@@ -34,7 +45,7 @@
                 <select id="school-list"></select>
             </div>
 
-            <div class="title" style="margin-top: 1rem;">Bezirksvergleich (Sicherheits-Score)</div>
+            <div class="title" style="margin-top: 1rem;">Bezirksvergleich</div>
 
             <div class="chart">
                 <div class="bars">

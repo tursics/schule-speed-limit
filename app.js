@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const dataRoot = 'https://tursics.github.io/schule-speed-limit/';
 
     const elemSchoolList = document.getElementById('school-list');
+    const elemDistrictList = document.getElementById('district-list');
     const elemSchoolTitle = document.getElementById('school-title');
     const elemSchoolDistrict = document.getElementById('school-district');
     const elemScoreNumber = document.querySelector('.chart-gauge .number');
@@ -16,18 +17,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
     const elemMetricStreetsSafe = document.getElementById('metric-streets-safe');
 
-    function prepareControlRoom() {
+    function updateSchoolList() {
+        const prefix = elemDistrictList.value;
+
         elemSchoolList.innerHTML = '';
 
         Object.values(schools).forEach(school => {
-            const option = document.createElement('option');
-            option.value = school.id;
-            option.textContent = `${school.title} (${school.district})`;
-            elemSchoolList.appendChild(option);
+            let show = false;
+            if (prefix.length !== 2) {
+                show = true;
+            } else {
+                show = school.id.startsWith(prefix);
+            }
+
+            if (show) {
+                const option = document.createElement('option');
+                option.value = school.id;
+                option.textContent = `${school.title} (${school.district})`;
+                elemSchoolList.appendChild(option);
+            }
         });
+
+        setSchool(elemSchoolList.value);
+    }
+
+    function prepareControlRoom() {
+        updateSchoolList();
 
         elemSchoolList.addEventListener('change', (event) => {
             setSchool(event.target.value);
+        });
+        elemDistrictList.addEventListener('change', (event) => {
+            updateSchoolList();
         });
     }
 
@@ -215,12 +236,8 @@ console.log(found);
     .then(res => res.json())
     .then(data => {
         schools = data;
-        prepareControlRoom();
 
-        const firstSchool = Object.keys(schools)[0];
-        if (firstSchool) {
-            setSchool(schools[firstSchool].id);
-        }
+        prepareControlRoom();
     })
     .catch(error => console.error('Error loading school data:', error));
 });
