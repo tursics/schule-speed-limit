@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemScoreNumber = document.querySelector('.chart-gauge .number');
     const elemScoreLabel = document.querySelector('.chart-gauge .label');
     const elemScoreGauge = document.querySelector('.chart-gauge');
+    const elemBarChart = document.querySelector('.chart .bars');
 
     const elemMapTile = document.querySelector('.map .tile svg');
 
@@ -38,11 +39,38 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        updateBarChart();
         setSchool(elemSchoolList.value);
+    }
+
+    function updateBarChart() {
+        const sum = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        const count = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+        const title = ['', 'Mitte', 'Friedrichshain-Kreuzberg', 'Pankow', 'Charlottenburg-Wilmersdorf', 'Spandau', 'Steglitz-Zehlendorf', 'Tempelhof-Schöneberg', 'Neukölln', 'Treptow-Köpenick', 'Marzahn-Hellersdorf', 'Lichtenberg', 'Reinickendorf'];
+
+        Object.values(schools).forEach(school => {
+            const district = parseInt(school.id.substring(0, 2), 10);
+
+            sum[district] += school.score;
+            ++count[district];
+        });
+
+        const prefix = parseInt(elemDistrictList.value, 10);
+
+        elemBarChart.innerHTML = '';
+        for (let i = 1; i <=12 ;++i) {
+            const div = document.createElement('div');
+            div.className = prefix === i ? 'col active' : 'col';
+            div.style.height = `${Math.round(sum[i] / count[i])}%`;
+            div.title = title[i];
+            elemBarChart.appendChild(div);
+
+        }
     }
 
     function prepareControlRoom() {
         updateSchoolList();
+        updateBarChart();
 
         elemSchoolList.addEventListener('change', (event) => {
             setSchool(event.target.value);
