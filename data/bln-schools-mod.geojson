@@ -16471,8 +16471,8 @@
         "city": "Berlin",
         "district": "Französisch Buchholz",
         "center": [
-          13.409779,
-          52.520645
+          13.43404,
+          52.60417
         ],
         "additions": [
           "Behindertenparkplatz vorhanden"
@@ -16481,8 +16481,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.43404,
+          52.60417
         ]
       }
     },
