@@ -6001,16 +6001,16 @@
         "city": "Berlin",
         "district": "Heiligensee",
         "center": [
-          13.409779,
-          52.520645
+          13.24751,
+          52.61279
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.24751,
+          52.61279
         ]
       }
     },
@@ -6049,16 +6049,16 @@
         "city": "Berlin",
         "district": "Mariendorf",
         "center": [
-          13.409779,
-          52.520645
+          13.38212,
+          52.44601
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.38212,
+          52.44601
         ]
       }
     },
@@ -6147,8 +6147,8 @@
         "city": "Berlin",
         "district": "Westend",
         "center": [
-          13.409779,
-          52.520645
+          13.26106,
+          52.52122
         ],
         "additions": [
           "Zugang über Rampe möglich"
@@ -6157,8 +6157,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.26106,
+          52.52122
         ]
       }
     },
@@ -6221,16 +6221,16 @@
         "city": "Berlin",
         "district": "Hellersdorf",
         "center": [
-          13.409779,
-          52.520645
+          13.59203,
+          52.52504
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.59203,
+          52.52504
         ]
       }
     },
@@ -6245,16 +6245,16 @@
         "city": "Berlin",
         "district": "Weißensee",
         "center": [
-          13.409779,
-          52.520645
+          13.4561,
+          52.54783
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.4561,
+          52.54783
         ]
       }
     },
@@ -6269,8 +6269,8 @@
         "city": "Berlin",
         "district": "Nikolassee",
         "center": [
-          13.409779,
-          52.520645
+          13.18548,
+          52.42037
         ],
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
@@ -6279,8 +6279,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.18548,
+          52.42037
         ]
       }
     },
@@ -6393,16 +6393,16 @@
         "city": "Berlin",
         "district": "Steglitz",
         "center": [
-          13.409779,
-          52.520645
+          13.31766,
+          52.46517
         ],
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.31766,
+          52.46517
         ]
       }
     },
