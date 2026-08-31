@@ -131,7 +131,7 @@ console.log(found);
         const school = found[0];
 
         elemSchoolTitle.textContent = school.title;
-        elemSchoolDistrict.textContent = school.type;
+        elemSchoolDistrict.textContent = school.district;
         elemScoreNumber.textContent = school.score;
 
         const score = Math.max(1, school.score);

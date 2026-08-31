@@ -1,14 +1,77 @@
 :root {
     --bg-dark: #090d16;
-    --panel-bg: rgba(16, 25, 40, 0.85);
+    --panel-bg: rgba(16, 25, 40);
+    --panel-bg-light: #1B3341;
     --panel-border: rgba(0, 240, 255, 0.2);
+    --panel-border-40: rgba(0, 240, 255, 0.4);
+    --panel-border-60: rgba(0, 240, 255, 0.6);
     --accent-cyan: #00f0ff;
     --accent-green: #00ff88;
     --accent-red: #ff3366;
     --accent-orange: #ff9900;
     --text-main: #f1f5f9;
     --text-muted: #94a3b8;
-    --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --text-header: #B4F0F7;
+    --icon-color: #B4F0F7;
+    --card-border-20: rgba(222, 254, 250, 0.2);
+    --card-border-60: rgba(222, 254, 250, 0.6);
+    --card-border-80: rgba(222, 254, 250, 0.8);
+    --font-family: Teko, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 100;
+    src: url(fonts/Teko-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 200;
+    src: url(fonts/Teko-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 300;
+    src: url(fonts/Teko-Light.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 400;
+    src: url(fonts/Teko-Medium.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 500;
+    src: url(fonts/Teko-Medium.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 600;
+    src: url(fonts/Teko-SemiBold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 700;
+    src: url(fonts/Teko-SemiBold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 800;
+    src: url(fonts/Teko-Bold.ttf) format('truetype');
+}
+@font-face {
+    font-family: 'Teko';
+    font-style: normal;
+    font-weight: 900;
+    src: url(fonts/Teko-Bold.ttf) format('truetype');
 }
 
 * {
@@ -28,6 +91,10 @@ body {
     display: flex;
     flex-direction: column;
     padding: 1rem;
+
+    background-image:  radial-gradient(circle, #666 0.8px, transparent 0.8px), radial-gradient(circle, #666 0.8px, transparent 0.8px) ;
+    background-size: 5px 20px, 20px 5px;
+    background-position: -2.5px -10px, -10px -2.5px;
 }
 
 header {
@@ -94,13 +161,13 @@ header .right {
     backdrop-filter: blur(8px);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
-.panel.controlroom{
+.panel.controlroom {
     z-index: 1;
 }
-.panel.schoolcard{
+.panel.schoolcard {
     z-index: 2;
 }
-.panel.details{
+.panel.details {
     z-index: 1;
 }
 
@@ -171,25 +238,109 @@ header .right {
 }
 
 .panel.schoolcard {
-    border: 2px solid var(--accent-cyan);
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.15);
     align-items: center;
+    backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(3px);
+    border: .2rem solid var(--card-border-60);
+    border-radius: 2rem;
+    box-shadow: 0 0 .5rem var(--card-border-60), inset 0 0 2rem var(--panel-border-40), 0 0 2rem var(--card-border-20);
+    overflow: visible;
+    padding: 0;
     position: relative;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 25rem;
+}
+.panel.schoolcard:hover {
+    border-color: var(--card-border-80);
+}
+
+.panel.schoolcard .inlay {
+    align-items: center;
+    background: var(--panel-bg);
+    border: .1rem solid var(--panel-border-40);
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: .75rem;
+    transition: border-color 0.3s ease;
+    width: calc(100% - 1.5rem);
+    z-index: 0;
+}
+.panel.schoolcard:hover .inlay {
+    border-color: var(--panel-border-60);
 }
 
 .panel.schoolcard .header {
+    align-items: center;
+    background: var(--panel-bg-light);
+    background-clip: padding-box;
+    border-bottom: solid .2rem transparent;
+    border-radius: 1.5rem 1.5rem 0 0;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
     width: 100%;
-    text-align: center;
+}
+.panel.schoolcard .header::before {
+    background: linear-gradient(to right, var(--panel-bg-light) -10%, var(--panel-border-40) 50%, var(--panel-bg-light) 110%);
+    border-radius: inherit;
+    bottom: 0;
+    content: '';
+    left: 0;
+    margin: 0 0 -.2rem 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.panel.schoolcard .header .main {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: .25rem;
+    padding: .75rem .75rem .25rem .75rem;
+    width: 75%;
 }
 
 .panel.schoolcard .header h2 {
-    font-size: 1.4rem;
-    color: #fff;
+    color: var(--text-header);
+    font-size: 2.25rem;
+    font-style: italic;
+    font-weight: 500;
+    height: 4rem;
+    letter-spacing: .02rem;
+    line-height: 2rem;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 .1rem .3rem var(--panel-bg);
+    text-transform: uppercase;
+    transition: text-shadow 0.3s ease;
 }
 
-.panel.schoolcard .header p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
+.panel.schoolcard .header .district {
+    color: var(--text-header);
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: .03rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+}
+
+.panel.schoolcard .header .image {
+    align-items: center;
+    display: flex;
+    flex: 0;
+    padding: .75rem;
+    gap: .25rem;
+}
+
+.panel.schoolcard .header .image svg {
+    height: 4.5rem;
+    width: 4.5rem;
 }
 
 .panel.schoolcard .info {
