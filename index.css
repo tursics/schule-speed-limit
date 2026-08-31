@@ -284,7 +284,7 @@ header .right {
     width: 100%;
 }
 .panel.schoolcard .header::before {
-    background: linear-gradient(to right, var(--panel-bg-light) -10%, var(--panel-border-40) 50%, var(--panel-bg-light) 110%);
+    background: linear-gradient(to right, var(--panel-bg-light) 0, var(--text-header) 50%, var(--panel-bg-light) 100%);
     border-radius: inherit;
     bottom: 0;
     content: '';
