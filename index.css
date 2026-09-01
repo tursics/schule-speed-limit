@@ -14,6 +14,7 @@
     --text-header: #b4f0f7;
     --icon-color: #b4f0f7;
     --card-border-20: rgba(222, 254, 250, 0.2);
+    --card-border-40: rgba(222, 254, 250, 0.4);
     --card-border-60: rgba(222, 254, 250, 0.6);
     --card-border-80: rgba(222, 254, 250, 0.8);
     --score-ring: #6f97a4;
@@ -377,7 +378,7 @@ header .right {
     border: .1rem solid var(--score-ring);
     border-radius: inherit;
     bottom: -.35rem;
-    box-shadow: 0 0 1rem var(--card-border-20);
+    box-shadow: 0 0 1rem var(--card-border-40);
     content: '';
     left: -.35rem;
     position: absolute;
