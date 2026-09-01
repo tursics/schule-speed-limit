@@ -63,6 +63,7 @@
 
         <div class="panel schoolcard">
             <div class="inlay">
+
                 <div class="header">
                     <div class="main">
                         <h2 id="school-title">&nbsp;</h2>
@@ -89,22 +90,27 @@
                     </div>
                 </div>
 
-            <div class="chart-gauge">
-                <div class="inner">
-                    <span class="number" id="score-number"></span>
-                    <span class="label" id="score-label"></span>
+                <div class="score">
+                    <div class="gauge">
+                        <div class="inner">
+                            <span class="number"></span>
+                            <span class="label"></span>
+                        </div>
+                        <div class="pointer"></div>
+                    </div>
+
+<!-- Verbindungslinie und Text rechts daneben -->
+<div class="score-annotation">
+<div class="pointer-line"></div>
+<span class="score-title">SICHERHEITS-SCORE</span>
+</div>
                 </div>
-            </div>
 
             <div class="map">
                 <div class="tile">
                     <svg viewBox="0 0 200 200"></svg>
                 </div>
             </div>
-<div class="map-viewport">
-    <div class="grid-overlay"></div>
-    <svg id="svg-map" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet"></svg>
-</div>
 
             <div class="info">
                 💡 Gekippte 3D-Gefahrenansicht (Rot = Tempo 50 | Grün = Tempo 30)

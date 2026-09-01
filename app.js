@@ -7,9 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemDistrictList = document.getElementById('district-list');
     const elemSchoolTitle = document.getElementById('school-title');
     const elemSchoolDistrict = document.getElementById('school-district');
-    const elemScoreNumber = document.querySelector('.chart-gauge .number');
-    const elemScoreLabel = document.querySelector('.chart-gauge .label');
-    const elemScoreGauge = document.querySelector('.chart-gauge');
+    const elemScoreNumber = document.querySelector('.panel.schoolcard .score .number');
+    const elemScoreLabel = document.querySelector('.panel.schoolcard .score .label');
+    const elemScoreGauge = document.querySelector('.panel.schoolcard .score .gauge');
+    const elemScorePointer = document.querySelector('.panel.schoolcard .score .gauge .pointer');
     const elemBarChart = document.querySelector('.chart .bars');
 
     const elemMapTile = document.querySelector('.map .tile svg');
@@ -135,22 +136,30 @@ console.log(found);
         elemScoreNumber.textContent = school.score;
 
         const score = Math.max(1, school.score);
-        if (score < 50) {
+        const gradient = score * .8;
+        const degree = -147 + Math.round(gradient * 3.6);
+        if (score < 25) {
             elemScoreLabel.textContent = 'Kritisch';
-            elemScoreLabel.style.color = 'var(--accent-red';
-            elemScoreNumber.style.color = 'var(--accent-red';
-            elemScoreGauge.style.background = `conic-gradient(var(--accent-red) 0% ${score}%, rgba(255,255,255,0.1) ${score}% 100%)`;
+//            elemScoreLabel.style.color = 'var(--accent-red';
+            elemScoreLabel.style.color = '#EB5252';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+        } else if (score < 50) {
+            elemScoreLabel.textContent = 'Kritisch';
+//            elemScoreLabel.style.color = 'var(--accent-red';
+            elemScoreLabel.style.color = '#EF9650';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 20%, #EF9650 ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         } else if (score < 75) {
             elemScoreLabel.textContent = 'Mäßig';
-            elemScoreLabel.style.color = 'var(--accent-orange';
-            elemScoreNumber.style.color = 'var(--accent-orange';
-            elemScoreGauge.style.background = `conic-gradient(var(--accent-orange) 0% ${score}%, rgba(255,255,255,0.1) ${score}% 100%)`;
+//            elemScoreLabel.style.color = 'var(--accent-orange';
+            elemScoreLabel.style.color = '#F8D85A';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 20%, #EF9650 40%, #F8D85A ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         } else {
             elemScoreLabel.textContent = 'Sicher';
-            elemScoreLabel.style.color = 'var(--accent-green';
-            elemScoreNumber.style.color = 'var(--accent-green';
-            elemScoreGauge.style.background = `conic-gradient(var(--accent-green) 0% ${score}%, rgba(255,255,255,0.1) ${score}% 100%)`;
+//            elemScoreLabel.style.color = 'var(--accent-green';
+            elemScoreLabel.style.color = '#B7F17E';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 20%, #EF9650 40%, #F8D85A 60%, #B7F17E ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         }
+        elemScorePointer.style.transform = 'rotate(' + degree + 'deg)';
 
         let statistic = {};
         let svg = '';
@@ -195,7 +204,7 @@ console.log(found);
         let streetInfos = '';
         let streetInfosDanger = '';
         let streetInfosSafe = '';
-        streetInfos += '<div class="value">' + school.address + '<br>' + school.zip + ' ' + school.city + ', ' + school.district + '</div>';
+        streetInfos += '<div class="value">' + school.type + '<br>' + school.address + '<br>' + school.zip + ' ' + school.city + '</div>';
         streetInfosSafe += `<div class="label">Schutzquote (400m x 400m)</div>`;
         streetInfosSafe += `<div class="value">${Math.round(lowSpeed / totalSpeed * 100)}% verkehrsberuhigt</div>`;
         streetInfosDanger += `<div class="value">Hauptstraßen</div>`;
