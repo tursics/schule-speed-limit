@@ -18,6 +18,11 @@
     --card-border-60: rgba(222, 254, 250, 0.6);
     --card-border-80: rgba(222, 254, 250, 0.8);
     --score-ring: #6f97a4;
+    --score-0: #D84B6D;
+    --score-25: #EB5252;
+    --score-50: #EF9650;
+    --score-75: #F8D85A;
+    --score-100: #90E485;
     --font-family: Teko, Arial, sans-serif;
 }
 
@@ -395,8 +400,8 @@ header .right {
     width: 5rem;
 }
 .panel.schoolcard .score .gauge .pointer::before {
-    border-left: .15rem solid #fff;
-    box-shadow: 0 0 3px var(--panel-bg);
+    border-left: .2rem solid #fff;
+    box-shadow: 0 0 .2rem var(--panel-bg);
     content: '';
     height: 1rem;
     left: 50%;
@@ -418,19 +423,22 @@ header .right {
 
 .panel.schoolcard .score .number {
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     font-weight: 800;
     line-height: 1.3rem;
-    margin-top: .5rem;
+    margin-top: 2rem;
 }
 
 .panel.schoolcard .score .label {
     color: #fff;
-    font-size: 0.6rem;
+    font-size: 0.8rem;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: .075rem;
-    margin-top: .2rem;
+    line-height: 1;
+    margin-top: .4rem;
+    max-width: 3rem;
+    text-align: center;
 }
 
 /* ==========================================================================

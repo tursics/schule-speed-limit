@@ -139,25 +139,21 @@ console.log(found);
         const gradient = score * .8;
         const degree = -147 + Math.round(gradient * 3.6);
         if (score < 25) {
-            elemScoreLabel.textContent = 'Kritisch';
-//            elemScoreLabel.style.color = 'var(--accent-red';
-            elemScoreLabel.style.color = '#EB5252';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreLabel.textContent = 'Hohes Risiko';
+            elemScoreLabel.style.color = 'var(--score-25)';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         } else if (score < 50) {
-            elemScoreLabel.textContent = 'Kritisch';
-//            elemScoreLabel.style.color = 'var(--accent-red';
-            elemScoreLabel.style.color = '#EF9650';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 20%, #EF9650 ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreLabel.textContent = 'Höheres Risiko';
+            elemScoreLabel.style.color = 'var(--score-50)';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) 20%, var(--score-50) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         } else if (score < 75) {
-            elemScoreLabel.textContent = 'Mäßig';
-//            elemScoreLabel.style.color = 'var(--accent-orange';
-            elemScoreLabel.style.color = '#F8D85A';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 20%, #EF9650 40%, #F8D85A ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreLabel.textContent = 'Mittleres Risiko';
+            elemScoreLabel.style.color = 'var(--score-75)';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) 20%, var(--score-50) 40%, var(--score-75) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         } else {
-            elemScoreLabel.textContent = 'Sicher';
-//            elemScoreLabel.style.color = 'var(--accent-green';
-            elemScoreLabel.style.color = '#B7F17E';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, #D84B6D 0%, #EB5252 20%, #EF9650 40%, #F8D85A 60%, #B7F17E ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreLabel.textContent = 'Geringes Risiko';
+            elemScoreLabel.style.color = 'var(--score-100)';
+            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) 20%, var(--score-50) 40%, var(--score-75) 60%, var(--score-100) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
         }
         elemScorePointer.style.transform = 'rotate(' + degree + 'deg)';
 
