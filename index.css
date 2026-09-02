@@ -365,7 +365,8 @@ header .right {
 .panel.schoolcard .score {
     align-items: center;
     display: flex;
-    gap: .5rem;
+    padding: 0 .75rem;
+    width: 100%;
 }
 
 .panel.schoolcard .score .gauge {
@@ -441,56 +442,35 @@ header .right {
     text-align: center;
 }
 
-/* ==========================================================================
-BESCHRIFTUNG & VERBINDUNGSLINIE
-========================================================================== */
-
-.score-annotation {
-display: flex;
-align-items: center;
-position: relative;
+.panel.schoolcard .score .annotation {
+    align-items: center;
+    display: flex;
+    position: relative;
 }
 
-/* Diagonale Neon-Zeigerlinie */
-.pointer-line {
-position: relative;
-width: 30px;
-height: 1px;
-background: #ff4d4d;
-box-shadow: 0 0 6px #ff4d4d;
-transform: rotate(-25deg);
-transform-origin: left center;
-margin-right: 4px;
+.panel.schoolcard .score .annotation .line {
+    background: var(--score-ring);
+    box-shadow: 0 0 1rem var(--card-border-40);
+    height: .08rem;
+    margin: -1rem -.5rem 0 -.15rem;
+    transform: rotate(-40deg);
+    transform-origin: left center;
+    width: 2rem;
 }
 
-/* Kleiner Punkt am Ende der Linie zum Gauge */
-.pointer-line::before {
-content: '';
-position: absolute;
-left: 0;
-top: -2px;
-width: 5px;
-height: 5px;
-background: #ff4d4d;
-border-radius: 50%;
-box-shadow: 0 0 6px #ff4d4d;
+.panel.schoolcard .score .annotation .title {
+    border-bottom: .1rem solid var(--score-ring);
+    color: var(--text-header);
+    font-size: 1.25rem;
+    font-weight: 300;
+    letter-spacing: .03rem;
+    line-height: .2rem;
+    margin-top: -4.3rem;
+    text-shadow: 0 0 1rem var(--card-border-40);
+    text-transform: uppercase;
+    white-space: nowrap;
 }
 
-/* Überschrift "SICHERHEITS-SCORE" */
-.score-title {
-font-family: 'Inter', system-ui, sans-serif;
-font-size: 0.75rem;
-font-weight: 700;
-color: #7dd3fc; /* Helles Cyberpunk-Cyan */
-letter-spacing: 1.5px;
-text-transform: uppercase;
-text-shadow: 0 0 8px rgba(125, 211, 252, 0.4);
-
-/* Unterstrich-Effekt aus dem Bild */
-border-bottom: 1px solid rgba(125, 211, 252, 0.4);
-padding-bottom: 2px;
-white-space: nowrap;
-}
 /* */
 
 .map {
