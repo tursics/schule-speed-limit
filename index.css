@@ -12,6 +12,7 @@
     --text-main: #f1f5f9;
     --text-muted: #94a3b8;
     --text-header: #b4f0f7;
+    --text-header-secondary: #b4f0f7c0;
     --icon-color: #b4f0f7;
     --card-border-20: rgba(222, 254, 250, 0.2);
     --card-border-40: rgba(222, 254, 250, 0.4);
@@ -305,7 +306,7 @@ header .right {
     bottom: 0;
     content: '';
     left: 0;
-    margin: 0 0 -.2rem 0;
+    margin: 0 0 -.1rem 0;
     position: absolute;
     right: 0;
     top: 0;
@@ -338,7 +339,7 @@ header .right {
 }
 
 .panel.schoolcard .header .district {
-    color: var(--text-header);
+    color: var(--text-header-secondary);
     font-size: 1.5rem;
     font-weight: 300;
     letter-spacing: .03rem;
@@ -461,7 +462,7 @@ header .right {
 
 .panel.schoolcard .score .annotation .title {
     border-bottom: .1rem solid var(--score-ring);
-    color: var(--text-header);
+    color: var(--text-header-secondary);
     font-size: 1.25rem;
     font-weight: 300;
     letter-spacing: .03rem;
