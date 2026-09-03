@@ -38,6 +38,23 @@ function stripHREF(text, id) {
     return linkList[0] || '';
 }
 
+function stripImage(text, id) {
+    let textArray = text.split(id);
+    textArray.shift();
+
+    if (textArray.length !== 1) {
+        return '';
+    }
+
+    let linkList = textArray[0].split(' src="');
+    linkList.shift();
+    linkList = linkList.map((str) => {
+        return str.split('"')[0];
+    });
+
+    return linkList[0] || '';
+}
+
 function stripData(text, name) {
     let dataArray = text.split(`data-${name}="`);
     dataArray.shift();
@@ -99,6 +116,11 @@ async function downloadSchoolData(url) {
 
     const data = await response.text();
 
+    let imageURL = stripImage(data, 'ContentPlaceHolderMenuListe_imgSchule').trim();
+    if (imageURL !== '') {
+        imageURL = `${BASE_URL}${imageURL}`;
+    }
+
     let common = data.split('<div id="divAllgemein"');
     common.shift();
     common = common.map((str) => {
@@ -147,6 +169,7 @@ async function downloadSchoolData(url) {
         city,
         district,
         center: location,
+        image: imageURL,
         additions
     };
 }
@@ -161,6 +184,7 @@ function fakeDownloadSchoolData() {
         city: 'Berlin',
         district: '',
         center: fakeDownloadMapLocation(),
+        image: '',
         additions: ''
     };
 }
