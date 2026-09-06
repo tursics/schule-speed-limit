@@ -139,6 +139,8 @@ function processOSMData() {
         const addressZIP = school.properties.zip || '';
         const addressCity = school.properties.city || '';
         const district = school.properties.district || '';
+        const additions = school.properties.additions || [];
+        const image = school.properties.image || '';
         const [centerLon, centerLat] = getObjectCenter(school);
 
         if (!isValidSchool([centerLon, centerLat])) {
@@ -256,6 +258,14 @@ function processOSMData() {
 //        const score = Math.min(99, Math.max(10, Math.round(protectionRate * 0.8 + 20)));
         const score = protectionRate;
 
+        let imagePath = '';
+        if (image !== '') {
+            imagePath = `dist/school-${index + 1}.${image.split('.').slice(-1)[0]}`;
+            if (!fs.existsSync(imagePath)) {
+                console.warn(`\nImage file '${imagePath}' does not exist. Please download '${image}', rename it, and place it in the 'dist' directory.`);
+            }
+        }
+
         cards.push({
             id,
             title,
@@ -264,8 +274,10 @@ function processOSMData() {
             zip: addressZIP,
             city: addressCity,
             district,
+            additions,
             center: [centerLon, centerLat],
             score,
+            image,
             buildings: localBuildings,
             grounds: localGrounds,
             streets: localStreets,
