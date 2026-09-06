@@ -136,26 +136,35 @@ console.log(found);
         elemScoreNumber.textContent = school.score;
 
         const score = Math.max(1, school.score);
-        const gradient = score * .8;
-        const degree = -147 + Math.round(gradient * 3.6);
+        const wedge = .75;
+        const gradient = score * wedge;
+        const stop0 = Math.round(wedge * 0 * 100) + '%';
+        const stop25 = Math.round(wedge * .25 * 100) + '%';
+        const stop50 = Math.round(wedge * .50 * 100) + '%';
+        const stop75 = Math.round(wedge * .75 * 100) + '%';
+        const stop100 = Math.round(wedge * 1 * 100) + '%';
+        const degreeStartGradient = Math.round(180 + 360 * (1 - wedge) / 2);
+        const degreeStartPointer = degreeStartGradient - 360;
+        const degreePointer = degreeStartPointer + Math.round(gradient * 3.6) - 2;
+
         if (score < 25) {
             elemScoreLabel.textContent = 'Hohes Risiko';
             elemScoreLabel.style.color = 'var(--score-25)';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreGauge.style.background = `conic-gradient(from ${degreeStartGradient}deg, var(--score-0) ${stop0}, var(--score-25) ${gradient}%, var(--score-ring) ${gradient}% ${stop100}, transparent ${stop100} 100%)`;
         } else if (score < 50) {
             elemScoreLabel.textContent = 'Höheres Risiko';
             elemScoreLabel.style.color = 'var(--score-50)';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) 20%, var(--score-50) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreGauge.style.background = `conic-gradient(from ${degreeStartGradient}deg, var(--score-0) ${stop0}, var(--score-25) ${stop25}, var(--score-50) ${gradient}%, var(--score-ring) ${gradient}% ${stop100}, transparent ${stop100} 100%)`;
         } else if (score < 75) {
             elemScoreLabel.textContent = 'Mittleres Risiko';
             elemScoreLabel.style.color = 'var(--score-75)';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) 20%, var(--score-50) 40%, var(--score-75) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreGauge.style.background = `conic-gradient(from ${degreeStartGradient}deg, var(--score-0) ${stop0}, var(--score-25) ${stop25}, var(--score-50) ${stop50}, var(--score-75) ${gradient}%, var(--score-ring) ${gradient}% ${stop100}, transparent ${stop100} 100%)`;
         } else {
             elemScoreLabel.textContent = 'Geringes Risiko';
             elemScoreLabel.style.color = 'var(--score-100)';
-            elemScoreGauge.style.background = `conic-gradient(from 216deg, var(--score-0) 0%, var(--score-25) 20%, var(--score-50) 40%, var(--score-75) 60%, var(--score-100) ${gradient}%, var(--score-ring) ${gradient}% 80%, transparent 80% 100%)`;
+            elemScoreGauge.style.background = `conic-gradient(from ${degreeStartGradient}deg, var(--score-0) ${stop0}, var(--score-25) ${stop25}, var(--score-50) ${stop50}, var(--score-75) ${stop75}, var(--score-100) ${gradient}%, var(--score-ring) ${gradient}% ${stop100}, transparent ${stop100} 100%)`;
         }
-        elemScorePointer.style.transform = 'rotate(' + degree + 'deg)';
+        elemScorePointer.style.transform = 'rotate(' + degreePointer + 'deg)';
 
         let statistic = {};
         let svg = '';

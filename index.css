@@ -398,7 +398,7 @@ header .right {
     height: 5rem;
     pointer-events: none;
     position: absolute;
-    transform: rotate(-147deg);
+    transform: rotate(-135deg);
     transition: transform 0.5s ease;
     width: 5rem;
 }
@@ -423,6 +423,19 @@ header .right {
     position: relative;
     width: 5rem;
 }
+.panel.schoolcard .score .gauge .inner::before {
+    border-radius: inherit;
+    bottom: 1.5rem;
+    box-shadow: 0 0 1.5rem var(--card-border-60), inset 0 0 1rem var(--card-border-40);
+    content: '';
+    left: 1.5rem;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+}
+.panel.schoolcard:hover .score .gauge .inner::before {
+    box-shadow: 0 0 1.5rem var(--card-border-80), inset 0 0 1.4rem var(--card-border-40);
+}
 
 .panel.schoolcard .score .number {
     color: #ffffff;
@@ -440,7 +453,7 @@ header .right {
     letter-spacing: .075rem;
     line-height: 1;
     margin-top: .4rem;
-    max-width: 3rem;
+    max-width: 3.4rem;
     text-align: center;
 }
 
