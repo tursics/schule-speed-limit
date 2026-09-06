@@ -379,6 +379,7 @@ header .right {
     height: 6rem;
     justify-content: center;
     margin: .4rem;
+    min-width: 6rem;
     position: relative;
     width: 6rem;
 }
@@ -457,13 +458,16 @@ header .right {
     text-align: center;
 }
 
-.panel.schoolcard .score .annotation {
+.panel.schoolcard .score .gauge-annotation {
     align-items: center;
     display: flex;
     position: relative;
 }
+.panel.schoolcard.with-image .score .gauge-annotation {
+    display: none;
+}
 
-.panel.schoolcard .score .annotation .line {
+.panel.schoolcard .score .gauge-annotation .line {
     background: var(--score-ring);
     box-shadow: 0 0 1rem var(--card-border-40);
     height: .08rem;
@@ -473,7 +477,7 @@ header .right {
     width: 2rem;
 }
 
-.panel.schoolcard .score .annotation .title {
+.panel.schoolcard .score .gauge-annotation .title {
     border-bottom: .1rem solid var(--score-ring);
     color: var(--text-header-secondary);
     font-size: 1.25rem;
@@ -484,6 +488,85 @@ header .right {
     text-shadow: 0 0 1rem var(--card-border-40);
     text-transform: uppercase;
     white-space: nowrap;
+}
+
+/*                    */
+/* Schhol Card Image */
+/*                  */
+
+.panel.schoolcard .score .photo {
+    background: var(--card-border-20);
+    border: .1rem solid var(--score-ring);
+    border-radius: .5rem;
+    box-shadow: 0 0 .5rem rgba(0, 0, 0, 1), inset 0 0 .75rem rgba(0, 0, 0, .5);
+    height: 5rem;
+    margin: -1.7rem 0 0 0;
+    overflow: hidden;
+    position: relative;
+    width: 9rem;
+}
+.panel.schoolcard:not(.with-image) .score .photo {
+    display: none;
+}
+
+.panel.schoolcard .score .photo img {
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.panel.schoolcard .score .photo .scanline {
+    background: linear-gradient(90deg, transparent 0%, var(--card-border-40) 10%, var(--card-border-80) 50%, var(--card-border-40) 90%, transparent 100%);
+    box-shadow: 0 0 .2rem var(--panel-border-60), 0 0 .2rem var(--panel-border-40);
+    height: .1rem;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.panel.schoolcard:hover .score .photo .scanline {
+    animation: scanAnimation 8s ease-in-out infinite;
+}
+
+@keyframes scanAnimation {
+    0% { top: 0; opacity: 0; }
+    90% { top: 0; opacity: 0; }
+    91% { opacity: 1; }
+    92% { opacity: 1; }
+    95% { top: calc(100% - .1rem); opacity: 0; }
+    98% { opacity: 1; }
+    99% { opacity: 1; }
+    100% { top: 0; opacity: 0; }
+}
+
+.panel.schoolcard .score .photo-annotation {
+    align-items: center;
+    display: flex;
+    margin-left: auto;
+    position: relative;
+}
+.panel.schoolcard:not(.with-image) .score .photo-annotation {
+    display: none;
+}
+
+.panel.schoolcard .score .photo-annotation .line {
+    background: var(--score-ring);
+    box-shadow: 0 0 1rem var(--card-border-40);
+    height: .08rem;
+    margin: .5rem -.5rem 0 -1rem;
+    transform: rotate(-40deg);
+    transform-origin: left center;
+    width: 2rem;
+}
+
+.panel.schoolcard .score .photo-annotation .link {
+    border-bottom: .1rem solid var(--score-ring);
+    box-shadow: 0 0 1rem var(--card-border-40);
+    margin: 4.45rem -1rem 0 0;
+    transform: rotate(90deg);
+    width: 4rem;
 }
 
 /* */

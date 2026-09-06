@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemDistrictList = document.getElementById('district-list');
     const elemSchoolTitle = document.getElementById('school-title');
     const elemSchoolDistrict = document.getElementById('school-district');
+    const elemSchoolCard = document.querySelector('.panel.schoolcard');
+    const elemSchoolImage = document.querySelector('.panel.schoolcard .photo img');
     const elemScoreNumber = document.querySelector('.panel.schoolcard .score .number');
     const elemScoreLabel = document.querySelector('.panel.schoolcard .score .label');
     const elemScoreGauge = document.querySelector('.panel.schoolcard .score .gauge');
@@ -134,6 +136,12 @@ console.log(found);
         elemSchoolTitle.textContent = school.title;
         elemSchoolDistrict.textContent = school.district;
         elemScoreNumber.textContent = school.score;
+        elemSchoolImage.src = school.image || '';
+        elemSchoolCard.classList.remove('with-image');
+
+        if (school.image !== '') {
+            elemSchoolCard.classList.add('with-image');
+        }
 
         const score = Math.max(1, school.score);
         const wedge = .75;
@@ -213,6 +221,10 @@ console.log(found);
         streetInfosSafe += `<div class="label">Schutzquote (400m x 400m)</div>`;
         streetInfosSafe += `<div class="value">${Math.round(lowSpeed / totalSpeed * 100)}% verkehrsberuhigt</div>`;
         streetInfosDanger += `<div class="value">Hauptstraßen</div>`;
+
+        school.additions.forEach(addition => {
+            streetInfos += `<div class="hint">${addition}</div>`;
+        });
 
         let speedlimits = [];
         Object.values(statistic).forEach(item => {
