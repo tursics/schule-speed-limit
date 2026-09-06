@@ -277,7 +277,7 @@ function processOSMData() {
             additions,
             center: [centerLon, centerLat],
             score,
-            image,
+            image: imagePath,
             buildings: localBuildings,
             grounds: localGrounds,
             streets: localStreets,
