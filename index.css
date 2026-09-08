@@ -347,6 +347,10 @@ header .right {
     text-transform: uppercase;
 }
 
+/*                    */
+/* School Card Image */
+/*                  */
+
 .panel.schoolcard .header .image {
     align-items: center;
     display: flex;
@@ -358,6 +362,66 @@ header .right {
 .panel.schoolcard .header .image svg {
     height: 4.5rem;
     width: 4.5rem;
+}
+
+svg .campus-polygon {
+    fill: #707f83;
+    stroke: #aec7cf;
+    stroke-width: .75px;
+}
+
+svg .street {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+svg .street.bg-default {
+    stroke: #36483b50;
+    stroke-width: 3;
+}
+svg .street.default {
+    stroke: #676525;
+    stroke-width: 1;
+}
+svg .street.bg-safe {
+    stroke: #19685750;
+    stroke-width: 4;
+}
+svg .street.safe {
+    stroke: #00ff88;
+    stroke-width: 1.8;
+}
+svg .street.bg-danger {
+    stroke: #8f3a4780;
+    stroke-width: 4;
+}
+svg .street.danger {
+    stroke: #ff3344;
+    stroke-width: 1.4;
+}
+
+svg .building .ground-shadow {
+    fill: #000;
+    filter: blur(4px);
+}
+svg .building .wall {
+    stroke: #fef9da;
+    stroke-opacity: .5;
+    stroke-width: .5px;
+}
+svg .building .roof-top {
+    fill: #444a5a;
+    stroke: #fef9da;
+    stroke-width: .5px;
+}
+
+svg .entry {
+    fill: #00f0ff;
+    animation: entryPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes entryPing {
+    0% { r: 2px; opacity: 1; }
+    100% { r: 10px; opacity: 0; }
 }
 
 /*                    */

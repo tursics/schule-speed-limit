@@ -21,6 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
     const elemMetricStreetsSafe = document.getElementById('metric-streets-safe');
 
+    const svgDefs = '<defs>' +
+    '</defs>';
+
     function updateSchoolList() {
         const prefix = elemDistrictList.value;
 
@@ -84,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function get3DBuilding(polygonPoints, height = 14) {
-        const offsetX = height * .2;
+        const offsetX = height * 0;
         const offsetY = height * .7;
 
         const roofPoints = polygonPoints.map(([x, y]) => [
@@ -92,11 +95,12 @@ document.addEventListener('DOMContentLoaded', () => {
             y - offsetY
         ]);
 
-        let svg = '<g>';
+        let svg = '<g class="building">';
 
-        const groundStr = polygonPoints.map(pt => pt.join(',')).join(' ');
-        svg += `<polygon points="${groundStr}" fill="rgba(0, 0, 0, 0.4)" transform="translate(2, 2)" />`;
+        const campusStr = polygonPoints.map(pt => pt.join(',')).join(' ');
+        svg += `<polygon class="ground-shadow" points="${campusStr}" />`;
 
+        const wallLines = [];
         for (let i = 0; i < polygonPoints.length; ++i) {
             const next = (i + 1) % polygonPoints.length;
 
@@ -105,16 +109,46 @@ document.addEventListener('DOMContentLoaded', () => {
             const r1 = roofPoints[i];
             const r2 = roofPoints[next];
 
-            const wallPoints = `${p1[0]},${p1[1]} ${p2[0]},${p2[1]} ${r2[0]},${r2[1]} ${r1[0]},${r1[1]}`;
-            const angle = Math.atan2(p2[1] - p1[1], p2[0] - p1[0]) * (180 / Math.PI);
-            const brightness = 25 + Math.abs(Math.sin(angle)) * 50;
-
-            svg += `<polygon points="${wallPoints}" fill="hsl(215, 50%, ${brightness}%)" stroke="#f0f0ff" stroke-width="0.5" />`;
+            wallLines.push([p1, p2, r2, r1]);
         }
 
+        wallLines.sort((a, b) => {
+            const yMaxA = Math.max(a[0][1], a[1][1]);
+            const yMaxB = Math.max(b[0][1], b[1][1]);
+            if (yMaxA !== yMaxB) {
+                return yMaxA - yMaxB;
+            }
+
+            const yMinA = Math.min(a[0][1], a[1][1]);
+            const yMinB = Math.min(b[0][1], b[1][1]);
+            if (yMinA !== yMinB) {
+                return yMinA - yMinB;
+            }
+
+            const xMinA = Math.min(a[0][0], a[1][0]);
+            const xMinB = Math.min(b[0][0], b[1][0]);
+            if (xMinA !== xMinB) {
+                return xMinA - xMinB;
+            }
+
+            return 0;
+        });
+
+        svg += '<g class="walls">';
+        for (let i = 0; i < wallLines.length; ++i) {
+            const line = wallLines[i];
+            const [p1, p2, r2, r1] = line;
+
+            const wallPoints = `${p1[0]},${p1[1]} ${p2[0]},${p2[1]} ${r2[0]},${r2[1]} ${r1[0]},${r1[1]}`;
+            const angle = Math.atan2(p2[1] - p1[1], p2[0] - p1[0]) * (180 / Math.PI);
+            const brightness = Math.round(40 + Math.abs(Math.sin(angle)) * 35);
+
+            svg += `<polygon class="wall" points="${wallPoints}" fill="hsl(52, 14%, ${brightness}%)" />`;
+        }
+        svg += '</g>';
+
         const roofStr = roofPoints.map(pt => pt.join(',')).join(' ');
-        svg += `<polygon points="${roofStr}" fill="#1e293b" stroke="#f0f0ff" stroke-width="0.5" />`;
-        svg += `<polygon points="${roofStr}" fill="rgba(0, 240, 255, 0.12)" />`;
+        svg += `<polygon class="roof-top" points="${roofStr}" />`;
 
         svg += '</g>';
 
@@ -179,16 +213,20 @@ console.log(found);
         let lowSpeed = 0;
         let totalSpeed = 0;
 
-        school.grounds.forEach(ground => {
-            const points = ground.coords.map(pt => pt.join(',')).join(' ');
-            svg += `<polygon points="${points}" fill="#00f0ff80" stroke="#00f0ff" stroke-width="0.8" />`;
+        school.grounds.forEach(campus => {
+            const points = campus.coords.map(pt => pt.join(',')).join(' ');
+            svg += `<polygon class="campus-polygon" points="${points}" />`;
         });
 
+        svg += `<g class="streets">`;
+        let bgStreets = '';
+        let fgStreets = '';
         school.streets.sort((a, b) => a.speed - b.speed);
         school.streets.forEach(street => {
-            const color = street.speed === 0 ? '#077' : (street.speed <= 30 ? '#00ff88' : '#ff3366');
+            const className = street.speed === 0 ? 'default' : (street.speed <= 30 ? 'safe' : 'danger');
             const points = street.coords.map(pt => pt.join(',')).join(' ');
-            svg += `<polyline points="${points}" stroke="${color}" stroke-width="3" fill="none" stroke-linecap="round" />`;
+            bgStreets += `<polyline class="street bg-${className}" points="${points}" />`;
+            fgStreets += `<polyline class="street ${className}" points="${points}" />`;
 
             if (street.speed > 0) {
                 let info = statistic[street.name] || {
@@ -207,12 +245,16 @@ console.log(found);
                 totalSpeed += street.length;
             }
         });
+        svg += bgStreets + fgStreets;
+        svg += `</g>`;
 
+        svg += `<g class="buildings">`;
         school.buildings.forEach(building => {
             svg += get3DBuilding(building.coords);
         });
+        svg += `</g>`;
 
-        elemMapTile.innerHTML = svg;
+        elemMapTile.innerHTML = svgDefs + svg;
 
         let streetInfos = '';
         let streetInfosDanger = '';
