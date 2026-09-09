@@ -276,7 +276,7 @@ header .right {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: .75rem;
+    margin: .75rem 0;
     transition: border-color 0.3s ease;
     width: calc(100% - 1.5rem);
     z-index: 0;
@@ -382,6 +382,7 @@ header .right {
         -7px 7px .4rem rgba(0, 0, 0, 0.7),
         -.1rem .1rem 3rem var(--card-border-40);
     height: 22rem;
+    overflow: hidden;
     position: relative;
     transform: rotateX(50deg) rotateZ(-37.5deg);
     transform-style: preserve-3d;
@@ -397,6 +398,19 @@ header .right {
 
 .map svg {
     backface-visibility: hidden;
+    transition: transform 0.4s ease;
+}
+.map.rotate0 svg {
+    transform: rotate(0deg);
+}
+.map.rotate90 svg {
+    transform: rotate(90deg);
+}
+.map.rotate180 svg {
+    transform: rotate(180deg);
+}
+.map.rotate270 svg {
+    transform: rotate(270deg);
 }
 
 .map svg .campus-polygon {
@@ -666,6 +680,52 @@ header .right {
     margin: 4.45rem -1rem 0 0;
     transform: rotate(90deg);
     width: 4rem;
+}
+
+/*                       */
+/* School Card Controls */
+/*                     */
+
+.panel.schoolcard .controls {
+    align-items: center;
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+    margin: -3rem 0 1rem 0;
+    padding: 0 1.25rem;
+    width: 100%;
+}
+
+.panel.schoolcard .controls button {
+    align-items: center;
+    background: var(--panel-bg);
+    border: .1rem solid var(--accent-cyan);
+    border-radius: 3rem;
+    box-shadow: 0 0 1rem var(--card-border-20);
+    color: var(--accent-cyan);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+    font-size: 1rem;
+    gap: .1rem;
+    height: 4.5rem;
+    letter-spacing: .025rem;
+    padding-top: .8rem;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    user-select: none;
+    width: 4.5rem;
+}
+.panel.schoolcard .controls button:hover {
+    background: rgba(0, 240, 255, 0.15);
+    box-shadow: 0 0 1rem var(--card-border-60);
+    color: #ffffff;
+}
+
+.panel.schoolcard .controls button svg {
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 /* */
