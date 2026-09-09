@@ -347,10 +347,6 @@ header .right {
     text-transform: uppercase;
 }
 
-/*                    */
-/* School Card Image */
-/*                  */
-
 .panel.schoolcard .header .image {
     align-items: center;
     display: flex;
@@ -364,58 +360,97 @@ header .right {
     width: 4.5rem;
 }
 
-svg .campus-polygon {
+/*                    */
+/* School Campus Map */
+/*                  */
+
+.map {
+    align-items: center;
+    display: flex;
+    height: 13rem;
+    justify-content: center;
+    margin-bottom: 6rem;
+    perspective: 60rem;
+    perspective-origin: 50% 40%;
+}
+
+.map .tile {
+    background: #162c3f;
+    border: .1rem solid rgba(0, 240, 255, .5);
+    border-radius: 1.5rem;
+    box-shadow: -1px 1px 0 #060b17, -2px 2px 0 #060b17, -3px 3px 0 #060b17, -4px 4px 0 #060b17, -5px 5px 0 #060b17, -6px 6px 0 #060b17,
+        -7px 7px .4rem rgba(0, 0, 0, 0.7),
+        -.1rem .1rem 3rem var(--card-border-40);
+    height: 22rem;
+    position: relative;
+    transform: rotateX(50deg) rotateZ(-37.5deg);
+    transform-style: preserve-3d;
+    transition: box-shadow 0.4s ease;
+    width: 22rem;
+
+}
+.panel.schoolcard:hover .map .tile {
+    box-shadow: -1px 1px 0 #060b17, -2px 2px 0 #060b17, -3px 3px 0 #060b17, -4px 4px 0 #060b17, -5px 5px 0 #060b17, -6px 6px 0 #060b17,
+        -7px 7px .4rem rgba(0, 0, 0, 0.7),
+        -.1rem .1rem 3.5rem var(--card-border-40);
+}
+
+.map svg {
+    backface-visibility: hidden;
+}
+
+.map svg .campus-polygon {
     fill: #707f83;
     stroke: #aec7cf;
     stroke-width: .75px;
 }
 
-svg .street {
+.map svg .street {
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
 }
-svg .street.bg-default {
+.map svg .street.bg-default {
     stroke: #36483b50;
     stroke-width: 3;
 }
-svg .street.default {
+.map svg .street.default {
     stroke: #676525;
     stroke-width: 1;
 }
-svg .street.bg-safe {
+.map svg .street.bg-safe {
     stroke: #19685750;
     stroke-width: 4;
 }
-svg .street.safe {
+.map svg .street.safe {
     stroke: #00ff88;
     stroke-width: 1.8;
 }
-svg .street.bg-danger {
+.map svg .street.bg-danger {
     stroke: #8f3a4780;
     stroke-width: 4;
 }
-svg .street.danger {
+.map svg .street.danger {
     stroke: #ff3344;
     stroke-width: 1.4;
 }
 
-svg .building .ground-shadow {
+.map svg .building .ground-shadow {
     fill: #000;
     filter: blur(4px);
 }
-svg .building .wall {
+.map svg .building .wall {
     stroke: #fef9da;
     stroke-opacity: .5;
     stroke-width: .5px;
 }
-svg .building .roof-top {
+.map svg .building .roof-top {
     fill: #444a5a;
     stroke: #fef9da;
     stroke-width: .5px;
 }
 
-svg .entry {
+.map svg .entry {
     fill: #00f0ff;
     animation: entryPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
@@ -634,31 +669,6 @@ svg .entry {
 }
 
 /* */
-
-.map {
-    align-items: center;
-    display: flex;
-    height: 16rem;
-    justify-content: center;
-    margin: 1rem 0;
-    perspective: 50rem;
-    width: 100%;
-}
-
-.map .tile {
-    background: #153745;
-    border: 2px var(--accent-cyan);
-    box-shadow: 0 .6rem 3rem var(--accent-cyan);
-    height: 25rem;
-    position: relative;
-    transform: rotateX(60deg) rotateZ(0deg);
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease;
-    width: 25rem;
-}
-.map .tile:hover {
-    transform: rotateX(33deg) rotateZ(0deg) translateZ(2rem);
-}
 
 .metric {
     background: rgba(0, 0, 0, 0.4);

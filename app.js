@@ -87,8 +87,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function get3DBuilding(polygonPoints, height = 14) {
-        const offsetX = height * 0;
-        const offsetY = height * .7;
+        const offsetX = height * -.74;
+        const offsetY = height * 1;
 
         const roofPoints = polygonPoints.map(([x, y]) => [
             x - offsetX,
