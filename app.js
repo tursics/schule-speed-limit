@@ -14,8 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemScoreGauge = document.querySelector('.panel.schoolcard .score .gauge');
     const elemScorePointer = document.querySelector('.panel.schoolcard .score .gauge .pointer');
     const elemBarChart = document.querySelector('.chart .bars');
+    const elemButtonRotateLeft = document.getElementById('button-rotate-left');
+    const elemButtonRotateRight = document.getElementById('button-rotate-right');
 
-    const elemMapTile = document.querySelector('.map .tile svg');
+    const elemMap = document.querySelector('.map');
+    const elemMapTile = document.querySelector('.map .tile');
+    const elemMapImage = document.querySelector('.map .tile svg');
 
     const elemMetricStreets = document.getElementById('metric-streets');
     const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
@@ -74,6 +78,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function onRotateMap(event) {
+        const currentRotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+
+        let newRotation = currentRotation + parseInt(event.currentTarget.dataset.val || '0', 10);
+        elemMapTile.attributes['data-rotate'].value = newRotation;
+
+        reBuildBuildings();
+      }
+
     function prepareControlRoom() {
         updateSchoolList();
         updateBarChart();
@@ -84,11 +97,32 @@ document.addEventListener('DOMContentLoaded', () => {
         elemDistrictList.addEventListener('change', (event) => {
             updateSchoolList();
         });
+
+        elemButtonRotateLeft.addEventListener('click', onRotateMap);
+        elemButtonRotateRight.addEventListener('click', onRotateMap);
     }
 
-    function get3DBuilding(polygonPoints, height = 14) {
-        const offsetX = height * -.74;
-        const offsetY = height * 1;
+    function reBuildBuildings() {
+        const elemBuildings = elemMap.querySelector('.buildings');
+        let svg = '';
+
+        const schoolIndex = parseInt(elemSchoolCard.dataset.id, 10);
+        const school = schools[schoolIndex];
+
+        school.buildings.forEach(building => {
+            svg += get3DBuilding(building.coords);
+        });
+
+        elemBuildings.innerHTML = svg;
+    }
+
+    function get3DBuilding(polygonPoints) {
+        const rotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        const height = 18;
+        const sin = Math.sin(rotation * Math.PI / 180);
+        const cos = Math.cos(rotation * Math.PI / 180);
+        const offsetX = height * sin;
+        const offsetY = height * cos;
 
         const roofPoints = polygonPoints.map(([x, y]) => [
             x - offsetX,
@@ -156,7 +190,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function setSchool(ref) {
-        const found = schools.filter((school) => school.id === ref);
+        const found = schools
+            .map((school, index) => {
+                return {
+                    ...school,
+                    arrayIndex: index
+                };
+            })
+            .filter((school) => school.id === ref);
         if (found.length === 0) {
             return;
         }
@@ -166,6 +207,8 @@ console.log(found);
             console.error('More than 1 object found for ' + ref);
         }
         const school = found[0];
+
+        elemSchoolCard.attributes['data-id'].value = school.arrayIndex;
 
         elemSchoolTitle.textContent = school.title;
         elemSchoolDistrict.textContent = school.district;
@@ -254,7 +297,7 @@ console.log(found);
         });
         svg += `</g>`;
 
-        elemMapTile.innerHTML = svgDefs + svg;
+        elemMapImage.innerHTML = svgDefs + svg;
 
         let streetInfos = '';
         let streetInfosDanger = '';

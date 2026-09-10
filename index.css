@@ -257,6 +257,7 @@ header .right {
     border: .2rem solid var(--card-border-60);
     border-radius: 2rem;
     box-shadow: 0 0 .5rem var(--card-border-60), inset 0 0 2rem var(--panel-border-40), 0 0 2rem var(--card-border-20);
+    height: fit-content;
     margin: 0 auto;
     overflow: visible;
     padding: 0;
@@ -384,11 +385,10 @@ header .right {
     height: 22rem;
     overflow: hidden;
     position: relative;
-    transform: rotateX(50deg) rotateZ(-37.5deg);
+    transform: rotateX(50deg) rotateZ(attr(data-rotate deg));
     transform-style: preserve-3d;
-    transition: box-shadow 0.4s ease;
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
     width: 22rem;
-
 }
 .panel.schoolcard:hover .map .tile {
     box-shadow: -1px 1px 0 #060b17, -2px 2px 0 #060b17, -3px 3px 0 #060b17, -4px 4px 0 #060b17, -5px 5px 0 #060b17, -6px 6px 0 #060b17,
@@ -398,19 +398,6 @@ header .right {
 
 .map svg {
     backface-visibility: hidden;
-    transition: transform 0.4s ease;
-}
-.map.rotate0 svg {
-    transform: rotate(0deg);
-}
-.map.rotate90 svg {
-    transform: rotate(90deg);
-}
-.map.rotate180 svg {
-    transform: rotate(180deg);
-}
-.map.rotate270 svg {
-    transform: rotate(270deg);
 }
 
 .map svg .campus-polygon {
@@ -691,9 +678,10 @@ header .right {
     display: flex;
     gap: 1.5rem;
     justify-content: space-between;
-    margin: -3rem 0 1rem 0;
+    margin: -2rem 0 1rem 0;
     padding: 0 1.25rem;
     width: 100%;
+    z-index: 1;
 }
 
 .panel.schoolcard .controls button {
