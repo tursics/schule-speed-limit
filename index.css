@@ -664,7 +664,7 @@ header .right {
 .panel.schoolcard .score .photo-annotation .link {
     border-bottom: .1rem solid var(--score-ring);
     box-shadow: 0 0 1rem var(--card-border-40);
-    margin: 4.45rem -1rem 0 0;
+    margin: 4.55rem -1rem 0 0;
     transform: rotate(90deg);
     width: 4rem;
 }
