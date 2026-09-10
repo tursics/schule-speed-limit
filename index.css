@@ -376,12 +376,13 @@ header .right {
 }
 
 .map .tile {
+    --x-offset: calc(sin(attr(data-rotate deg)) * 9px);
+    --y-offset: calc(cos(attr(data-rotate deg)) * 9px);
+
     background: #162c3f;
     border: .1rem solid rgba(0, 240, 255, .5);
     border-radius: 1.5rem;
-    box-shadow: -1px 1px 0 #060b17, -2px 2px 0 #060b17, -3px 3px 0 #060b17, -4px 4px 0 #060b17, -5px 5px 0 #060b17, -6px 6px 0 #060b17,
-        -7px 7px .4rem rgba(0, 0, 0, 0.7),
-        -.1rem .1rem 3rem var(--card-border-40);
+    box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 3.5rem var(--card-border-40);
     height: 22rem;
     overflow: hidden;
     position: relative;
@@ -391,9 +392,7 @@ header .right {
     width: 22rem;
 }
 .panel.schoolcard:hover .map .tile {
-    box-shadow: -1px 1px 0 #060b17, -2px 2px 0 #060b17, -3px 3px 0 #060b17, -4px 4px 0 #060b17, -5px 5px 0 #060b17, -6px 6px 0 #060b17,
-        -7px 7px .4rem rgba(0, 0, 0, 0.7),
-        -.1rem .1rem 3.5rem var(--card-border-40);
+    box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 4rem var(--card-border-40);
 }
 
 .map svg {
@@ -696,10 +695,9 @@ header .right {
     flex-direction: column;
     font-family: inherit;
     font-size: 1rem;
-    gap: .1rem;
     height: 4.5rem;
     letter-spacing: .025rem;
-    padding-top: .8rem;
+    padding-top: .5rem;
     text-transform: uppercase;
     transition: all 0.25s ease;
     user-select: none;
@@ -712,8 +710,8 @@ header .right {
 }
 
 .panel.schoolcard .controls button svg {
-    height: 1.25rem;
-    width: 1.25rem;
+    height: 2rem;
+    width: 2rem;
 }
 
 /* */

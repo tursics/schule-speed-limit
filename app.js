@@ -80,9 +80,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function onRotateMap(event) {
         const currentRotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        let diff = parseInt(event.currentTarget.dataset.val || '0', 10);
+        diff = parseInt(Math.floor(Math.random() * diff * .5) + diff * .75, 10);
 
-        let newRotation = currentRotation + parseInt(event.currentTarget.dataset.val || '0', 10);
-        elemMapTile.attributes['data-rotate'].value = newRotation;
+        elemMapTile.attributes['data-rotate'].value = currentRotation + diff;
 
         reBuildBuildings();
       }
