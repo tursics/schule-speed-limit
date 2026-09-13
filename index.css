@@ -2,9 +2,10 @@
     --bg-dark: #090d16;
     --panel-bg: rgba(16, 25, 40);
     --panel-bg-light: #1b3341;
-    --panel-border: rgba(0, 240, 255, 0.2);
-    --panel-border-40: rgba(0, 240, 255, 0.4);
-    --panel-border-60: rgba(0, 240, 255, 0.6);
+    --panel-border: rgba(0, 240, 255, .2);
+    --panel-border-40: rgba(0, 240, 255, .4);
+    --panel-border-50: rgba(0, 240, 255, .5);
+    --panel-border-60: rgba(0, 240, 255, .6);
     --accent-cyan: #00f0ff;
     --accent-green: #00ff88;
     --accent-red: #ff3366;
@@ -14,10 +15,10 @@
     --text-header: #b4f0f7;
     --text-header-secondary: #b4f0f7c0;
     --icon-color: #b4f0f7;
-    --card-border-20: rgba(222, 254, 250, 0.2);
-    --card-border-40: rgba(222, 254, 250, 0.4);
-    --card-border-60: rgba(222, 254, 250, 0.6);
-    --card-border-80: rgba(222, 254, 250, 0.8);
+    --card-border-20: rgba(222, 254, 250, .2);
+    --card-border-40: rgba(222, 254, 250, .4);
+    --card-border-60: rgba(222, 254, 250, .6);
+    --card-border-80: rgba(222, 254, 250, .8);
     --score-ring: #6f97a4;
     --score-0: #D84B6D;
     --score-25: #EB5252;
@@ -99,10 +100,6 @@ body {
     display: flex;
     flex-direction: column;
     padding: 1rem;
-
-    background-image:  radial-gradient(circle, #666 0.8px, transparent 0.8px), radial-gradient(circle, #666 0.8px, transparent 0.8px) ;
-    background-size: 5px 20px, 20px 5px;
-    background-position: -2.5px -10px, -10px -2.5px;
 }
 
 header {
@@ -252,13 +249,13 @@ header .right {
 .panel.schoolcard {
     align-items: center;
     backdrop-filter: blur(3px);
-    background: rgba(255, 255, 255, 0.15);
     -webkit-backdrop-filter: blur(3px);
+    background: rgba(255, 255, 255, 0.15);
     border: .2rem solid var(--card-border-60);
     border-radius: 2rem;
     box-shadow: 0 0 .5rem var(--card-border-60), inset 0 0 2rem var(--panel-border-40), 0 0 2rem var(--card-border-20);
     height: fit-content;
-    margin: 0 auto;
+    margin: -5.5rem auto 0;
     overflow: visible;
     padding: 0;
     position: relative;
@@ -380,7 +377,7 @@ header .right {
     --y-offset: calc(cos(attr(data-rotate deg)) * 9px);
 
     background: #162c3f;
-    border: .1rem solid rgba(0, 240, 255, .5);
+    border: .1rem solid var(--panel-border-50);
     border-radius: 1.5rem;
     box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 3.5rem var(--card-border-40);
     height: 22rem;
@@ -666,6 +663,46 @@ header .right {
     margin: 5.5rem -1.5rem 0 0;
     transform: rotate(90deg);
     width: 5rem;
+}
+
+/*                     */
+/* School Map Compass */
+/*                   */
+
+.panel.schoolcard .map .compass {
+    align-items: center;
+    background: var(--panel-bg);
+    border: .1rem solid var(--panel-border-60);
+    border-radius: 50%;
+    box-shadow: 0 0 .75rem var(--card-border-40);
+    display: flex;
+    flex-direction: column;
+    height: 2.5rem;
+    justify-content: center;
+    pointer-events: none;
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+    width: 2.5rem;
+}
+
+.panel.schoolcard .map .compass .arrow {
+    border-bottom: .7rem solid var(--accent-cyan);
+    border-left: .3rem solid transparent;
+    border-right: .3rem solid transparent;
+    filter: drop-shadow(0 0 .2rem var(--accent-cyan));
+    height: 0;
+    pointer-events: none;
+    width: 0;
+}
+
+.panel.schoolcard .map .compass .label {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 900;
+    line-height: 1rem;
+    margin: .1rem 0 -.2rem 0;
+    pointer-events: none;
 }
 
 /*                       */
