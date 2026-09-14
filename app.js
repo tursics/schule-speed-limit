@@ -21,9 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemMapTile = document.querySelector('.map .tile');
     const elemMapImage = document.querySelector('.map .tile svg');
 
-    const elemMetricStreets = document.getElementById('metric-streets');
-    const elemMetricStreetsDanger = document.getElementById('metric-streets-danger');
-    const elemMetricStreetsSafe = document.getElementById('metric-streets-safe');
+    const elemStatType = document.querySelector('.panel.statcard .header h3');
+    const elemStatAddress = document.querySelector('.panel.statcard .header .address');
+    const elemStatHints = document.querySelector('.panel.statcard .attention');
+    const elemStatSigns = document.querySelector('.panel.statcard .trafficsigns');
+    const elemSafeMetric = document.querySelector('.panel.statcard .safe-metric');
 
     const svgDefs = '<defs>' +
     '</defs>';
@@ -190,6 +192,26 @@ document.addEventListener('DOMContentLoaded', () => {
         return svg;
     }
 
+    function getHints(school) {
+        let hints = '';
+        school.additions.forEach(addition => {
+            addition = addition.replace('Barrierefreie Toilette vorhanden', '');
+            addition = addition.replace('Behindertenparkplatz vorhanden', '');
+            addition = addition.replace('Fahrstuhl vorhanden', '');
+            addition = addition.replace('Zugang über Rampe möglich', '');
+
+            while (addition.startsWith(', ')) {
+                addition = addition.substring(2);
+            }
+
+            if (addition !== '') {
+                hints += `<div class="hint">${addition}</div>`;
+            }
+        });
+
+        return hints;
+    }
+
     function setSchool(ref) {
         const found = schools
             .map((school, index) => {
@@ -300,19 +322,17 @@ console.log(found);
 
         elemMapImage.innerHTML = svgDefs + svg;
 
-        let streetInfos = '';
-        let streetInfosDanger = '';
-        let streetInfosSafe = '';
-        streetInfos += '<div class="value">' + school.type + '<br>' + school.address + '<br>' + school.zip + ' ' + school.city + '</div>';
-        streetInfosSafe += `<div class="label">Schutzquote (400m x 400m)</div>`;
-        streetInfosSafe += `<div class="value">${Math.round(lowSpeed / totalSpeed * 100)}% verkehrsberuhigt</div>`;
-        streetInfosDanger += `<div class="value">Hauptstraßen</div>`;
+        elemStatType.innerHTML = school.type.replace('( ', '(').replace(' )', ')');
+        elemStatAddress.innerHTML = `${school.address}<br>${school.zip} ${school.city}`;
+        elemSafeMetric.innerHTML = `<span class="highlight">${Math.round(lowSpeed / totalSpeed * 100)}%</span> verkehrsberuhigt`;
 
-        school.additions.forEach(addition => {
-            streetInfos += `<div class="hint">${addition}</div>`;
-        });
+        let hints = getHints(school);
+        elemStatHints.innerHTML = hints;
+        elemStatHints.style.display = hints === '' ? 'none' : 'block';
 
+        let signs = '';
         let speedlimits = [];
+
         Object.values(statistic).forEach(item => {
             let speed = {};
 
@@ -339,29 +359,27 @@ console.log(found);
         });
 
         let current = 0;
+        signs += '<div><div>';
         speedlimits.forEach(item => {
             let addition = '';
             if (current !== item.speed) {
                 current = item.speed;
                 addition += `<div class="sign">${item.speed}</div>`;
+                signs += '</div></div>';
+                signs += '<div class="list">';
+                signs += `<div class="sign">${item.speed}</div>`;
+                signs += '<div class="streets">';
             }
 
             if (item.speed <= 30) {
-                streetInfosSafe += `${addition}<div class="hint">${item.name}: ${item.distance} m</div>`;
             } else {
-                streetInfosDanger += `${addition}<div class="hint">${item.name}: ${item.distance} m</div>`;
             }
-        });
 
-        if (elemMetricStreets) {
-            elemMetricStreets.innerHTML = streetInfos;
-        }
-        if (elemMetricStreetsDanger) {
-            elemMetricStreetsDanger.innerHTML = streetInfosDanger;
-        }
-        if (elemMetricStreetsSafe) {
-            elemMetricStreetsSafe.innerHTML = streetInfosSafe;
-        }
+            signs += `<div class="row"><span class="name">${item.name}</span><span class="distance">${item.distance} m</span></div>`;
+        });
+        signs += '</div></div>';
+
+        elemStatSigns.innerHTML = signs;
     }
 
     async function fetchGZIP(url) {

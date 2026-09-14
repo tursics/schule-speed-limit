@@ -242,11 +242,11 @@ header .right {
     color: var(--accent-green);
 }
 
-/*                    */
-/* School Card Frame */
-/*                  */
+/*               */
+/* Generic Card */
+/*             */
 
-.panel.schoolcard {
+.panel.schoolcard, .panel.statcard {
     align-items: center;
     backdrop-filter: blur(3px);
     -webkit-backdrop-filter: blur(3px);
@@ -255,19 +255,18 @@ header .right {
     border-radius: 2rem;
     box-shadow: 0 0 .5rem var(--card-border-60), inset 0 0 2rem var(--panel-border-40), 0 0 2rem var(--card-border-20);
     height: fit-content;
-    margin: -5.5rem auto 0;
+    margin: 0 auto;
     overflow: visible;
     padding: 0;
     position: relative;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     width: 25rem;
 }
-.panel.schoolcard:hover {
+.panel.schoolcard:hover, .panel.statcard:hover {
     border-color: var(--card-border-80);
 }
 
-.panel.schoolcard .inlay {
-    align-items: center;
+.panel .inlay {
     background: var(--panel-bg);
     border: .1rem solid var(--panel-border-40);
     border-radius: 1.5rem;
@@ -279,15 +278,11 @@ header .right {
     width: calc(100% - 1.5rem);
     z-index: 0;
 }
-.panel.schoolcard:hover .inlay {
+.panel:hover .inlay {
     border-color: var(--panel-border-60);
 }
 
-/*                     */
-/* School Card Header */
-/*                   */
-
-.panel.schoolcard .header {
+.panel .header {
     align-items: center;
     background: var(--panel-bg-light);
     background-clip: padding-box;
@@ -298,7 +293,7 @@ header .right {
     position: relative;
     width: 100%;
 }
-.panel.schoolcard .header::before {
+.panel .header::before, .panel.statcard .attention::before, .panel.statcard .footer::before {
     background: linear-gradient(to right, var(--panel-bg-light) 0, var(--text-header) 50%, var(--panel-bg-light) 100%);
     border-radius: inherit;
     bottom: 0;
@@ -310,6 +305,21 @@ header .right {
     top: 0;
     z-index: -1;
 }
+.panel.statcard .footer::before {
+    margin: -.1rem 0 0 0;
+}
+
+/*                    */
+/* School Card Frame */
+/*                  */
+
+.panel.schoolcard {
+    margin-top: -5.5rem;
+}
+
+/*                     */
+/* School Card Header */
+/*                   */
 
 .panel.schoolcard .header .main {
     display: flex;
@@ -751,53 +761,66 @@ header .right {
     width: 2rem;
 }
 
-/* */
+/*                       */
+/* Statistic Card Frame */
+/*                     */
 
-.metric {
-    background: rgba(0, 0, 0, 0.4);
-    border-left: 4px solid var(--text-muted);
-    padding: 0.75rem 1rem;
-    border-radius: 0 6px 6px 0;
-}
-
-.metric.danger {
-    border-left-color: var(--accent-red);
-}
-.metric.warning {
-    border-left-color: var(--accent-orange);
-}
-.metric.success {
-    border-left-color: var(--accent-green);
+.panel.statcard {
+    margin-left: -1rem;
+    transform: rotate(-5deg);
+    width: 20rem;
 }
 
-.metric .label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+/*                        */
+/* Statistic Card Header */
+/*                      */
+
+.panel.statcard .header .main {
+    padding: .75rem .75rem .25rem .75rem;
+    width: 100%;
+}
+
+.panel.statcard .header h3 {
+    color: var(--text-header);
+    font-size: 1.7rem;
+    font-style: italic;
+    font-weight: 500;
+    letter-spacing: .02rem;
+    line-height: 2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 .1rem .3rem var(--panel-bg);
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.panel.statcard .header .address {
+    color: var(--text-header-secondary);
+    font-size: 1.3rem;
+    font-weight: 300;
+    letter-spacing: .03rem;
+    line-height: 1.3rem;
     text-transform: uppercase;
 }
 
-.metric .value {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 0.2rem;
-}
-.metric.danger .value {
-    color: var(--accent-red);
-}
-.metric.warning .value {
-    color: var(--accent-orange);
-}
-.metric.success .value {
-    color: var(--accent-green);
+.panel.statcard .attention {
+    background: var(--panel-bg);
+    margin-top: -.5rem;
+    padding: 0 .75rem .5rem .75rem;
+    position: relative;
 }
 
-.metric .hint {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
+/*                */
+/* Traffic Signs */
+/*              */
+
+.panel.statcard .trafficsigns .list {
+    display: flex;
+    gap: .75rem;
+    padding: 0 .75rem;
 }
 
-.metric .sign {
+.panel.statcard .trafficsigns .sign {
     align-items: center;
     background: #fff;
     border: .3rem solid var(--accent-red);
@@ -813,7 +836,7 @@ header .right {
     position: relative;
     width: 2.2rem;
 }
-.metric .sign::before {
+.panel.statcard .trafficsigns .sign::before {
     border: .07rem solid #fff;
     border-radius: 50%;
     content: '';
@@ -821,6 +844,53 @@ header .right {
     height: 2.2rem;
     width: 2.2rem;
 }
+
+.panel.statcard .trafficsigns .streets {
+    flex-grow: 1;
+}
+
+.panel.statcard .trafficsigns .list .row {
+    display: flex;
+    font-size: .8rem;
+    letter-spacing: .025rem;
+    justify-content: space-between;
+}
+.panel.statcard .trafficsigns .list .row .name {
+    color: var(--text-header-secondary);
+    font-weight: 600;
+}
+.panel.statcard .trafficsigns .list .row .distance {
+    color: #fff;
+    font-weight: 600;
+}
+
+/*                        */
+/* Statistic Card Footer */
+/*                      */
+
+.panel.statcard .footer {
+    background: var(--panel-bg);
+    border-radius: 0 0 1.4rem 1.4rem;
+    font-size: .8rem;
+    letter-spacing: .025rem;
+    padding: .2rem .75rem;
+    position: relative;
+    text-align: center;
+}
+
+.panel.statcard .footer .safe-metric {
+    color: var(--text-header);
+}
+.panel.statcard .footer .safe-metric .highlight {
+    color: #fff;
+    font-size: 1rem;
+    letter-spacing: .05rem;
+    vertical-align: middle;
+}
+
+/* */
+/* */
+/* */
 
 footer {
     margin-top: 1rem;
