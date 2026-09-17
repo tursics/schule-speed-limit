@@ -254,7 +254,7 @@ header .right {
     border: .2rem solid var(--card-border-60);
     border-radius: 2rem;
     box-shadow: 0 0 .5rem var(--card-border-60), inset 0 0 2rem var(--panel-border-40), 0 0 2rem var(--card-border-20);
-    height: fit-content;
+    height: 41.25rem;
     margin: 0 auto;
     overflow: visible;
     padding: 0;
@@ -273,10 +273,14 @@ header .right {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    height: 100%;
     margin: .75rem 0;
     transition: border-color 0.3s ease;
     width: calc(100% - 1.5rem);
     z-index: 0;
+}
+.panel.statcard .inlay {
+    gap: 0;
 }
 .panel:hover .inlay {
     border-color: var(--panel-border-60);
@@ -766,8 +770,9 @@ header .right {
 /*                     */
 
 .panel.statcard {
-    margin-left: -1rem;
-    transform: rotate(-5deg);
+    height: 33rem;
+    margin-left: -.75rem;
+    transform: rotate(5deg);
     width: 20rem;
 }
 
@@ -805,19 +810,32 @@ header .right {
 
 .panel.statcard .attention {
     background: var(--panel-bg);
-    margin-top: -.5rem;
-    padding: 0 .75rem .5rem .75rem;
+    color: var(--score-50);
+    letter-spacing: .02rem;
+    line-height: 1.2rem;
+    padding: .5rem .75rem;
     position: relative;
+    text-align: center;
 }
 
 /*                */
 /* Traffic Signs */
 /*              */
 
+.panel.statcard .trafficsigns {
+    flex: 1;
+    height: 2rem;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
 .panel.statcard .trafficsigns .list {
+    align-items: center;
     display: flex;
     gap: .75rem;
-    padding: 0 .75rem;
+    overflow: hidden;
+    padding: .25rem .75rem;
+    position: relative;
 }
 
 .panel.statcard .trafficsigns .sign {
@@ -836,6 +854,9 @@ header .right {
     position: relative;
     width: 2.2rem;
 }
+.panel.statcard .trafficsigns .sign.small {
+    font-size: .9rem;
+}
 .panel.statcard .trafficsigns .sign::before {
     border: .07rem solid #fff;
     border-radius: 50%;
@@ -851,17 +872,24 @@ header .right {
 
 .panel.statcard .trafficsigns .list .row {
     display: flex;
-    font-size: .8rem;
-    letter-spacing: .025rem;
+    font-size: .9rem;
+    letter-spacing: .02rem;
+    line-height: 1.1rem;
     justify-content: space-between;
 }
 .panel.statcard .trafficsigns .list .row .name {
     color: var(--text-header-secondary);
-    font-weight: 600;
+    font-weight: 500;
 }
 .panel.statcard .trafficsigns .list .row .distance {
     color: #fff;
     font-weight: 600;
+}
+.panel.statcard .trafficsigns .list.danger .row .distance {
+    color: var(--score-25);
+}
+.panel.statcard .trafficsigns .list.good .row .distance {
+    color: var(--score-100);
 }
 
 /*                        */
@@ -871,7 +899,7 @@ header .right {
 .panel.statcard .footer {
     background: var(--panel-bg);
     border-radius: 0 0 1.4rem 1.4rem;
-    font-size: .8rem;
+    font-size: .9rem;
     letter-spacing: .025rem;
     padding: .2rem .75rem;
     position: relative;
@@ -883,7 +911,7 @@ header .right {
 }
 .panel.statcard .footer .safe-metric .highlight {
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: .05rem;
     vertical-align: middle;
 }

@@ -343,10 +343,15 @@ console.log(found);
             });
 
             Object.values(speed).forEach((distance, i) => {
+                let speed_ = Object.keys(speed)[i];
+                if (speed_ < 10) {
+                    speed_ = 1;
+                }
+
                 speedlimits.push({
                     name: item.name,
                     distance,
-                    speed: Object.keys(speed)[i]
+                    speed: speed_
                 });
             });
         });
@@ -366,8 +371,12 @@ console.log(found);
                 current = item.speed;
                 addition += `<div class="sign">${item.speed}</div>`;
                 signs += '</div></div>';
-                signs += '<div class="list">';
-                signs += `<div class="sign">${item.speed}</div>`;
+                signs += `<div class="list ${item.speed <= 30 ? 'good' : 'danger'}">`;
+                if (item.speed === 1) {
+                    signs += `<div class="sign small"><10</div>`;
+                } else {
+                    signs += `<div class="sign">${item.speed}</div>`;
+                }
                 signs += '<div class="streets">';
             }
 
