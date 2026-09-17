@@ -281,6 +281,17 @@ header .right {
 }
 .panel.statcard .inlay {
     gap: 0;
+    position: relative;
+}
+.panel.statcard .inlay::before {
+    border-radius: 50%;
+    bottom: calc(50% - 3rem);
+    box-shadow: 0 0 8rem #ffffff60, inset 0 0 7rem #55556660;
+    content: '';
+    left: calc(50% - 3rem);
+    position: absolute;
+    right: calc(50% - 3rem);
+    top: calc(50% - 3rem);
 }
 .panel:hover .inlay {
     border-color: var(--panel-border-60);
