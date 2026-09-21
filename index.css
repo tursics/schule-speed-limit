@@ -881,43 +881,6 @@ body {
     vertical-align: middle;
 }
 
-/* */
-/* */
-/* */
-
-footer {
-    margin-top: 1rem;
-    background: var(--panel-bg);
-    border: 1px solid var(--accent-red);
-    padding: 1rem 1.5rem;
-    border-radius: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 0 15px rgba(255, 51, 102, 0.15);
-}
-
-footer div {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-}
-
-footer .title {
-    color: white;
-    font-weight: bold;
-    font-size: 0.9rem;
-}
-
-footer .badge {
-    background: rgba(255, 51, 102, 0.2);
-    color: var(--accent-red);
-    font-size: 0.85rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 /*                */
 /* Control Panel */
 /*              */
@@ -952,7 +915,7 @@ footer .badge {
 
 .control .bar .title {
     color: var(--text-main);
-    font-size: .9rem;
+    font-size: 1.1rem;
     font-weight: 900;
     letter-spacing: .06rem;
     text-transform: uppercase;
@@ -963,7 +926,7 @@ footer .badge {
     border-radius: 1rem;
     color: var(--accent-cyan);
     display: inline-block;
-    font-size: .8rem;
+    font-size: .9rem;
     margin-left: .25rem;
     padding: 0.15rem .5rem 0 .5rem;
     transform: rotate(-3deg);
@@ -974,7 +937,7 @@ footer .badge {
 }
 
 .control .body label {
-    font-size: .8rem;
+    font-size: 1rem;
     text-transform: uppercase;
 }
 
@@ -982,7 +945,7 @@ footer .badge {
     background: var(--panel-bg-light);
     border: .1rem solid var(--panel-border);
     border-radius: .5rem;
-    margin: .1rem 0 .1rem .75rem;
+    margin: .4rem 0 .6rem .75rem;
     position: relative;
 }
 .control .body .select-wrapper::before {
@@ -999,15 +962,17 @@ footer .badge {
 
 .control .body .select-wrapper select {
     appearance: none;
-    background: transparent;
+    background: var(--panel-bg-light);
     border: none;
+    border-radius: inherit;
     color: #fff;
     cursor: pointer;
     font-family: inherit;
-    font-size: .9rem;
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: .03rem;
     outline: none;
-    padding: .35rem 2rem .25rem .5rem;
+    padding: .35rem 1.2rem .25rem .5rem;
+    text-overflow: ellipsis;
     width: 100%;
 }
