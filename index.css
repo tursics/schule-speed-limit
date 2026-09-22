@@ -2,7 +2,9 @@
     --bg-dark: #090d16;
     --panel-bg: rgba(16, 25, 40);
     --panel-bg-light: #1b3341;
-    --panel-border: rgba(0, 240, 255, .2);
+    --panel-border-5: rgba(0, 240, 255, .05);
+    --panel-border-15: rgba(0, 240, 255, .15);
+    --panel-border-20: rgba(0, 240, 255, .2);
     --panel-border-40: rgba(0, 240, 255, .4);
     --panel-border-50: rgba(0, 240, 255, .5);
     --panel-border-60: rgba(0, 240, 255, .6);
@@ -22,9 +24,11 @@
     --card-border-80: rgba(222, 254, 250, .8);
     --score-ring: #6f97a4;
     --score-0: #D84B6D;
+    --score-0-20: #D84B6D34;
     --score-25: #EB5252;
     --score-50: #EF9650;
     --score-75: #F8D85A;
+    --score-75-20: #F8D85A34;
     --score-100: #90E485;
     --font-family: Teko, Arial, sans-serif;
 }
@@ -91,16 +95,40 @@
 }
 
 body {
+    background-attachment: fixed;
     background-color: var(--bg-dark);
     background-image: 
-        radial-gradient(circle at 50% 0%, rgba(0, 240, 255, 0.08) 0%, transparent 70%),
-        linear-gradient(to bottom, #090d16, #05070b);
+        radial-gradient(circle at 50% 30%, var(--panel-border-20) 0%, transparent 50%),
+        radial-gradient(circle at 20% 60%, var(--score-0-20) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, var(--score-75-20) 0%, transparent 40%),
+        linear-gradient(var(--panel-border-5) .1rem, transparent .1rem),
+        linear-gradient(90deg, var(--panel-border-5) .1rem, transparent .1rem);
+    background-size: cover, cover, cover, 2rem 2rem, 2rem 2rem;
     color: var(--text-main);
     font-family: var(--font-family);
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
     padding: 1rem 1rem 1rem 0;
+}
+
+.ambient-glow {
+    animation: animationGlow 10s ease-in-out infinite alternate;
+    background: radial-gradient(circle, var(--panel-border-60) 0%, transparent 70%);
+    filter: blur(4rem);
+    height: 45%;
+    left: 45%;
+    pointer-events: none;
+    position: fixed;
+    top: 35%;
+    width: 35%;
+    z-index: 0;
+}
+@keyframes animationGlow {
+    0% { opacity: .7; transform: translate(0, 0) scale(.9); }
+    100% { opacity: 1; transform: translate(20%, 25%) scale(1.1); }
 }
 
 .grid {
@@ -118,7 +146,7 @@ body {
 
 .panel {
     background: var(--panel-bg);
-    border: 1px solid var(--panel-border);
+    border: 1px solid var(--panel-border-20);
     padding: 1.25rem;
     display: flex;
     flex-direction: column;
@@ -156,7 +184,7 @@ body {
     width: 100%;
     padding: 0.75rem;
     background: rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--panel-border);
+    border: 1px solid var(--panel-border-20);
     color: var(--text-main);
     border-radius: 6px;
     outline: none;
@@ -173,7 +201,7 @@ body {
 
 .chart .bars .col {
     flex: 1;
-    background: rgba(0, 240, 255, 0.15);
+    background: var(--panel-border-15);
     border-top: 2px solid var(--accent-cyan);
     border-radius: 4px 4px 0 0;
     transition: height 0.3s ease;
@@ -720,7 +748,7 @@ body {
     width: 4.5rem;
 }
 .panel.schoolcard .controls button:hover {
-    background: rgba(0, 240, 255, 0.15);
+    background: var(--panel-border-15);
     box-shadow: 0 0 1rem var(--card-border-60);
     color: #ffffff;
 }
@@ -909,7 +937,7 @@ body {
 
 .control .bar {
     background: var(--panel-bg-light);
-    border-bottom: .1rem solid var(--panel-border);
+    border-bottom: .1rem solid var(--panel-border-20);
     padding: .5rem 1rem;
 }
 
@@ -943,7 +971,7 @@ body {
 
 .control .body .select-wrapper {
     background: var(--panel-bg-light);
-    border: .1rem solid var(--panel-border);
+    border: .1rem solid var(--panel-border-20);
     border-radius: .5rem;
     margin: .4rem 0 .6rem .75rem;
     position: relative;
