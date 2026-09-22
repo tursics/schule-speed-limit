@@ -133,11 +133,10 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 300px 1fr 340px;
+    grid-template-columns: 19rem 1fr 20rem;
     gap: 1rem;
     flex: 1;
 }
-
 @media (max-width: 1100px) {
     .grid {
         grid-template-columns: 1fr;
@@ -145,14 +144,9 @@ body {
 }
 
 .panel {
-    background: var(--panel-bg);
-    border: 1px solid var(--panel-border-20);
-    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    backdrop-filter: blur(8px);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    gap: 1em;
 }
 .control {
     z-index: 1;
@@ -165,30 +159,7 @@ body {
 }
 
 .panel .title {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    padding-bottom: 0.5rem;
-}
-
-.panel label {
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    display: block;
-    margin-bottom: 0.4rem;
-}
-
-.panel select {
-    width: 100%;
-    padding: 0.75rem;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid var(--panel-border-20);
-    color: var(--text-main);
-    border-radius: 6px;
-    outline: none;
-    font-size: 0.9rem;
+    padding-bottom: .5em;
 }
 
 .chart .bars {
@@ -230,19 +201,19 @@ body {
 
 .panel.schoolcard, .panel.statcard {
     align-items: center;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(.1em);
+    -webkit-backdrop-filter: blur(.1em);
     background: rgba(255, 255, 255, 0.15);
-    border: .2rem solid var(--card-border-60);
-    border-radius: 2rem;
-    box-shadow: 0 0 .5rem var(--card-border-60), inset 0 0 2rem var(--panel-border-40), 0 0 2rem var(--card-border-20);
-    height: 41.25rem;
+    border: .2em solid var(--card-border-60);
+    border-radius: 2em;
+    box-shadow: 0 0 .5em var(--card-border-60), inset 0 0 2em var(--panel-border-40), 0 0 2em var(--card-border-20);
+    height: 41.25em;
     margin: 0 auto;
     overflow: visible;
     padding: 0;
     position: relative;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    width: 25rem;
+    width: 25em;
 }
 .panel.schoolcard:hover, .panel.statcard:hover {
     border-color: var(--card-border-80);
@@ -250,15 +221,15 @@ body {
 
 .panel .inlay {
     background: var(--panel-bg);
-    border: .1rem solid var(--panel-border-40);
-    border-radius: 1.5rem;
+    border: .1em solid var(--panel-border-40);
+    border-radius: 1.5em;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1em;
     height: 100%;
-    margin: .75rem 0;
+    margin: .75em 0;
     transition: border-color 0.3s ease;
-    width: calc(100% - 1.5rem);
+    width: calc(100% - 1.5em);
     z-index: 0;
 }
 .panel.statcard .inlay {
@@ -267,13 +238,14 @@ body {
 }
 .panel.statcard .inlay::before {
     border-radius: 50%;
-    bottom: calc(50% - 3rem);
-    box-shadow: 0 0 8rem #ffffff60, inset 0 0 7rem #55556660;
+    bottom: calc(50% - 3em);
+    box-shadow: 0 0 8em #ffffff60, inset 0 0 7em #55556660;
     content: '';
-    left: calc(50% - 3rem);
+    filter: blur(.5em);
+    left: calc(50% - 3em);
     position: absolute;
-    right: calc(50% - 3rem);
-    top: calc(50% - 3rem);
+    right: calc(50% - 3em);
+    top: calc(50% - 3em);
 }
 .panel:hover .inlay {
     border-color: var(--panel-border-60);
@@ -283,8 +255,8 @@ body {
     align-items: center;
     background: var(--panel-bg-light);
     background-clip: padding-box;
-    border-bottom: solid .2rem transparent;
-    border-radius: 1.5rem 1.5rem 0 0;
+    border-bottom: solid .2em transparent;
+    border-radius: 1.5em 1.5em 0 0;
     display: flex;
     justify-content: space-between;
     position: relative;
@@ -296,14 +268,14 @@ body {
     bottom: 0;
     content: '';
     left: 0;
-    margin: 0 0 -.1rem 0;
+    margin: 0 0 -.1em 0;
     position: absolute;
     right: 0;
     top: 0;
     z-index: -1;
 }
 .panel.statcard .footer::before {
-    margin: -.1rem 0 0 0;
+    margin: -.1em 0 0 0;
 }
 
 /*                    */
@@ -311,7 +283,7 @@ body {
 /*                  */
 
 .panel.schoolcard {
-/*    margin-top: -5.5rem;*/
+/*    margin-top: -5.5em;*/
 }
 
 /*                     */
@@ -322,33 +294,33 @@ body {
     display: flex;
     flex: 1;
     flex-direction: column;
-    gap: .25rem;
-    padding: .75rem .75rem .25rem .75rem;
+    gap: .25em;
+    padding: .75em .75em .25em .75em;
     width: 75%;
 }
 
 .panel.schoolcard .header h2 {
     color: var(--text-header);
-    font-size: 2.25rem;
+    font-size: 2.25em;
     font-style: italic;
     font-weight: 500;
-    height: 4rem;
-    letter-spacing: .02rem;
-    line-height: 2rem;
+    height: 1.9em;
+    letter-spacing: .02em;
+    line-height: 1em;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-shadow: 0 .1rem .3rem var(--panel-bg);
+    text-shadow: 0 .1em .3em var(--panel-bg);
     text-transform: uppercase;
     transition: text-shadow 0.3s ease;
 }
 
 .panel.schoolcard .header .district {
     color: var(--text-header-secondary);
-    font-size: 1.5rem;
+    font-size: 1.5em;
     font-weight: 300;
-    letter-spacing: .03rem;
-    line-height: 1.5rem;
+    letter-spacing: .03em;
+    line-height: 1em;
     text-transform: uppercase;
 }
 
@@ -356,13 +328,13 @@ body {
     align-items: center;
     display: flex;
     flex: 0;
-    padding: .75rem;
-    gap: .25rem;
+    padding: .75em;
+    gap: .25em;
 }
 
 .panel.schoolcard .header .image svg {
-    height: 4.5rem;
-    width: 4.5rem;
+    height: 4.5em;
+    width: 4.5em;
 }
 
 /*                    */
@@ -372,31 +344,31 @@ body {
 .map {
     align-items: center;
     display: flex;
-    height: 13rem;
+    height: 13em;
     justify-content: center;
-    margin-bottom: 6rem;
-    perspective: 60rem;
+    margin-bottom: 6em;
+    perspective: 60em;
     perspective-origin: 50% 40%;
 }
 
 .map .tile {
-    --x-offset: calc(sin(attr(data-rotate deg)) * 9px);
-    --y-offset: calc(cos(attr(data-rotate deg)) * 9px);
+    --x-offset: calc(sin(attr(data-rotate deg)) * .6em);
+    --y-offset: calc(cos(attr(data-rotate deg)) * .6em);
 
     background: #162c3f;
-    border: .1rem solid var(--panel-border-50);
-    border-radius: 1.5rem;
-    box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 3.5rem var(--card-border-40);
-    height: 22rem;
+    border: .1em solid var(--panel-border-50);
+    border-radius: 1.5em;
+    box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 3.5em var(--card-border-40);
+    height: 22em;
     overflow: hidden;
     position: relative;
     transform: rotateX(50deg) rotateZ(attr(data-rotate deg));
     transform-style: preserve-3d;
     transition: box-shadow 0.4s ease, transform 0.4s ease;
-    width: 22rem;
+    width: 22em;
 }
 .panel.schoolcard:hover .map .tile {
-    box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 4rem var(--card-border-40);
+    box-shadow: var(--x-offset) var(--y-offset) 0 #060b17, 0 0 4em var(--card-border-40);
 }
 
 .map svg {
@@ -470,7 +442,7 @@ body {
 .panel.schoolcard .score {
     align-items: center;
     display: flex;
-    padding: 0 .75rem;
+    padding: 0 .75em;
     width: 100%;
 }
 
@@ -479,41 +451,41 @@ body {
     background: var(--panel-bg);
     border-radius: 50%;
     display: flex;
-    height: 6rem;
+    height: 6em;
     justify-content: center;
-    margin: .4rem;
-    min-width: 6rem;
+    margin: .4em;
+    min-width: 6em;
     position: relative;
-    width: 6rem;
+    width: 6em;
 }
 .panel.schoolcard .score .gauge::before {
-    border: .1rem solid var(--score-ring);
+    border: .1em solid var(--score-ring);
     border-radius: inherit;
-    bottom: -.35rem;
-    box-shadow: 0 0 1rem var(--card-border-40);
+    bottom: -.35em;
+    box-shadow: 0 0 1em var(--card-border-40);
     content: '';
-    left: -.35rem;
+    left: -.35em;
     position: absolute;
-    right: -.35rem;
-    top: -.35rem;
+    right: -.35em;
+    top: -.35em;
 }
 
 .panel.schoolcard .score .gauge .pointer {
-    height: 5rem;
+    height: 5em;
     pointer-events: none;
     position: absolute;
     transform: rotate(-135deg);
     transition: transform 0.5s ease;
-    width: 5rem;
+    width: 5em;
 }
 .panel.schoolcard .score .gauge .pointer::before {
-    border-left: .2rem solid #fff;
-    box-shadow: 0 0 .2rem var(--panel-bg);
+    border-left: .2em solid #fff;
+    box-shadow: 0 0 .2em var(--panel-bg);
     content: '';
-    height: 1rem;
+    height: 1em;
     left: 50%;
     position: absolute;
-    top: -.5rem;
+    top: -.5em;
 }
 
 .panel.schoolcard .score .gauge .inner {
@@ -522,42 +494,43 @@ body {
     border-radius: inherit;
     display: flex;
     flex-direction: column;
-    height: 5rem;
+    height: 5em;
     justify-content: center;
     position: relative;
-    width: 5rem;
+    width: 5em;
 }
 .panel.schoolcard .score .gauge .inner::before {
     border-radius: inherit;
-    bottom: 1.5rem;
-    box-shadow: 0 0 1.5rem var(--card-border-60), inset 0 0 1rem var(--card-border-40);
+    bottom: 1.5em;
+    box-shadow: 0 0 1.5em var(--card-border-60), inset 0 0 1em var(--card-border-40);
     content: '';
-    left: 1.5rem;
+    filter: blur(.3em);
+    left: 1.5em;
     position: absolute;
-    right: 1.5rem;
-    top: 1.5rem;
+    right: 1.5em;
+    top: 1.5em;
 }
 .panel.schoolcard:hover .score .gauge .inner::before {
-    box-shadow: 0 0 1.5rem var(--card-border-80), inset 0 0 1.4rem var(--card-border-40);
+    box-shadow: 0 0 1.5em var(--card-border-80), inset 0 0 1.4em var(--card-border-40);
 }
 
 .panel.schoolcard .score .number {
     color: #ffffff;
-    font-size: 2.7rem;
+    font-size: 2.7em;
     font-weight: 800;
-    line-height: 1.3rem;
-    margin-top: 2rem;
+    line-height: .65em;
+    margin-top: .75em;
 }
 
 .panel.schoolcard .score .label {
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.8em;
     text-transform: uppercase;
     font-weight: 500;
-    letter-spacing: .075rem;
+    letter-spacing: .04em;
     line-height: 1;
-    margin-top: .4rem;
-    max-width: 3.4rem;
+    margin-top: .4em;
+    max-width: 3.4em;
     text-align: center;
 }
 
@@ -572,23 +545,23 @@ body {
 
 .panel.schoolcard .score .gauge-annotation .line {
     background: var(--score-ring);
-    box-shadow: 0 0 1rem var(--card-border-40);
-    height: .08rem;
-    margin: -1rem -.5rem 0 -.15rem;
+    box-shadow: 0 0 1em var(--card-border-40);
+    height: .1em;
+    margin: -1em -.5em 0 -.15em;
     transform: rotate(-40deg);
     transform-origin: left center;
-    width: 2rem;
+    width: 2em;
 }
 
 .panel.schoolcard .score .gauge-annotation .title {
-    border-bottom: .1rem solid var(--score-ring);
+    border-bottom: .1em solid var(--score-ring);
     color: var(--text-header-secondary);
-    font-size: 1.25rem;
+    font-size: 1.25em;
     font-weight: 300;
-    letter-spacing: .03rem;
-    line-height: .2rem;
-    margin-top: -4.3rem;
-    text-shadow: 0 0 1rem var(--card-border-40);
+    letter-spacing: .03em;
+    line-height: .1em;
+    margin-top: -3.4em;
+    text-shadow: 0 0 1em var(--card-border-40);
     text-transform: uppercase;
     white-space: nowrap;
 }
@@ -599,14 +572,14 @@ body {
 
 .panel.schoolcard .score .photo {
     background: var(--card-border-20);
-    border: .1rem solid var(--score-ring);
-    border-radius: .5rem;
-    box-shadow: 0 0 .5rem rgba(0, 0, 0, 1), inset 0 0 .75rem rgba(0, 0, 0, .5);
-    height: 5rem;
-    margin: -1.7rem 0 0 0;
+    border: .1em solid var(--score-ring);
+    border-radius: .5em;
+    box-shadow: 0 0 .5em rgba(0, 0, 0, 1), inset 0 0 .75em rgba(0, 0, 0, .5);
+    height: 5em;
+    margin: -1.7em 0 0 0;
     overflow: hidden;
     position: relative;
-    width: 9rem;
+    width: 9em;
 }
 .panel.schoolcard:not(.with-image) .score .photo {
     display: none;
@@ -620,8 +593,8 @@ body {
 
 .panel.schoolcard .score .photo .scanline {
     background: linear-gradient(90deg, transparent 0%, var(--card-border-40) 10%, var(--card-border-80) 50%, var(--card-border-40) 90%, transparent 100%);
-    box-shadow: 0 0 .2rem var(--panel-border-60), 0 0 .2rem var(--panel-border-40);
-    height: .1rem;
+    box-shadow: 0 0 .2em var(--panel-border-60), 0 0 .2em var(--panel-border-40);
+    height: .1em;
     left: 0;
     opacity: 0;
     pointer-events: none;
@@ -638,7 +611,7 @@ body {
     90% { top: 0; opacity: 0; }
     91% { opacity: 1; }
     92% { opacity: 1; }
-    95% { top: calc(100% - .1rem); opacity: 0; }
+    95% { top: calc(100% - .1em); opacity: 0; }
     98% { opacity: 1; }
     99% { opacity: 1; }
     100% { top: 0; opacity: 0; }
@@ -656,20 +629,20 @@ body {
 
 .panel.schoolcard .score .photo-annotation .line {
     background: var(--score-ring);
-    box-shadow: 0 0 1rem var(--card-border-40);
-    height: .08rem;
-    margin: .5rem -.5rem 0 -1rem;
+    box-shadow: 0 0 1em var(--card-border-40);
+    height: .1em;
+    margin: .5em -.5em 0 -1em;
     transform: rotate(-40deg);
     transform-origin: left center;
-    width: 2rem;
+    width: 2em;
 }
 
 .panel.schoolcard .score .photo-annotation .link {
-    border-bottom: .1rem solid var(--score-ring);
-    box-shadow: 0 0 1rem var(--card-border-40);
-    margin: 5.5rem -1.5rem 0 0;
+    border-bottom: .1em solid var(--score-ring);
+    box-shadow: 0 0 1em var(--card-border-40);
+    margin: 5.5em -1.5em 0 0;
     transform: rotate(90deg);
-    width: 5rem;
+    width: 5em;
 }
 
 /*                     */
@@ -679,25 +652,25 @@ body {
 .panel.schoolcard .map .compass {
     align-items: center;
     background: var(--panel-bg);
-    border: .1rem solid var(--panel-border-60);
+    border: .1em solid var(--panel-border-60);
     border-radius: 50%;
-    box-shadow: 0 0 .75rem var(--card-border-40);
+    box-shadow: 0 0 .75em var(--card-border-40);
     display: flex;
     flex-direction: column;
-    height: 2.5rem;
+    height: 2.5em;
     justify-content: center;
     pointer-events: none;
     position: absolute;
-    right: .5rem;
-    top: .5rem;
-    width: 2.5rem;
+    right: .5em;
+    top: .5em;
+    width: 2.5em;
 }
 
 .panel.schoolcard .map .compass .arrow {
-    border-bottom: .7rem solid var(--accent-cyan);
-    border-left: .3rem solid transparent;
-    border-right: .3rem solid transparent;
-    filter: drop-shadow(0 0 .2rem var(--accent-cyan));
+    border-bottom: .7em solid var(--accent-cyan);
+    border-left: .3em solid transparent;
+    border-right: .3em solid transparent;
+    filter: drop-shadow(0 0 .2em var(--accent-cyan));
     height: 0;
     pointer-events: none;
     width: 0;
@@ -705,10 +678,10 @@ body {
 
 .panel.schoolcard .map .compass .label {
     color: #ffffff;
-    font-size: 0.9rem;
+    font-size: 0.9em;
     font-weight: 900;
-    line-height: 1rem;
-    margin: .1rem 0 -.2rem 0;
+    line-height: 1.1em;
+    margin: .1em 0 -.2em 0;
     pointer-events: none;
 }
 
@@ -719,10 +692,10 @@ body {
 .panel.schoolcard .controls {
     align-items: center;
     display: flex;
-    gap: 1.5rem;
+    gap: 1.5em;
     justify-content: space-between;
-    margin: -2rem 0 1rem 0;
-    padding: 0 1.25rem;
+    margin: -2em 0 1em 0;
+    padding: 0 1.25em;
     width: 100%;
     z-index: 1;
 }
@@ -730,32 +703,32 @@ body {
 .panel.schoolcard .controls button {
     align-items: center;
     background: var(--panel-bg);
-    border: .1rem solid var(--accent-cyan);
-    border-radius: 3rem;
-    box-shadow: 0 0 1rem var(--card-border-20);
+    border: .1em solid var(--accent-cyan);
+    border-radius: 3em;
+    box-shadow: 0 0 1em var(--card-border-20);
     color: var(--accent-cyan);
     cursor: pointer;
     display: flex;
     flex-direction: column;
     font-family: inherit;
-    font-size: 1rem;
-    height: 4.5rem;
-    letter-spacing: .025rem;
-    padding-top: .5rem;
+    font-size: 1em;
+    height: 4.5em;
+    letter-spacing: .025em;
+    padding-top: .5em;
     text-transform: uppercase;
-    transition: all 0.25s ease;
+    transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
     user-select: none;
-    width: 4.5rem;
+    width: 4.5em;
 }
 .panel.schoolcard .controls button:hover {
     background: var(--panel-border-15);
-    box-shadow: 0 0 1rem var(--card-border-60);
+    box-shadow: 0 0 1em var(--card-border-60);
     color: #ffffff;
 }
 
 .panel.schoolcard .controls button svg {
-    height: 2rem;
-    width: 2rem;
+    height: 2em;
+    width: 2em;
 }
 
 /*                       */
@@ -763,10 +736,10 @@ body {
 /*                     */
 
 .panel.statcard {
-    height: 33rem;
-    margin-left: -.75rem;
+    height: 33em;
+    margin-left: -.75em;
     transform: rotate(5deg);
-    width: 20rem;
+    width: 20em;
 }
 
 /*                        */
@@ -774,39 +747,39 @@ body {
 /*                      */
 
 .panel.statcard .header .main {
-    padding: .75rem .75rem .25rem .75rem;
+    padding: .75em .75em .25em .75em;
     width: 100%;
 }
 
 .panel.statcard .header h3 {
     color: var(--text-header);
-    font-size: 1.7rem;
+    font-size: 1.7em;
     font-style: italic;
     font-weight: 500;
-    letter-spacing: .02rem;
-    line-height: 2rem;
+    letter-spacing: .01em;
+    line-height: 1.2em;
     overflow: hidden;
     text-overflow: ellipsis;
-    text-shadow: 0 .1rem .3rem var(--panel-bg);
+    text-shadow: 0 .1em .3em var(--panel-bg);
     text-transform: uppercase;
     white-space: nowrap;
 }
 
 .panel.statcard .header .address {
     color: var(--text-header-secondary);
-    font-size: 1.3rem;
+    font-size: 1.3em;
     font-weight: 300;
-    letter-spacing: .03rem;
-    line-height: 1.3rem;
+    letter-spacing: .02em;
+    line-height: 1em;
     text-transform: uppercase;
 }
 
 .panel.statcard .attention {
     background: var(--panel-bg);
     color: var(--score-50);
-    letter-spacing: .02rem;
-    line-height: 1.2rem;
-    padding: .5rem .75rem;
+    letter-spacing: .02em;
+    line-height: 1.1em;
+    padding: .5em .75em;
     position: relative;
     text-align: center;
 }
@@ -817,7 +790,7 @@ body {
 
 .panel.statcard .trafficsigns {
     flex: 1;
-    height: 2rem;
+    height: 2em;
     overflow-y: scroll;
     scrollbar-width: none;
 }
@@ -825,38 +798,38 @@ body {
 .panel.statcard .trafficsigns .list {
     align-items: center;
     display: flex;
-    gap: .75rem;
+    gap: .75em;
     overflow: hidden;
-    padding: .25rem .75rem;
+    padding: .25em .75em;
     position: relative;
 }
 
 .panel.statcard .trafficsigns .sign {
     align-items: center;
     background: #fff;
-    border: .3rem solid var(--accent-red);
+    border: .3em solid var(--accent-red);
     border-radius: 50%;
     color: #000;
     display: flex;
     font-family: Arial, sans-serif;
-    font-size: 1.3rem;
+    font-size: 1.3em;
     font-weight: bold;
-    height: 2.2rem;
+    height: 2.2em;
     justify-content: center;
-    margin: .4rem auto;
+    margin: .4em auto;
     position: relative;
-    width: 2.2rem;
+    width: 2.2em;
 }
-.panel.statcard .trafficsigns .sign.small {
-    font-size: .9rem;
+.panel.statcard .trafficsigns .sign.small > span {
+    font-size: .9em;
 }
 .panel.statcard .trafficsigns .sign::before {
-    border: .07rem solid #fff;
+    border: .07em solid #fff;
     border-radius: 50%;
     content: '';
     position: absolute;
-    height: 2.2rem;
-    width: 2.2rem;
+    height: 2.2em;
+    width: 2.2em;
 }
 
 .panel.statcard .trafficsigns .streets {
@@ -865,9 +838,9 @@ body {
 
 .panel.statcard .trafficsigns .list .row {
     display: flex;
-    font-size: .9rem;
-    letter-spacing: .02rem;
-    line-height: 1.1rem;
+    font-size: .9em;
+    letter-spacing: .02em;
+    line-height: 1.2em;
     justify-content: space-between;
 }
 .panel.statcard .trafficsigns .list .row .name {
@@ -891,10 +864,10 @@ body {
 
 .panel.statcard .footer {
     background: var(--panel-bg);
-    border-radius: 0 0 1.4rem 1.4rem;
-    font-size: .9rem;
-    letter-spacing: .025rem;
-    padding: .2rem .75rem;
+    border-radius: 0 0 1.6em 1.6em;
+    font-size: .9em;
+    letter-spacing: .025em;
+    padding: .2em .75em;
     position: relative;
     text-align: center;
 }
@@ -904,8 +877,8 @@ body {
 }
 .panel.statcard .footer .safe-metric .highlight {
     color: #fff;
-    font-size: 1.1rem;
-    letter-spacing: .05rem;
+    font-size: 1.1em;
+    letter-spacing: .05em;
     vertical-align: middle;
 }
 

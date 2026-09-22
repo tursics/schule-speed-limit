@@ -373,7 +373,7 @@ console.log(found);
                 signs += '</div></div>';
                 signs += `<div class="list ${item.speed <= 30 ? 'good' : 'danger'}">`;
                 if (item.speed === 1) {
-                    signs += `<div class="sign small"><10</div>`;
+                    signs += `<div class="sign small"><span>&lt;10</span></div>`;
                 } else {
                     signs += `<div class="sign">${item.speed}</div>`;
                 }
