@@ -391,6 +391,9 @@ console.log(found);
         elemStatSigns.innerHTML = signs;
     }
 
+    function initTouchEvents() {
+    }
+
     async function fetchGZIP(url) {
         const response = await fetch(url);
         const gzip = new DecompressionStream('gzip'); // 'brotli' not mainly supported
@@ -398,6 +401,10 @@ console.log(found);
 
         return new Response(stream);
     }
+
+    updateResponsiveLayout();
+
+    initTouchEvents();
 
     fetchGZIP(dataRoot + 'dist/data.json.gz')
     .then(res => res.json())
@@ -407,4 +414,42 @@ console.log(found);
         prepareControlRoom();
     })
     .catch(error => console.error('Error loading school data:', error));
+});
+
+function updateResponsiveLayout() {
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    const bodyPadding = 16;
+    const gridGap = 16;
+    const controlWidth = 16 * 19;
+
+    const width = windowWidth - controlWidth - gridGap * 2 - bodyPadding;
+    const height = windowHeight - 2 * bodyPadding;
+
+    const schoolCardHeight = 41.25;
+    const schoolCardWidth = 25;
+    const statCardWidth = 20;
+    const fontSizeHeight = Math.round(height / schoolCardHeight * 100) / 100;
+    const fontSizeWidth = Math.round(width / (schoolCardWidth + statCardWidth) * 100) / 100;
+    const panelFontSize = Math.min(fontSizeHeight, fontSizeWidth);
+
+    document.documentElement.style.setProperty('--panel-font-size', `${panelFontSize}px`);
+    document.documentElement.style.setProperty('--vh', `${windowHeight * 0.01}px`);
+
+    const elemMapImage = document.querySelector('.map .tile svg');
+    elemMapImage.removeAttribute('width');
+    elemMapImage.removeAttribute('height');
+    if (!elemMapImage.getAttribute('viewBox')) {
+        elemMapImage.setAttribute('viewBox', '0 0 200 200');
+    }
+}
+
+let resizeTimer;
+window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(updateResponsiveLayout, 60);
+});
+
+window.addEventListener('orientationchange', () => {
+    setTimeout(updateResponsiveLayout, 100);
 });
