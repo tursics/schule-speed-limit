@@ -392,6 +392,30 @@ console.log(found);
     }
 
     function initTouchEvents() {
+        let startX = 0;
+        let startRotate = 0;
+        let isDragging = false;
+
+        elemMap.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].clientX;
+            startRotate = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        }, { passive: true });
+
+        elemMap.addEventListener('touchmove', (e) => {
+            if (!isDragging) {
+                return;
+            }
+            const currentX = e.touches[0].clientX;
+            const deltaX = currentX - startX;
+
+            elemMapTile.attributes['data-rotate'].value = startRotate + (deltaX * 0.4);
+            reBuildBuildings();
+        }, { passive: true });
+
+        elemMap.addEventListener('touchend', () => {
+            isDragging = false;
+        });
     }
 
     async function fetchGZIP(url) {
