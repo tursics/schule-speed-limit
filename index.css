@@ -2,7 +2,7 @@
     --bg-dark: #090d16;
     --panel-bg: rgba(16, 25, 40);
     --panel-bg-light: #1b3341;
-    --panel-border-5: rgba(0, 240, 255, .05);
+    --panel-border-3: rgba(0, 240, 255, .03);
     --panel-border-15: rgba(0, 240, 255, .15);
     --panel-border-20: rgba(0, 240, 255, .2);
     --panel-border-40: rgba(0, 240, 255, .4);
@@ -101,8 +101,8 @@ body {
         radial-gradient(circle at 50% 30%, var(--panel-border-20) 0%, transparent 50%),
         radial-gradient(circle at 20% 60%, var(--score-0-20) 0%, transparent 40%),
         radial-gradient(circle at 80% 70%, var(--score-75-20) 0%, transparent 40%),
-        linear-gradient(var(--panel-border-5) .1rem, transparent .1rem),
-        linear-gradient(90deg, var(--panel-border-5) .1rem, transparent .1rem);
+        linear-gradient(var(--panel-border-3) .1rem, transparent .1rem),
+        linear-gradient(90deg, var(--panel-border-3) .1rem, transparent .1rem);
     background-size: cover, cover, cover, 2rem 2rem, 2rem 2rem;
     color: var(--text-main);
     font-family: var(--font-family);
@@ -135,7 +135,7 @@ body {
 .grid {
     align-items: center;
     display: grid;
-    grid-template-columns: 19rem calc(var(--panel-font-size) * 25) calc(var(--panel-font-size) * 20);
+    grid-template-columns: 19rem calc(var(--grid-margin) + var(--panel-font-size) * 25) calc(var(--panel-font-size) * 20);
     gap: 1rem;
     flex: 1;
 }
@@ -211,7 +211,7 @@ body {
     border-radius: 2em;
     box-shadow: 0 0 .5em var(--card-border-60), inset 0 0 2em var(--panel-border-40), 0 0 2em var(--card-border-20);
     height: 41.25em;
-    margin: 0 auto;
+    margin-left: auto;
     overflow: visible;
     padding: 0;
     position: relative;

@@ -443,8 +443,8 @@ console.log(found);
 function updateResponsiveLayout() {
     const windowWidth = window.innerWidth;
     const windowHeight = window.innerHeight;
-    const bodyPadding = 16;
-    const gridGap = 16;
+    const bodyPadding = 16 * 1;
+    const gridGap = 16 * 1;
     const controlWidth = 16 * 19;
 
     const width = windowWidth - controlWidth - gridGap * 2 - bodyPadding;
@@ -457,6 +457,9 @@ function updateResponsiveLayout() {
     const fontSizeWidth = Math.round(width / (schoolCardWidth + statCardWidth) * 100) / 100;
     const panelFontSize = Math.min(fontSizeHeight, fontSizeWidth);
 
+    const gridMarginX = Math.round((width - (schoolCardWidth + statCardWidth) * panelFontSize) / 2);
+
+    document.documentElement.style.setProperty('--grid-margin', `${gridMarginX}px`);
     document.documentElement.style.setProperty('--panel-font-size', `${panelFontSize}px`);
     document.documentElement.style.setProperty('--vh', `${windowHeight * 0.01}px`);
 
