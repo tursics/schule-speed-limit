@@ -945,23 +945,47 @@ body {
     text-transform: uppercase;
 }
 
-.control .body .select-wrapper {
+.control .body .select-wrapper, .control .body .button {
     background: var(--panel-bg-light);
     border: .1rem solid var(--panel-border-20);
     border-radius: .5rem;
     margin: .4rem 0 .6rem .75rem;
     position: relative;
+    transition: all .2s ease;
+}
+.control .body .button {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    gap: .5rem;
+    justify-content: center;
+    padding: .35rem .5rem .25rem .5rem;
+    text-decoration: none;
+}
+.control .body .select-wrapper:hover, .control .body .button:hover {
+    border-color: var(--panel-border-60);
+    color: var(--accent-cyan);
 }
 .control .body .select-wrapper::before {
-    border-bottom: .45rem solid var(--panel-border-60);
+    border-bottom: .45rem solid var(--panel-border-40);
     border-left: .3rem solid transparent;
     border-right: .3rem solid transparent;
     content: '';
     pointer-events: none;
     position: absolute;
     right: .5rem;
-    top: .6rem;
+    top: calc(50% - .15rem);
     transform: rotate(180deg);
+    transition: all .2s ease;
+}
+.control .body .select-wrapper:hover::before {
+    border-bottom-color: var(--panel-border-60);
+}
+
+.control .body .button svg {
+    flex-shrink: 0;
+    height: 1.25rem;
+    width: 1.25rem;
 }
 
 .control .body .select-wrapper select {
@@ -979,4 +1003,18 @@ body {
     padding: .35rem 1.2rem .25rem .5rem;
     text-overflow: ellipsis;
     width: 100%;
+}
+/*.control .body .select-wrapper:hover select {
+    color: var(--accent-cyan);
+}*/
+
+.control .body .button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) 2fr;
+    gap: .5rem;
+    margin: 1rem 0 .25rem 0;
+}
+.control .body .button-grid .button {
+    margin: 0;
+    overflow: hidden;
 }
