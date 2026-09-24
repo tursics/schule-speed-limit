@@ -1012,9 +1012,20 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr) 2fr;
     gap: .5rem;
-    margin: 1rem 0 .25rem 0;
+    margin: 1rem 0;
 }
 .control .body .button-grid .button {
     margin: 0;
     overflow: hidden;
+}
+
+.control .body a {
+    color: var(--panel-border-60);
+    text-decoration: underline;
+    text-decoration-color: var(--panel-border-60);
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.control .body a:hover {
+    color: var(--accent-cyan);
+    text-decoration-color: var(--accent-cyan);
 }
