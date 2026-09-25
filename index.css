@@ -2,13 +2,13 @@
     --bg-dark: #090d16;
     --panel-bg: rgba(16, 25, 40);
     --panel-bg-light: #1b3341;
+    --panel-bg-info: #2e5265;
     --panel-border-3: rgba(0, 240, 255, .03);
     --panel-border-15: rgba(0, 240, 255, .15);
     --panel-border-20: rgba(0, 240, 255, .2);
     --panel-border-40: rgba(0, 240, 255, .4);
     --panel-border-50: rgba(0, 240, 255, .5);
     --panel-border-60: rgba(0, 240, 255, .6);
-    --control-bg: #080d1a;
     --accent-cyan: #00f0ff;
     --accent-green: #00ff88;
     --accent-red: #ff3366;
@@ -896,7 +896,7 @@ body {
 }
 
 .control .box {
-    background: var(--control-bg);
+    background: var(--panel-bg);
     border: .1rem solid var(--panel-border-40);
     border-left: none;
     border-radius: 0 1rem 1rem 0;
@@ -909,6 +909,9 @@ body {
     margin: 0 0 0 -.2rem;
     overflow: hidden;
     width: 19rem;
+}
+.control .box.info {
+    background: var(--panel-bg-info);
 }
 
 .control .bar {
