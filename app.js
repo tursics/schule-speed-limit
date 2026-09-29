@@ -30,8 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const svgDefs = '<defs>' +
     '</defs>';
 
-    function updateSchoolList() {
+    function updateSchoolList(initialSchool) {
         const prefix = elemDistrictList.value;
+        let found = false;
 
         elemSchoolList.innerHTML = '';
 
@@ -44,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (show) {
+                found |= school.id === initialSchool;
+
                 const option = document.createElement('option');
                 option.value = school.id;
                 option.textContent = `${school.title} (${school.district})`;
@@ -52,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         updateBarChart();
-        setSchool(elemSchoolList.value);
+        setSchool(found ? initialSchool : elemSchoolList.value);
     }
 
     function updateBarChart() {
@@ -91,14 +94,21 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     function prepareControlRoom() {
-        updateSchoolList();
+        const initialSchool = getURLSchool();
+        const initialDistrict = getURLDistrict();
+        if (initialDistrict) {
+              elemDistrictList.value = initialDistrict;
+        }
+
+        updateSchoolList(initialSchool);
         updateBarChart();
 
         elemSchoolList.addEventListener('change', (event) => {
             setSchool(event.target.value);
         });
         elemDistrictList.addEventListener('change', (event) => {
-            updateSchoolList();
+            setURLDistrict(elemDistrictList.value);
+            updateSchoolList(elemSchoolList.value);
         });
 
         elemButtonRotateLeft.addEventListener('click', onRotateMap);
@@ -222,8 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .filter((school) => school.id === ref);
         if (found.length === 0) {
+            setURLSchool(null);
             return;
         }
+
+        elemSchoolList.value = ref;
+        setURLSchool(ref);
 
         if (found.length > 1) {
 console.log(found);
@@ -439,6 +453,40 @@ console.log(found);
     })
     .catch(error => console.error('Error loading school data:', error));
 });
+
+function getURLSchool() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('school');
+}
+
+function getURLDistrict() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('district');
+}
+
+function setURLSchool(school) {
+    const url = new URL(window.location);
+
+    if (school) {
+        url.searchParams.set('school', school);
+    } else {
+        url.searchParams.delete('school');
+    }
+
+    window.history.replaceState({}, '', url);
+}
+
+function setURLDistrict(district) {
+    const url = new URL(window.location);
+
+    if (district && (district !== 'all')) {
+        url.searchParams.set('district', district);
+    } else {
+        url.searchParams.delete('district');
+    }
+
+    window.history.replaceState({}, '', url);
+}
 
 function updateResponsiveLayout() {
     const windowWidth = window.innerWidth;
