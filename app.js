@@ -122,14 +122,98 @@ document.addEventListener('DOMContentLoaded', () => {
         const schoolIndex = parseInt(elemSchoolCard.dataset.id, 10);
         const school = schools[schoolIndex];
 
-        school.buildings.forEach(building => {
-            svg += get3DBuilding(building.coords);
-        });
+        prepare3DBuildings(school.buildings);
+        for (let serial = 0, serialCount = school.buildings.length; serial < serialCount; ++serial) {
+            svg += get3DBuilding(school.buildings[serial], serial, serialCount);
+        }
 
         elemBuildings.innerHTML = svg;
     }
 
-    function get3DBuilding(polygonPoints) {
+    function getBuildingCentroid(building) {
+        const count = building.coords.length;
+        let sumX = 0;
+        let sumY = 0;
+
+        for (let i = 0; i < count; ++i) {
+            sumX += building.coords[i][0];
+            sumY += building.coords[i][1];
+        }
+
+        return {
+            x: sumX / count,
+            y: sumY / count
+        };
+    }
+
+    function getWallMidpoint(wall) {
+        return {
+            x: (wall[0][0] + wall[1][0]) / 2,
+            y: (wall[0][1] + wall[1][1]) / 2
+        };
+    }
+
+    function prepare3DBuildings(buildings) {
+        const rotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        const sin = Math.sin(rotation * Math.PI / 180);
+        const cos = Math.cos(rotation * Math.PI / 180);
+
+        buildings.sort((a, b) => {
+            const centroidA = getBuildingCentroid(a);
+            const centroidB = getBuildingCentroid(b);
+
+            const depthA = centroidA.x * sin + centroidA.y * cos;
+            const depthB = centroidB.x * sin + centroidB.y * cos;
+
+            return depthA - depthB;
+        });
+
+    }
+
+    function get3DBuildingWalls(polygonPoints, roofPoints, sin, cos) {
+        const walls = [];
+
+        for (let i = 0; i < polygonPoints.length; ++i) {
+            const next = (i + 1) % polygonPoints.length;
+
+            const p1 = polygonPoints[i];
+            const p2 = polygonPoints[next];
+            const r1 = roofPoints[i];
+            const r2 = roofPoints[next];
+
+            walls.push([p1, p2, r2, r1]);
+        }
+
+/*        walls.sort((a, b) => {
+            const midA = getWallMidpoint(a);
+            const midB = getWallMidpoint(b);
+
+            const depthA = midA.x * sin + midA.y * cos;
+            const depthB = midB.x * sin + midB.y * cos;
+
+            return depthA - depthB;
+        });*/
+        walls.sort((a, b) => {
+            const depthMaxA = Math.max(a[0][0] * sin + a[0][1] * cos, a[1][0] * sin + a[1][1] * cos);
+            const depthMaxB = Math.max(b[0][0] * sin + b[0][1] * cos, b[1][0] * sin + b[1][1] * cos);
+            if (depthMaxA !== depthMaxB) {
+                return depthMaxA - depthMaxB;
+            }
+
+            const depthMinA = Math.min(a[0][0] * sin + a[0][1] * cos, a[1][0] * sin + a[1][1] * cos);
+            const depthMinB = Math.min(b[0][0] * sin + b[0][1] * cos, b[1][0] * sin + b[1][1] * cos);
+            if (depthMinA !== depthMinB) {
+                return depthMinA - depthMinB;
+            }
+
+            return 0;
+        });
+
+        return walls;
+    }
+
+    function get3DBuilding(building, serial, count) {
+        const polygonPoints = building.coords;
         const rotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
         const height = 18;
         const sin = Math.sin(rotation * Math.PI / 180);
@@ -147,48 +231,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const campusStr = polygonPoints.map(pt => pt.join(',')).join(' ');
         svg += `<polygon class="ground-shadow" points="${campusStr}" />`;
 
-        const wallLines = [];
-        for (let i = 0; i < polygonPoints.length; ++i) {
-            const next = (i + 1) % polygonPoints.length;
-
-            const p1 = polygonPoints[i];
-            const p2 = polygonPoints[next];
-            const r1 = roofPoints[i];
-            const r2 = roofPoints[next];
-
-            wallLines.push([p1, p2, r2, r1]);
-        }
-
-        wallLines.sort((a, b) => {
-            const yMaxA = Math.max(a[0][1], a[1][1]);
-            const yMaxB = Math.max(b[0][1], b[1][1]);
-            if (yMaxA !== yMaxB) {
-                return yMaxA - yMaxB;
-            }
-
-            const yMinA = Math.min(a[0][1], a[1][1]);
-            const yMinB = Math.min(b[0][1], b[1][1]);
-            if (yMinA !== yMinB) {
-                return yMinA - yMinB;
-            }
-
-            const xMinA = Math.min(a[0][0], a[1][0]);
-            const xMinB = Math.min(b[0][0], b[1][0]);
-            if (xMinA !== xMinB) {
-                return xMinA - xMinB;
-            }
-
-            return 0;
-        });
-
+        const walls = get3DBuildingWalls(polygonPoints, roofPoints, sin, cos);
         svg += '<g class="walls">';
-        for (let i = 0; i < wallLines.length; ++i) {
-            const line = wallLines[i];
+        for (let i = 0; i < walls.length; ++i) {
+            const line = walls[i];
             const [p1, p2, r2, r1] = line;
-
             const wallPoints = `${p1[0]},${p1[1]} ${p2[0]},${p2[1]} ${r2[0]},${r2[1]} ${r1[0]},${r1[1]}`;
             const angle = Math.atan2(p2[1] - p1[1], p2[0] - p1[0]) * (180 / Math.PI);
-            const brightness = Math.round(40 + Math.abs(Math.sin(angle)) * 35);
+            const brightness = Math.round(
+                20 +
+                ((serial + 1) / count) * 20 +
+                Math.abs(Math.sin(angle)) * 35
+            );
 
             svg += `<polygon class="wall" points="${wallPoints}" fill="hsl(52, 14%, ${brightness}%)" />`;
         }
@@ -329,9 +383,10 @@ console.log(found);
         svg += `</g>`;
 
         svg += `<g class="buildings">`;
-        school.buildings.forEach(building => {
-            svg += get3DBuilding(building.coords);
-        });
+        prepare3DBuildings(school.buildings);
+        for (let serial = 0, serialCount = school.buildings.length; serial < serialCount; ++serial) {
+            svg += get3DBuilding(school.buildings[serial], serial, serialCount);
+        }
         svg += `</g>`;
 
         elemMapImage.innerHTML = svgDefs + svg;
