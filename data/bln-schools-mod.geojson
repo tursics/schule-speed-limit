@@ -19796,6 +19796,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
@@ -19817,16 +19818,17 @@
         "city": "Berlin",
         "district": "Prenzlauer Berg",
         "center": [
-          13.409779,
-          52.520645
+          13.419079,
+          52.535027
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.419079,
+          52.535027
         ]
       }
     },
@@ -19844,6 +19846,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
@@ -19865,9 +19868,10 @@
         "city": "Berlin",
         "district": "Märkisches Viertel",
         "center": [
-          13.409779,
-          52.520645
+          13.359345,
+          52.603584
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden"
         ]
@@ -19875,8 +19879,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.359345,
+          52.603584
         ]
       }
     },
@@ -19894,6 +19898,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/12S03.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden"
         ]
@@ -19920,6 +19925,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/12S03.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden"
         ]
@@ -19946,6 +19952,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/01P07.jpg",
         "additions": []
       },
       "geometry": {
@@ -19970,6 +19977,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/01P07.jpg",
         "additions": []
       },
       "geometry": {
@@ -19994,6 +20002,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/01P07.jpg",
         "additions": []
       },
       "geometry": {
@@ -20018,6 +20027,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/02Y06.jpg",
         "additions": [
           "Zugang über Rampe möglich"
         ]
@@ -20041,9 +20051,10 @@
         "city": "Berlin",
         "district": "Kreuzberg",
         "center": [
-          13.409779,
-          52.520645
+          13.416550,
+          52.494033
         ],
+        "image": "",
         "additions": [
           "Zugang über Rampe möglich"
         ]
@@ -20051,8 +20062,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.416550,
+          52.494033
         ]
       }
     },
@@ -20067,9 +20078,10 @@
         "city": "Berlin",
         "district": "Wedding",
         "center": [
-          13.409779,
-          52.520645
+          13.361561,
+          52.544479
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/01G45.jpg",
         "additions": [
           "Behindertenparkplatz vorhanden"
         ]
@@ -20077,8 +20089,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.361561,
+          52.544479
         ]
       }
     },
@@ -20096,6 +20108,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08Y05.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20122,6 +20135,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20148,6 +20162,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20174,6 +20189,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20200,6 +20216,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20226,6 +20243,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/01Y08.jpg",
         "additions": []
       },
       "geometry": {
@@ -20250,6 +20268,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/07P03.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20276,6 +20295,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/07P03.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20302,6 +20322,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/07P03.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20325,9 +20346,10 @@
         "city": "Berlin",
         "district": "Karlshorst",
         "center": [
-          13.409779,
-          52.520645
+          13.536989,
+          52.491871
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f1711121.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden"
         ]
@@ -20335,8 +20357,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.536989,
+          52.491871
         ]
       }
     },
@@ -20354,6 +20376,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
@@ -20378,6 +20401,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20401,16 +20425,17 @@
         "city": "Berlin",
         "district": "Charlottenburg",
         "center": [
-          13.409779,
-          52.520645
+          13.294836,
+          52.509377
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f0711102.jpg",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.294836,
+          52.509377
         ]
       }
     },
@@ -20428,6 +20453,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f1211405.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20451,16 +20477,17 @@
         "city": "Berlin",
         "district": "Spandau",
         "center": [
-          13.409779,
-          52.520645
+          13.199526,
+          52.554337
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.199526,
+          52.554337
         ]
       }
     },
@@ -20478,6 +20505,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f0811405.jpg",
         "additions": []
       },
       "geometry": {
@@ -20499,9 +20527,10 @@
         "city": "Berlin",
         "district": "Staaken",
         "center": [
-          13.409779,
-          52.520645
+          13.140742,
+          52.535270
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/05G14.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Zugang über Rampe möglich"
         ]
@@ -20509,8 +20538,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.140742,
+          52.535270
         ]
       }
     },
@@ -20525,9 +20554,10 @@
         "city": "Berlin",
         "district": "Schöneberg",
         "center": [
-          13.409779,
-          52.520645
+          13.363214,
+          52.458077
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f1111107.jpg",
         "additions": [
           "Behindertenparkplatz vorhanden"
         ]
@@ -20535,8 +20565,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.363214,
+          52.458077
         ]
       }
     },
@@ -20551,9 +20581,10 @@
         "city": "Berlin",
         "district": "Buckow",
         "center": [
-          13.409779,
-          52.520645
+          13.445465,
+          52.422637
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08G34.jpg",
         "additions": [
           "Behindertenparkplatz vorhanden, Zugang über Rampe möglich"
         ]
@@ -20561,8 +20592,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.445465,
+          52.422637
         ]
       }
     },
@@ -20580,6 +20611,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20606,6 +20638,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20632,6 +20665,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20658,6 +20692,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20684,6 +20719,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20710,6 +20746,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20733,16 +20770,17 @@
         "city": "Berlin",
         "district": "Schöneberg",
         "center": [
-          13.409779,
-          52.520645
+          13.343476,
+          52.489489
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/07G14.jpg",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.343476,
+          52.489489
         ]
       }
     },
@@ -20760,6 +20798,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/04B01.jpg",
         "additions": []
       },
       "geometry": {
@@ -20784,6 +20823,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/04B01.jpg",
         "additions": []
       },
       "geometry": {
@@ -20808,6 +20848,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/04B01.jpg",
         "additions": []
       },
       "geometry": {
@@ -20832,6 +20873,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20858,6 +20900,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20884,6 +20927,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20910,6 +20954,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20936,6 +20981,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06B02.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20959,9 +21005,10 @@
         "city": "Berlin",
         "district": "Neukölln",
         "center": [
-          13.409779,
-          52.520645
+          13.449442,
+          52.472241
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/08G36.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -20969,8 +21016,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.449442,
+          52.472241
         ]
       }
     },
@@ -20985,16 +21032,17 @@
         "city": "Berlin",
         "district": "Lankwitz",
         "center": [
-          13.409779,
-          52.520645
+          13.362411,
+          52.432505
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06G28.jpg",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.362411,
+          52.432505
         ]
       }
     },
@@ -21009,16 +21057,17 @@
         "city": "Berlin",
         "district": "Charlottenburg",
         "center": [
-          13.409779,
-          52.520645
+          13.315985,
+          52.515970
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f0711108.jpg",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.315985,
+          52.515970
         ]
       }
     },
@@ -21033,16 +21082,17 @@
         "city": "Berlin",
         "district": "Friedrichshain",
         "center": [
-          13.409779,
-          52.520645
+          13.449411,
+          52.514761
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f0511109.jpg",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.449411,
+          52.514761
         ]
       }
     },
@@ -21060,6 +21110,7 @@
           13.409779,
           52.520645
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/07Y05.jpg",
         "additions": []
       },
       "geometry": {
@@ -21081,16 +21132,17 @@
         "city": "Berlin",
         "district": "Spandau",
         "center": [
-          13.409779,
-          52.520645
+          13.207340,
+          52.547568
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.207340,
+          52.547568
         ]
       }
     },
