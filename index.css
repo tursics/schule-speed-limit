@@ -354,8 +354,8 @@ body {
 }
 
 .map .tile {
-    --x-offset: calc(sin(attr(data-rotate deg)) * .6em);
-    --y-offset: calc(cos(attr(data-rotate deg)) * .6em);
+    --x-offset: calc(sin(var(--rotate)) * .6em);
+    --y-offset: calc(cos(var(--rotate)) * .6em);
 
     background: #162c3f;
     border: .1em solid var(--panel-border-50);
@@ -364,7 +364,7 @@ body {
     height: 22em;
     overflow: hidden;
     position: relative;
-    transform: rotateX(50deg) rotateZ(attr(data-rotate deg));
+    transform: rotateX(50deg) rotateZ(var(--rotate));
     transform-style: preserve-3d;
     transition: box-shadow 0.4s ease, transform 0.4s ease;
     width: 22em;
@@ -679,7 +679,7 @@ body {
 }
 
 .panel.schoolcard .map .compass .label {
-    color: #ffffff;
+    color: var(--text-main);
     font-size: 0.9em;
     font-weight: 900;
     line-height: 1.1em;

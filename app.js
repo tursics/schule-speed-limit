@@ -84,11 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function onRotateMap(event) {
-        const currentRotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        const currentRotation = parseInt(elemMapTile.style.getPropertyValue('--rotate') || '0', 10);
         let diff = parseInt(event.currentTarget.dataset.val || '0', 10);
         diff = parseInt(Math.floor(Math.random() * diff * .5) + diff * .75, 10);
 
-        elemMapTile.attributes['data-rotate'].value = currentRotation + diff;
+        elemMapTile.style.setProperty('--rotate', `${currentRotation + diff}deg`);
 
         reBuildBuildings();
       }
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function prepare3DBuildings(buildings) {
-        const rotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        const rotation = parseInt(elemMapTile.style.getPropertyValue('--rotate') || '0', 10);
         const sin = Math.sin(rotation * Math.PI / 180);
         const cos = Math.cos(rotation * Math.PI / 180);
 
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function get3DBuilding(building, serial, count) {
         const polygonPoints = building.coords;
-        const rotation = parseInt(elemMapTile.dataset.rotate || '0', 10);
+        const rotation = parseInt(elemMapTile.style.getPropertyValue('--rotate') || '0', 10);
         const height = 18;
         const sin = Math.sin(rotation * Math.PI / 180);
         const cos = Math.cos(rotation * Math.PI / 180);
@@ -468,7 +468,7 @@ console.log(found);
         elemMap.addEventListener('touchstart', (e) => {
             isDragging = true;
             startX = e.touches[0].clientX;
-            startRotate = parseInt(elemMapTile.dataset.rotate || '0', 10);
+            startRotate = parseInt(elemMapTile.style.getPropertyValue('--rotate') || '0', 10);
         }, { passive: true });
 
         elemMap.addEventListener('touchmove', (e) => {
@@ -478,7 +478,8 @@ console.log(found);
             const currentX = e.touches[0].clientX;
             const deltaX = currentX - startX;
 
-            elemMapTile.attributes['data-rotate'].value = startRotate + (deltaX * 0.4);
+            elemMapTile.style.setProperty('--rotate', `${startRotate + (deltaX * 0.4)}deg`);
+
             reBuildBuildings();
         }, { passive: true });
 
