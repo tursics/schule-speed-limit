@@ -848,10 +848,15 @@ body {
 .panel.statcard .trafficsigns .list .row .name {
     color: var(--text-header-secondary);
     font-weight: 500;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 11em;
 }
 .panel.statcard .trafficsigns .list .row .distance {
     color: #fff;
     font-weight: 600;
+    white-space: nowrap;
 }
 .panel.statcard .trafficsigns .list.danger .row .distance {
     color: var(--score-25);
