@@ -1005,7 +1005,8 @@ body {
     border-bottom-color: var(--accent-cyan);
 }
 .control .box.info .body .select-wrapper select {
-    background: var(--panel-border-15);
+    background: var(--panel-bg-light);
+    box-shadow: inset 0 0 4em var(--panel-border-20);
 }
 
 .control .body .button svg {
