@@ -792,6 +792,7 @@ body {
 .panel.statcard .trafficsigns {
     flex: 1;
     height: 2em;
+    max-height: 23.05em;
     overflow-y: scroll;
     padding-top: .3em;
     scrollbar-width: none;
@@ -848,7 +849,7 @@ body {
 .panel.statcard .trafficsigns .list .row .name {
     color: var(--text-header-secondary);
     font-weight: 500;
-    overflow-x: hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 11em;

@@ -23335,9 +23335,10 @@
         "city": "Berlin",
         "district": "Lichtenrade",
         "center": [
-          13.409779,
-          52.520645
+          13.419599,
+          52.391088
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/07G35.jpg",
         "additions": [
           "Behindertenparkplatz vorhanden, Zugang über Rampe möglich"
         ]
@@ -23345,8 +23346,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.419599,
+          52.391088
         ]
       }
     },
@@ -23361,9 +23362,10 @@
         "city": "Berlin",
         "district": "Charlottenburg",
         "center": [
-          13.409779,
-          52.520645
+          13.293919,
+          52.514873
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/f0711116.jpg",
         "additions": [
           "Barrierefreie Toilette vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -23371,8 +23373,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.293919,
+          52.514873
         ]
       }
     },
@@ -23390,6 +23392,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
@@ -23414,6 +23417,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
@@ -23435,16 +23439,17 @@
         "city": "Berlin",
         "district": "Friedrichshain",
         "center": [
-          13.409779,
-          52.520645
+          13.444466,
+          52.513583
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.444466,
+          52.513583
         ]
       }
     },
@@ -23459,16 +23464,17 @@
         "city": "Berlin",
         "district": "Schöneberg",
         "center": [
-          13.409779,
-          52.520645
+          13.362832,
+          52.493297
         ],
+        "image": "",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.362832,
+          52.493297
         ]
       }
     },
@@ -23486,6 +23492,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Der Schulbetrieb ruht weiterhin, zunächst bis 31.07.2025"
         ]
@@ -23512,6 +23519,7 @@
           13.409779,
           52.520645
         ],
+        "image": "",
         "additions": [
           "Barrierefreie Toilette vorhanden, Behindertenparkplatz vorhanden, Fahrstuhl vorhanden, Zugang über Rampe möglich"
         ]
@@ -23535,9 +23543,10 @@
         "city": "Berlin",
         "district": "Zehlendorf",
         "center": [
-          13.409779,
-          52.520645
+          13.256039,
+          52.436162
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/06G01.jpg",
         "additions": [
           "Fahrstuhl vorhanden"
         ]
@@ -23545,8 +23554,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.256039,
+          52.436162
         ]
       }
     },
@@ -23561,16 +23570,17 @@
         "city": "Berlin",
         "district": "Kreuzberg",
         "center": [
-          13.409779,
-          52.520645
+          13.427477,
+          52.505174
         ],
+        "image": "https://www.bildung.berlin.de/Schulverzeichnis/bilder/02G18.jpg",
         "additions": []
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          13.409779,
-          52.520645
+          13.427477,
+          52.505174
         ]
       }
     },
