@@ -44,6 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 show = school.id.startsWith(prefix);
             }
 
+            school.title = school.title.replace('(Grundschule)', '').trim();
+            school.title = school.title.replace('(Gemeinschaftsschule)', '').trim();
+            school.title = school.title.replace('(Integrierte Sekundarschule)', '').trim();
+
             if (show) {
                 found |= school.id === initialSchool;
 
