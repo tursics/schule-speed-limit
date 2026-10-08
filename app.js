@@ -271,6 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
             while (addition.startsWith(', ')) {
                 addition = addition.substring(2);
             }
+            while (addition.endsWith(', ')) {
+                addition = addition.substring(0, addition.length - 2);
+            }
 
             if (addition !== '') {
                 hints += `<div class="hint">${addition}</div>`;
