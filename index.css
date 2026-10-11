@@ -138,11 +138,6 @@ body {
     gap: 1rem;
     flex: 1;
 }
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-}
 
 .panel {
     display: flex;
@@ -1069,6 +1064,7 @@ body {
 .control .body .button-grid .button {
     margin: 0;
     overflow: hidden;
+    white-space: nowrap;
 }
 
 .control .body a {
@@ -1080,4 +1076,108 @@ body {
 .control .body a:hover {
     color: var(--accent-cyan);
     text-decoration-color: var(--accent-cyan);
+}
+
+/*               */
+/* Mobile First */
+/*             */
+
+@media (orientation: portrait) {
+    body {
+        padding: 1rem .5rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .control {
+        flex-direction: row;
+        grid-column: span 2;
+        margin-top: 1.75rem;
+    }
+
+    .control .box {
+        border-left: .2rem solid var(--panel-border-40);
+        border-radius: 0 0 1rem 1rem;
+        border-top: none;
+        display: none;
+        margin: -.2rem 0 0 0;
+        max-height: 50vh;
+        min-height: auto;
+        width: stretch;
+    }
+    .control .box.info {
+        display: contents;
+    }
+    .control .box.info .body {
+        display: none;
+    }
+    .beta .control .box.beta {
+        display: none !important;
+    }
+    .control .box.active {
+        display: flex;
+    }
+    .control .box.info.active .body {
+        display: initial;
+    }
+    .beta .control .box.beta.active {
+        display: flex !important;
+    }
+
+    .control .box .close {
+        background: var(--panel-bg-light);
+        border: .1rem solid var(--panel-border-20);
+        border-radius: 50%;
+        cursor: pointer;
+        display: inline !important;
+        float: inline-end;
+        font-size: 1.5rem;
+        line-height: 1.3rem;
+        padding-top: .2rem;
+        text-align: center;
+        width: 1.68rem;
+    }
+
+    .control .info.box .bar {
+        left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
+    }
+
+    .control .info .body .button-grid {
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+        margin-bottom: 0;
+    }
+    .beta .control .info .body .button-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .control .info .body .button {
+        text-transform: uppercase;
+    }
+    .beta #button-show-beta {
+        display: flex !important;
+    }
+
+    .panel.schoolcard, .panel.statcard {
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .control {
+        max-height: initial;
+        overflow-y: initial;
+        scrollbar-width: initial;
+    }
+}
+
+@media (max-width: 600px) and (orientation: portrait) {
 }

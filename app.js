@@ -16,6 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const elemBarChart = document.querySelector('.chart .bars');
     const elemButtonRotateLeft = document.getElementById('button-rotate-left');
     const elemButtonRotateRight = document.getElementById('button-rotate-right');
+    const elemButtonShowStats = document.getElementById('button-show-stats');
+    const elemButtonShowBeta = document.getElementById('button-show-beta');
+    const elemButtonShowInfos = document.getElementById('button-show-infos');
+    const elemButtonsClose = document.querySelectorAll('.control .box .close');
+
+    const elemInfoBox = document.querySelector('.control .info.box');
+    const elemStatsBox = document.querySelector('.control .stats.box');
+    const elemBetaBox = document.querySelector('.control .beta.box');
+    const elemInfosBox = document.querySelector('.control .infos.box');
 
     const elemMap = document.querySelector('.map');
     const elemMapTile = document.querySelector('.map .tile');
@@ -113,6 +122,29 @@ document.addEventListener('DOMContentLoaded', () => {
         elemDistrictList.addEventListener('change', (event) => {
             setURLDistrict(elemDistrictList.value);
             updateSchoolList(elemSchoolList.value);
+        });
+
+        elemButtonShowStats.addEventListener('click', (event) => {
+            event.preventDefault();
+            elemInfoBox.classList.toggle('active');
+            elemStatsBox.classList.toggle('active');
+        });
+        elemButtonShowBeta.addEventListener('click', (event) => {
+            event.preventDefault();
+            elemInfoBox.classList.toggle('active');
+            elemBetaBox.classList.toggle('active');
+        });
+        elemButtonShowInfos.addEventListener('click', (event) => {
+            event.preventDefault();
+            elemInfoBox.classList.toggle('active');
+            elemInfosBox.classList.toggle('active');
+        });
+        elemButtonsClose.forEach((elemButtonClose) => {
+            elemButtonClose.addEventListener('click', (event) => {
+                event.preventDefault();
+                elemInfoBox.classList.toggle('active');
+                event.target.closest('.box').classList.toggle('active');
+            });
         });
 
         elemButtonRotateLeft.addEventListener('click', onRotateMap);
