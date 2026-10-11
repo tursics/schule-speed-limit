@@ -962,6 +962,7 @@ body {
 .control .body label {
     font-size: 1rem;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 .control .body .select-wrapper, .control .body .button {
@@ -1084,11 +1085,14 @@ body {
 
 @media (orientation: portrait) {
     body {
+        overflow-y: scroll;
         padding: 1rem .5rem;
+        scrollbar-width: none;
     }
 
     .grid {
         grid-template-columns: 1fr 1fr;
+        grid-template-columns: calc(var(--grid-margin) + var(--panel-font-size) * 25) calc(var(--grid-margin) + var(--panel-font-size) * 20);
     }
 
     .control {
@@ -1103,8 +1107,6 @@ body {
         border-top: none;
         display: none;
         margin: -.2rem 0 0 0;
-        max-height: 50vh;
-        min-height: auto;
         width: stretch;
     }
     .control .box.info {
@@ -1127,8 +1129,8 @@ body {
     }
 
     .control .box .close {
-        background: var(--panel-bg-light);
-        border: .1rem solid var(--panel-border-20);
+        background: var(--panel-border-20);
+        border: .1rem solid var(--panel-border-50);
         border-radius: 50%;
         cursor: pointer;
         display: inline !important;
@@ -1139,12 +1141,19 @@ body {
         text-align: center;
         width: 1.68rem;
     }
+    .control .box.beta .close {
+        background: var(--score-0);
+        border-color: var(--score-0);
+    }
 
     .control .info.box .bar {
         left: 0;
+        overflow: hidden;
         position: fixed;
         right: 0;
+        text-overflow: ellipsis;
         top: 0;
+        white-space: nowrap;
     }
 
     .control .info .body .button-grid {
@@ -1162,22 +1171,10 @@ body {
         display: flex !important;
     }
 
-    .panel.schoolcard, .panel.statcard {
-        margin: 0 auto;
+    .panel.schoolcard {
+        margin: 0 0 0 auto;
     }
-}
-
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: 1fr;
+    .panel.statcard {
+        margin: 0 auto 0 0;
     }
-
-    .control {
-        max-height: initial;
-        overflow-y: initial;
-        scrollbar-width: initial;
-    }
-}
-
-@media (max-width: 600px) and (orientation: portrait) {
 }
