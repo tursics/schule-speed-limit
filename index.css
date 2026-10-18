@@ -136,7 +136,6 @@ body {
     display: grid;
     grid-template-columns: 19rem calc(var(--grid-margin) + var(--panel-font-size) * 25) calc(var(--panel-font-size) * 20);
     gap: 1rem;
-    flex: 1;
 }
 
 .panel {
@@ -1093,6 +1092,8 @@ body {
     .grid {
         grid-template-columns: 1fr 1fr;
         grid-template-columns: calc(var(--grid-margin) + var(--panel-font-size) * 25) calc(var(--grid-margin) + var(--panel-font-size) * 20);
+        grid-template-rows: auto 1fr;
+        min-height: calc(var(--vh, 1vh) * 100 - 1rem);
     }
 
     .control {
@@ -1154,6 +1155,7 @@ body {
         text-overflow: ellipsis;
         top: 0;
         white-space: nowrap;
+        z-index: 1;
     }
 
     .control .info .body .button-grid {
