@@ -589,13 +589,13 @@ function updateResponsiveLayout() {
     const bodyPadding = 16 * 1;
     const gridGap = 16 * 1;
     const controlWidth = 16 * 19;
-    const controlHeight = 14.5 * 19;
+    const controlHeight = 16 * 17.25;
 
 //    const isPortrait = windowHeight >= windowWidth;
     const isPortrait = window.matchMedia('(orientation: portrait)').matches;
 
     const width = isPortrait ? (windowWidth - gridGap - bodyPadding) : (windowWidth - controlWidth - gridGap * 2 - bodyPadding);
-    const height = isPortrait ? (windowHeight - controlHeight -bodyPadding) : (windowHeight - 2 * bodyPadding);
+    const height = isPortrait ? (windowHeight - controlHeight - bodyPadding) : (windowHeight - 2 * bodyPadding);
 
     const schoolCardHeight = 41.25;
     const schoolCardWidth = 25;
