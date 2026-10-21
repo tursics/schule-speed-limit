@@ -208,7 +208,8 @@ function processOSMData() {
         });
         if (localBuildings.length === 0) {
             const svgPoint = convertGeoToSVG(centerLon, centerLat, centerLon, centerLat);
-            const svgCoords = pointToCircle(svgPoint, 10);
+            const svgCoords = [];
+            svgCoords.push(svgPoint);
 
             localBuildings.push({
                 name: title,
