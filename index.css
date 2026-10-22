@@ -422,6 +422,24 @@ body {
     stroke-width: .5px;
 }
 
+.map svg .pin-shadow {
+    fill: #000;
+    filter: blur(4px);
+}
+.map svg .pin-drop {
+    fill: hsl(52, 14%, 40%);
+    stroke: #fef9da;
+    stroke-linejoin: round;
+    stroke-width: 1px;
+}
+.map svg .pin-icon {
+    fill: none;
+    stroke: #fef9da;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 1px;
+}
+
 .map svg .entry {
     fill: #00f0ff;
     animation: entryPing 2s cubic-bezier(0, 0, 0.2, 1) infinite;

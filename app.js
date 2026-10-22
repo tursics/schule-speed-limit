@@ -248,6 +248,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return walls;
     }
 
+    function getPin(point, rotation) {
+        const [x, y] = point;
+        const pinHeight = 35;
+
+        const svg = `<g class="pin" transform="translate(${x}, ${y}) rotate(${-rotation})">
+            <ellipse cx="0" cy="0" rx="9" ry="3.5" class="pin-shadow" />
+            <path d="M 0 0 C -6 -10, -14 -18, -14 -26 A 14 14 0 1 1 14 -26 C 14 -18, 6 -10, 0 0 Z" class="pin-drop" />
+            <path d="M -6 -28 L 0 -31 L 6 -28 L 0 -25 Z M -4 -26.5 V -23.5 C -4 -22, 4 -22, 4 -23.5 V -26.5 M 4 -27.5 V -22" class="pin-icon" />
+        </g>`;
+
+        return svg;
+    }
+
     function get3DBuilding(building, serial, count) {
         const polygonPoints = building.coords;
         const rotation = parseInt(elemMapTile.style.getPropertyValue('--rotate') || '0', 10);
@@ -256,6 +269,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const cos = Math.cos(rotation * Math.PI / 180);
         const offsetX = height * sin;
         const offsetY = height * cos;
+
+        if (polygonPoints.length === 1) {
+            return getPin(polygonPoints[0], rotation);
+        }
 
         const roofPoints = polygonPoints.map(([x, y]) => [
             x - offsetX,
