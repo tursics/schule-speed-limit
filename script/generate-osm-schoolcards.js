@@ -94,7 +94,7 @@ function getObjectCenter(item) {
     return [13.409779, 52.520645];
 }
 
-function pointToCircle([x, y], radius = 40) {
+/*function pointToCircle([x, y], radius = 40) {
     const sides = 16;
     const points = [];
 
@@ -106,7 +106,7 @@ function pointToCircle([x, y], radius = 40) {
     }
 
     return points;
-}
+}*/
 
 function isValidSchool([x, y]) {
     return (x !== 13.409779) && (y !== 52.520645);
@@ -241,7 +241,8 @@ function processOSMData() {
             } else if (ground.geometry && (ground.geometry.type === 'Point')) {
                 const point = ground.geometry.coordinates;
                 const svgPoint = convertGeoToSVG(point[0], point[1], centerLon, centerLat);
-                const svgCoords = pointToCircle(svgPoint, 30);
+                const svgCoords = [];
+                svgCoords.push(svgPoint);
 
                 localGrounds.push({
                     name: ground.properties.title || '',
