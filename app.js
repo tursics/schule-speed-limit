@@ -404,8 +404,10 @@ console.log(found);
         let totalSpeed = 0;
 
         school.grounds.forEach(campus => {
-            const points = campus.coords.map(pt => pt.join(',')).join(' ');
-            svg += `<polygon class="campus-polygon" points="${points}" />`;
+            if (campus.coords.length > 1) {
+                const points = campus.coords.map(pt => pt.join(',')).join(' ');
+                svg += `<polygon class="campus-polygon" points="${points}" />`;
+            }
         });
 
         svg += `<g class="streets">`;
