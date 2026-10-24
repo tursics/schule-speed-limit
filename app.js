@@ -417,19 +417,21 @@ console.log(found);
         school.streets.forEach(street => {
             const className = street.speed === 0 ? 'default' : (street.speed <= 30 ? 'safe' : 'danger');
             const points = street.coords.map(pt => pt.join(',')).join(' ');
-            bgStreets += `<polyline class="street bg-${className}" points="${points}" />`;
-            fgStreets += `<polyline class="street ${className}" points="${points}" />`;
+            const name = street.name || 'Straße ohne Name';
+
+            bgStreets += `<g><polyline class="street bg-${className}" points="${points}" /><title>${street.speed === 0 ? '' : name}</title></g>`;
+            fgStreets += `<g><polyline class="street ${className}" points="${points}" /><title>${street.speed === 0 ? '' : name}</title></g>`;
 
             if (street.speed > 0) {
-                let info = statistic[street.name] || {
-                    name: street.name || 'Straße ohne Name',
+                let info = statistic[name] || {
+                    name: name,
                     parts: []
                 };
                 info.parts.push({
                     distance: street.length,
                     limit: street.speed
                 });
-                statistic[street.name] = info;
+                statistic[name] = info;
 
                 if (street.speed <= 30) {
                     lowSpeed += street.length;
