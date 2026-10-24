@@ -13,6 +13,12 @@ const VIEW_SIZE = 200;      // radius is 100 meter
 const METERS_PER_DEGREE_LON = 111320 * Math.cos(52.52 * Math.PI / 180);
 const METERS_PER_DEGREE_LAT = 111320;
 
+const OUTCODE_INSIDE = 0; // 0000
+const OUTCODE_BOTTOM = 1; // 0001
+const OUTCODE_RIGHT = 2;  // 0010
+const OUTCODE_LEFT = 4;   // 0100
+const OUTCODE_TOP = 8;    // 1000
+
 function convertGeoToSVG(lon, lat, centerLon, centerLat) {
     const diffX = (lon - centerLon) * METERS_PER_DEGREE_LON;
     const diffY = (lat - centerLat) * METERS_PER_DEGREE_LAT;
@@ -32,24 +38,85 @@ function isInsideCanvas([x, y]) {
     return ret;
 }
 
-function streetGetLength(street) {
-    let meter = 0;
+function getOutCode(x, y, minX, minY, maxX, maxY) {
+    let code = OUTCODE_INSIDE;
 
-    if (street.geometry && street.geometry.type === 'LineString') {
-        const len = street.geometry.coordinates.length;
-        for (let i = 1; i < len; ++i) {
-            const point1 = street.geometry.coordinates[i - 1];
-            const point2 = street.geometry.coordinates[i];
+    if (x < minX) {
+        code |= OUTCODE_LEFT;
+    } else if (x > maxX) {
+        code |= OUTCODE_RIGHT;
+    }
 
-            const diffX = (point1[0] - point2[0]) * METERS_PER_DEGREE_LON;
-            const diffY = (point1[1] - point2[1]) * METERS_PER_DEGREE_LAT;
-            const hypotenuse = Math.hypot(diffX, diffY);
+    if (y < minY) {
+        code |= OUTCODE_BOTTOM;
+    } else if (y > maxY) {
+        code |= OUTCODE_TOP;
+    }
 
-            meter += hypotenuse;
+    return code;
+}
+
+function bboxClip([x1, y1], [x2, y2], minX = 0, minY = 0, maxX = CANVAS_SIZE, maxY = CANVAS_SIZE) {
+    let code1 = getOutCode(x1, y1, minX, minY, maxX, maxY);
+    let code2 = getOutCode(x2, y2, minX, minY, maxX, maxY);
+    let accept = false;
+
+    while (true) {
+        if ((code1 | code2) === OUTCODE_INSIDE) {
+            accept = true;
+            break;
+        } else if ((code1 & code2) !== OUTCODE_INSIDE) {
+            break;
+        } else {
+            let x, y;
+            const outcodeOut = code1 !== OUTCODE_INSIDE ? code1 : code2;
+
+            if (outcodeOut & OUTCODE_TOP) {
+                x = x1 + (x2 - x1) * (maxY - y1) / (y2 - y1);
+                y = maxY;
+            } else if (outcodeOut & OUTCODE_BOTTOM) {
+                x = x1 + (x2 - x1) * (minY - y1) / (y2 - y1);
+                y = minY;
+            } else if (outcodeOut & OUTCODE_RIGHT) {
+                y = y1 + (y2 - y1) * (maxX - x1) / (x2 - x1);
+                x = maxX;
+            } else if (outcodeOut & OUTCODE_LEFT) {
+                y = y1 + (y2 - y1) * (minX - x1) / (x2 - x1);
+                x = minX;
+            }
+
+            if (outcodeOut === code1) {
+                x1 = x;
+                y1 = y;
+                code1 = getOutCode(x1, y1, minX, minY, maxX, maxY);
+            } else {
+                x2 = x;
+                y2 = y;
+                code2 = getOutCode(x2, y2, minX, minY, maxX, maxY);
+            }
         }
     }
 
-    return Math.round(meter);
+    return accept ? { x1, y1, x2, y2 } : null;
+}
+
+function streetGetLength(svgCoords) {
+    let streetLength = 0;
+    const coords = svgCoords.length;
+
+    for (let i = 1; i < coords; ++i) {
+        const point1 = svgCoords[i - 1];
+        const point2 = svgCoords[i];
+        const clipped = bboxClip(point1, point2);
+
+        if (clipped) {
+            const dx = clipped.x2 - clipped.x1;
+            const dy = clipped.y2 - clipped.y1;
+            streetLength += Math.sqrt(dx * dx + dy * dy);
+        }
+    }
+
+    return Math.round(streetLength);
 }
 
 function streetIntersectsCanvas(coords) {
@@ -160,7 +227,7 @@ function processOSMData() {
                 if (streetIntersectsCanvas(svgCoords)) {
                     const rawSpeed = street.properties.maxspeed || 0;
                     const speed = parseInt(rawSpeed, 10) || 0;
-                    const length = streetGetLength(street);
+                    const length = streetGetLength(svgCoords);
 
                     if (speed === 0) {
                         meterEqual0 += length;
@@ -283,12 +350,12 @@ function processOSMData() {
             buildings: localBuildings,
             grounds: localGrounds,
             streets: localStreets,
-            metrics: {
+//            metrics: {
 //protectionRate: `${protectionRate}% Tempo 30 (${count30}/${meterTotal} Straßen)`,
 //eveningSafety: protectionRate < 50 ? 'Lückenhaft (Kritisch)' : 'Ausreichend',
 //mainRoadStatus: meterTotal - count30 > 0 ? 'Hauptstraße im Nahbereich' : 'Vollständig Tempo 30',
 //reason: school.properties.grund || 'Unbekannt'
-            }
+//            }
         });
     });
     console.log('');
