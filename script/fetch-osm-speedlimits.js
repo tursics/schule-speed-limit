@@ -22,44 +22,27 @@ function parseMaxspeed(tags) {
     // unclassified = Kreisstraße + Nebenstraße + Sonstige untergeordnete Straße + Hauptstraße + Durchgangsstraße + Anliegerstraße + Sonstige untergeordnete Straße
     // service = Erschließungsweg zu einzelnen Häusern + Zufahrtsweg
     // services ???
-    const raw = tags.maxspeed;
-    const zone1 = tags['maxspeed:type'];
-    const zone2 = tags['source:maxspeed'];
-    const zone3 = tags['zone:maxspeed'];
-    const trafficSign = tags.traffic_sign;
+    const conditional = tags['maxspeed:conditional'];
+    let maxspeed = tags.maxspeed || tags['zone:maxspeed'] || tags['maxspeed:type'] || tags['source:maxspeed'];
 
-    let zone = '';
-    if (zone1 === 'DE:zone30') {
-        zone = 30;
-    } else if (zone1 === 'DE:zone20') {
-        zone = 20;
-    } else if (zone1 === 'DE:zone10') {
-        zone = 10;
+    if (!maxspeed) {
+        // undefined
+    } else if (typeof maxspeed === 'number') {
+        // maxspeed
+    } else {
+        maxspeed = String(maxspeed).trim().toLowerCase();
+
+        if (maxspeed === 'de:urban') {
+            maxspeed = '50';
+        } else if ((maxspeed === 'de:walk') || (maxspeed === 'walk')) {
+            maxspeed = '7';
+        }
+
+        const match = maxspeed.match(/\d+/);
+        maxspeed = match ? parseInt(match[0], 10) : undefined;
     }
 
-    if (zone2 === 'DE:zone30') {
-        zone = 30;
-    } else if (zone2 === 'de:zone30') {
-        zone = 30;
-    } else if (zone2 === 'DE:zone:30') {
-        zone = 30;
-    } else if (zone2 === 'DE:zone20') {
-        zone = 20;
-    } else if (zone2 === 'DE:zone:20') {
-        zone = 20;
-    } else if (zone2 === 'DE:zone10') {
-        zone = 10;
-    }
-
-    if (zone3 === 'DE:30') {
-        zone = 30;
-    } else if (zone3 === 'DE:20') {
-        zone = 20;
-    } else if (zone3 === 'DE:10') {
-        zone = 10;
-    }
-
-    if (!raw) {
+    if (!maxspeed) {
         if (tags.highway === 'living_street') {
             return 7;
         }
@@ -76,12 +59,7 @@ function parseMaxspeed(tags) {
         return 50; 
     }
 
-    if (raw === 'walk') {
-        return 0;
-    }
-
-    const parsed = parseInt(raw, 10);
-    return isNaN(parsed) ? 50 : parsed;
+    return maxspeed;
 }
 
 async function downloadOverpassData() {
