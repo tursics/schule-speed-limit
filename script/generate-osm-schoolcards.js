@@ -19,6 +19,12 @@ const OUTCODE_RIGHT = 2;  // 0010
 const OUTCODE_LEFT = 4;   // 0100
 const OUTCODE_TOP = 8;    // 1000
 
+const LIMIT_RANGE_ALL = 'ALL';             // 06:00 - 18:00
+const LIMIT_RANGE_MORNING = 'MORNING';     // 06:00 - 08:00
+const LIMIT_RANGE_AFTERNOON = 'AFTERNOON'; // 13:30 - 18:00
+const LIMIT_RANGE_PARTLY = 'PARTLY';       // 08:00 - 16:00
+const LIMIT_RANGE_POOR = 'POOR';           // >06:00 - <18:00
+
 function convertGeoToSVG(lon, lat, centerLon, centerLat) {
     const diffX = (lon - centerLon) * METERS_PER_DEGREE_LON;
     const diffY = (lat - centerLat) * METERS_PER_DEGREE_LAT;
@@ -228,13 +234,28 @@ function processOSMData() {
                     const rawSpeed = street.properties.maxspeed || 0;
                     const speed = parseInt(rawSpeed, 10) || 0;
                     const length = streetGetLength(svgCoords);
+                    const conditional = street.properties.conditional || null;
 
-                    if (speed === 0) {
-                        meterEqual0 += length;
-                    } else if (speed < 30) {
-                        meterLess30 += length;
-                    } else if (speed === 30) {
-                        meterEqual30 += length;
+                    let calcLength = length;
+                    let calcSpeed = speed;
+                    if (conditional) {
+                        if (conditional.range === LIMIT_RANGE_ALL) {
+                            calcSpeed = conditional.speed;
+                        } else if ((conditional.range === LIMIT_RANGE_MORNING) || (conditional.range === LIMIT_RANGE_AFTERNOON) || (conditional.range === LIMIT_RANGE_PARTLY)) {
+                            calcSpeed = conditional.speed;
+                            calcLength /= 2;
+                        } else if (conditional.range === LIMIT_RANGE_POOR) {
+                            calcSpeed = conditional.speed;
+                            calcLength /= 4;
+                        }
+                    }
+
+                    if (calcSpeed === 0) {
+                        meterEqual0 += calcLength;
+                    } else if (calcSpeed < 30) {
+                        meterLess30 += calcLength;
+                    } else if (calcSpeed === 30) {
+                        meterEqual30 += calcLength;
                     }
                     meterTotal += length;
 
@@ -242,7 +263,8 @@ function processOSMData() {
                         name: street.properties.title || '',
                         coords: svgCoords,
                         length,
-                        speed: speed
+                        speed: speed,
+                        conditional
                     });
                 }
             }
