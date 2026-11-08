@@ -1,9 +1,25 @@
-# schule-speed-limit
+# 🚗⏱️ Analysiere die Schulwegsicherheit deiner Grundschule
 
-Welche Höchstgeschwindigkeit gilt vor der Schule?
+Interaktives Dashboard zur Analyse der Höchstgeschwindigkeit auf dem Schulweg an Berliner Grundschulen.
 
 - [Repository](https://github.com/tursics/schule-speed-limit)
 - [Ausprobieren](https://tursics.github.io/schule-speed-limit/)
+
+![Schulwegsicherheit-Dashboard](https://raw.githubusercontent.com/tursics/schule-speed-limit/refs/heads/main/docs/preview-dashboard.png)
+
+## Übersicht
+
+Das Dashboard zur **Schulweg-Sicherheit** ist ein webbasiertes, interaktives Visualisierungs-Tool im Tactical Futuristic User Interface-Design. Es analysiert die direkte Umgebung (200×200 m Ausschnitt) von Berliner Grundschulen und ermittelt basierend auf Straßentypen, Tempolimits und zeitlich begrenzten Geschwindigkeitszonen einen **Sicherheits-Score**.
+
+### Key Features
+
+- **3D-Isometrie-Engine:** 2.5D-Darstellung mit interaktiver Kartenrotation und Tiefensortierung von 3D-Gebäudekomplexen.
+- **Präzises Clipping:** Straßennetz-Längen werden exakt auf ein 200×200m Gebiet beschnitten.
+- **Geschwindigkeits-Parsing:** Berücksichtigung von zeitlich eingeschränkten Tempo-30-Straßenabschnitten.
+- **URL-basiertes Zustandsmanagement:** Direktes Verlinken und Teilen von spezifischen Schul-Analysen möglich.
+- **Zero-Dependency:** Reines HTML, Vanilla JavaScript und CSS.
+
+---
 
 ## Rechtsgrundlage
 
@@ -65,6 +81,13 @@ node script/fetch-osm-grounds.js
 node script/fetch-osm-buildings.js
 node script/fetch-osm-speedlimits.js
 node script/generate-osm-schoolcards.js
+
+node script/fetch-bln-speedlimits.js
+
+node script/fetch-alkis-buildings.js # create data/gebaeude_alkis.geojson
+node script/generate-school-cards.js # create dist/schools_cards_db.json
+
+node fetch-alkis-flurstueck.js
 ```
 
 Die Daten werden im Ordner `data` abgelegt. Um eine schnelle Vorschau der .geojson-Dateien zu bekommen kann man den Online-Dienst [geojson.io](https://geojson.io/) nutzen.
