@@ -401,6 +401,7 @@ console.log(found);
         let statistic = {};
         let svg = '';
         let lowSpeed = 0;
+        let conditionalSpeed = 0;
         let totalSpeed = 0;
 
         school.grounds.forEach(campus => {
@@ -415,7 +416,7 @@ console.log(found);
         let fgStreets = '';
         school.streets.sort((a, b) => a.speed - b.speed);
         school.streets.forEach(street => {
-            const className = street.speed === 0 ? 'default' : (street.speed <= 30 ? 'safe' : 'danger');
+            const className = street.speed === 0 ? 'default' : (street.speed <= 30 ? 'safe' : (street.conditional && (street.conditional.speed <= 30) ? 'maybe' : 'danger'));
             const points = street.coords.map(pt => pt.join(',')).join(' ');
             const name = street.name || 'Straße ohne Name';
 
@@ -428,6 +429,7 @@ console.log(found);
                     parts: []
                 };
                 info.parts.push({
+                    conditional: street.conditional,
                     distance: street.length,
                     limit: street.speed
                 });
@@ -435,6 +437,8 @@ console.log(found);
 
                 if (street.speed <= 30) {
                     lowSpeed += street.length;
+                } else if (street.conditional && (street.conditional.speed <= 30)) {
+                    conditionalSpeed += street.length;
                 }
                 totalSpeed += street.length;
             }
@@ -449,11 +453,16 @@ console.log(found);
         }
         svg += `</g>`;
 
+        let statHint = `<span class="highlight">${Math.round(lowSpeed / totalSpeed * 100)}%</span> verkehrsberuhigt`;
+        if (conditionalSpeed > 0) {
+            statHint += `<br><span class="highlight">${Math.round(conditionalSpeed / totalSpeed * 100)}%</span> zeitweise verkehrsberuhigt`;
+        }
+
         elemMapImage.innerHTML = svgDefs + svg;
 
         elemStatType.innerHTML = school.type.replace('( ', '(').replace(' )', ')');
         elemStatAddress.innerHTML = `${school.address}<br>${school.zip} ${school.city}`;
-        elemSafeMetric.innerHTML = `<span class="highlight">${Math.round(lowSpeed / totalSpeed * 100)}%</span> verkehrsberuhigt`;
+        elemSafeMetric.innerHTML = statHint;
 
         let hints = getHints(school);
         elemStatHints.innerHTML = hints;
@@ -466,13 +475,26 @@ console.log(found);
             let speed = {};
 
             item.parts.forEach((itemParts) => {
-                let sum = speed[itemParts.limit] || 0;
+                const conditional = itemParts.conditional;
+                let limit = itemParts.limit;
+                if (conditional) {
+                    limit = conditional.speed + '|' + conditional.range + '|' + conditional.text;
+                }
+
+                let sum = speed[limit] || 0;
                 sum += itemParts.distance;
-                speed[itemParts.limit] = sum;
+                speed[limit] = sum;
             });
 
             Object.values(speed).forEach((distance, i) => {
                 let speed_ = Object.keys(speed)[i];
+                const cond = speed_.split('|');
+                let range, time = null;
+
+                if (cond.length > 1) {
+                    [speed_, range, time] = cond;
+                }
+
                 if (speed_ < 10) {
                     speed_ = 1;
                 }
@@ -480,7 +502,8 @@ console.log(found);
                 speedlimits.push({
                     name: item.name,
                     distance,
-                    speed: speed_
+                    speed: speed_,
+                    time
                 });
             });
         });
@@ -509,11 +532,17 @@ console.log(found);
                 signs += '<div class="streets">';
             }
 
-            if (item.speed <= 30) {
-            } else {
+            let conditionSign = '';
+            if (item.time) {
+                const [timeStart, timeEnd] = item.time.split('-');
+                const [startH, startM] = timeStart.split(':');
+                const [endH, endM] = timeEnd.split(':');
+                const start = parseInt(startH, 10) + (startM === '00' ? '' : ':' + startM);
+                const end = parseInt(endH, 10) + (endM === '00' ? '' : ':' + endM);
+                conditionSign += `<span class="time">${start}-${end} h</span>`;
             }
 
-            signs += `<div class="row"><span class="name">${item.name}</span><span class="distance">${item.distance} m</span></div>`;
+            signs += `<div class="row"><span class="name">${item.name}${conditionSign}</span><span class="distance ${item.time ? 'maybe' : ''}">${item.distance} m</span></div>`;
         });
         signs += '</div></div>';
 

@@ -398,6 +398,14 @@ body {
     stroke: #00ff88;
     stroke-width: 1.8;
 }
+.map svg .street.bg-maybe {
+    stroke: #19685750;
+    stroke-width: 4;
+}
+.map svg .street.maybe {
+    stroke: var(--score-75);
+    stroke-width: 1.8;
+}
 .map svg .street.bg-danger {
     stroke: #8f3a4780;
     stroke-width: 4;
@@ -866,6 +874,27 @@ body {
     white-space: nowrap;
     width: 11em;
 }
+.panel.statcard .trafficsigns .list .row .name .time {
+    background: #fff;
+    border: .1em solid #222;
+    border-radius: .3em;
+    color: #222;
+    display: inline-block;
+    line-height: .7em;
+    margin: -.1em 0 0 .5em;
+    padding: .225em .3em 0;
+    position: absolute;
+}
+.panel.statcard .trafficsigns .list .row .name .time::before {
+    border: .1em solid #fff;
+    border-radius: inherit;
+    bottom: -.15em;
+    content: '';
+    left: -.15em;
+    position: absolute;
+    right: -.15em;
+    top: -.15em;
+}
 .panel.statcard .trafficsigns .list .row .distance {
     color: #fff;
     font-weight: 600;
@@ -876,6 +905,9 @@ body {
 }
 .panel.statcard .trafficsigns .list.good .row .distance {
     color: var(--score-100);
+}
+.panel.statcard .trafficsigns .list.good .row .distance.maybe {
+    color: var(--score-75);
 }
 
 /*                        */
