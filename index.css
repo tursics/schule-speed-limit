@@ -432,7 +432,7 @@ body {
 
 .map svg .pin-shadow {
     fill: #000;
-    filter: blur(4px);
+    filter: blur(3px);
 }
 .map svg .pin-drop {
     fill: hsl(52, 14%, 40%);
@@ -446,6 +446,7 @@ body {
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 1px;
+    transform: translateY(2px)
 }
 
 .map svg .entry {

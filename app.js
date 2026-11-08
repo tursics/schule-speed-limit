@@ -250,12 +250,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getPin(point, rotation) {
         const [x, y] = point;
-        const pinHeight = 35;
 
         const svg = `<g class="pin" transform="translate(${x}, ${y}) rotate(${-rotation})">
-            <ellipse cx="0" cy="0" rx="9" ry="3.5" class="pin-shadow" />
-            <path d="M 0 0 C -6 -10, -14 -18, -14 -26 A 14 14 0 1 1 14 -26 C 14 -18, 6 -10, 0 0 Z" class="pin-drop" />
-            <path d="M -6 -28 L 0 -31 L 6 -28 L 0 -25 Z M -4 -26.5 V -23.5 C -4 -22, 4 -22, 4 -23.5 V -26.5 M 4 -27.5 V -22" class="pin-icon" />
+            <ellipse cx="0" cy="0" rx="6" ry="2.5" class="pin-shadow" />
+            <path d="M 0 0 C -3 -8, -10 -17, -10 -26 A 10 10 0 1 1 10 -26 C 10 -17, 3 -8, 0 0 Z" class="pin-drop" />
+            <path d="M -4.5 -27.5 L 0 -29.5 L 4.5 -27.5 L 0 -25.5 Z M -3 -26.3 V -23.8 C -3 -22.8, 3 -22.8, 3 -23.8 V -26.3 M 3 -27 V -22.5" class="pin-icon" />
         </g>`;
 
         return svg;
